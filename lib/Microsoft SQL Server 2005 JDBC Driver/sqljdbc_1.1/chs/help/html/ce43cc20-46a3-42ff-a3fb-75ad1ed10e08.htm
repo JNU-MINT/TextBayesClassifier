@@ -1,0 +1,131 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>连接和检索数据</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">连接和检索数据</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>使用 Microsoft SQL Server 2005 JDBC Driver 时，可用来建立到 SQL Server 数据库的连接的方法主要有两种。一种方法是在连接 URL 中设置连接属性，然后调用 <b>DriverManager</b> 类的 <b>getConnection</b> 方法来返回 <a href="937292a6-1525-423e-a2b2-a18fd34c2893.htm">SQLServerConnection</a> 对象。</p>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>注意： </b>
+有关 JDBC 驱动程序所支持的连接属性的列表，请参阅<a href="f1b62700-f046-488d-bd6b-a5cd8fc345b7.htm">设置连接属性</a>。<p></p>
+    </div>
+<p>第二种方法涉及到使用 <a href="097434fd-2b74-411c-a5ed-eba04481dde5.htm">SQLServerDataSource</a> 类的 setter 方法设置连接属性，然后调用 <a href="a15ee185-f433-4915-9c75-5ebd90c758fd.htm">getConnection</a> 方法来返回 <b>SQLServerConnection</b> 对象。</p>
+<p>此部分的主题说明了可用来连接到 SQL Server 数据库的各种方法，还说明了用来检索数据的各种技术。</p>
+  </div>
+      <h1 class="heading">
+        本节的相关信息
+      </h1>
+      <div id="inThisSectionSection" class="section">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h2 class="heading" xmlns=""></h2><table cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;" xmlns=""><tr>
+            <th>
+主题
+            </th>
+            <th>
+说明
+            </th>
+          </tr><tr>
+          <td>
+            <p><a href="96fabc42-59d1-4cc0-93c5-db00cbe55e95.htm">连接 URL 示例</a></p>
+          </td>
+          <td>
+<p>说明如何先使用连接 URL 来连接 SQL Server，然后再使用 SQL 语句来检索数据。</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="b4a933ee-f2c6-4e0d-a96d-6dd061abf759.htm">数据源示例</a></p>
+          </td>
+          <td>
+<p>说明如何先使用数据源来连接 SQL Server，然后再使用存储过程来检索数据。</p>
+          </td>
+        </tr></table>
+    </content>
+  </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="e136b87c-a138-45d6-8c3e-bcef94b7e483.htm">示例 JDBC 驱动程序应用程序</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

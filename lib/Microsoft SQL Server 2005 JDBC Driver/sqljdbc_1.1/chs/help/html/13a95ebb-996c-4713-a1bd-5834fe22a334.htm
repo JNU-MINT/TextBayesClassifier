@@ -1,0 +1,223 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>结果集数据缓存示例</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">结果集数据缓存示例</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>此 Microsoft SQL Server 2005 JDBC Driver 示例应用程序说明了如何从数据库中检索大量数据，然后使用 <a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a> 对象的 <a href="233bf4f8-4758-42d0-a80b-33e34fa78027.htm">setFetchSize</a> 方法控制在客户端中缓存的数据行数。</p>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>注意： </b>
+限制客户端中缓存的行数与限制结果集中包含的总行数不同。要控制结果集中包含的总行数，请使用 <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a> 对象的 <a href="cccc0667-589b-4655-8ea8-14ae8b2eb9dc.htm">setMaxRows</a> 方法，该方法由 <a href="a8481c06-fbba-432b-8c69-4f4619c20ad4.htm">SQLServerPreparedStatement</a> 对象和 <a href="30710a63-c05d-47d9-9cf9-c087a1c76373.htm">SQLServerCallableStatement</a> 对象所继承。<p></p>
+    </div>
+<p>要对客户端中缓存的行数进行限制，首先必须在创建 <b>Statement</b> 对象时使用服务器端游标，并且在创建 <b>Statement</b> 对象时专门声明要使用的游标类型。例如，JDBC 驱动程序提供了 TYPE_SS_SERVER_CURSOR_FORWARD_ONLY 游标类型，该类型是用于 SQL Server 数据库的快速只进、只读的服务器端游标。</p>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>注意： </b>
+如果不使用 SQL Server 的特定游标类型，也可以使用 selectMethod 连接字符串属性，并将其值设置为&ldquo;cursor&rdquo;。有关 JDBC 驱动程序支持的游标类型的详细信息，请参阅<a href="4f4d3db7-4f76-450d-ab63-141237a4f034.htm">了解游标类型</a>。<p></p>
+    </div>
+<p>运行完 <b>Statement</b> 对象中包含的查询且数据已经以结果集的形式返回到客户端后，可以调用 <b>setFetchSize</b> 方法来控制一次可从数据库中检索的数据量。例如，某表格包含 100 行数据，提取大小设置为 10,则无论何时，客户端中都仅缓存 10 行数据。尽管这样会降低数据处理速度，但其优势是所占用的客户端内存较少，这在需要处理大量数据时尤为有用。</p>
+<p>此示例的代码文件名为 cacheRS.java，该文件可在以下位置找到：</p>
+<p>&lt;<i>安装目录</i>&gt;\sqljdbc_&lt;<i>版本</i>&gt;\&lt;<i>语言</i>&gt;\help\samples\resultsets</p>
+  </div>
+      <h1 class="heading">
+        要求
+      </h1>
+      <div id="requirementsSection" class="section">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">若要运行此示例应用程序，必须将 classpath 设置为包含 sqljdbc.jar 文件。如果 classpath 缺少 sqljdbc.jar 项，示例应用程序将引发&ldquo;找不到类&rdquo;的常见异常。还需要访问 SQL Server 2005 AdventureWorks 示例数据库。</p>
+<p xmlns="">有关如何设置 classpath 的详细信息，请参阅<a href="6faaf05b-8b70-4ed2-9b44-eee5897f1cd0.htm">使用 JDBC 驱动程序</a>。</p>
+    </content>
+  </div>
+      <h1 class="heading">
+        示例
+      </h1>
+      <div id="codeExampleSection" class="section">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <content>
+<p xmlns="">在下面的实例中，示例代码将建立与 AdventureWorks 示例数据库的连接。接下来，它会使用带有 <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a> 对象的 SQL 语句，指定服务器端游标类型，然后运行 SQL 语句并将所返回的数据放入 <b>SQLServerResultSet</b> 对象。</p>
+<p xmlns="">随后，示例代码调用自定义的 <b>timerTest</b> 方法，需要传递的参数为要使用的提取大小和结果集。<b>timerTest</b> 方法接下来将使用 <b>setFetchSize</b> 方法设置结果集的提取大小，设置测试的起始时间，然后使用 <code> While </code> 循环遍历结果集。<code> While </code> 循环退出后，该代码立即设置测试的停止时间，然后显示测试结果，其中包括提取大小、已处理的行数以及执行该测试所用的时间。</p>
+      </content>
+    </description>
+    <div class="sampleCode"><span codeLanguage="other"><pre>import java.sql.*;
+import com.microsoft.sqlserver.jdbc.SQLServerResultSet;
+
+public class cacheRS {
+
+   public static void main(String[] args) {
+
+      // Create a variable for the connection string.
+      String connectionUrl = "jdbc:sqlserver://localhost:1433;" +
+            "databaseName=AdventureWorks;integratedSecurity=true;";
+
+      // Declare the JDBC objects.
+      Connection con = null;
+      Statement stmt = null;
+      ResultSet rs = null;
+
+      try {
+
+         // Establish the connection.
+         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+         con = DriverManager.getConnection(connectionUrl);
+
+         // Create and execute an SQL statement that returns a large
+         // set of data and then display it.
+         String SQL = "SELECT * FROM Sales.SalesOrderDetail;";
+         stmt = con.createStatement(SQLServerResultSet.TYPE_SS_SERVER_CURSOR_FORWARD_ONLY, +
+               SQLServerResultSet.CONCUR_READ_ONLY);
+
+         // Perform a fetch for every row in the result set.
+         rs = stmt.executeQuery(SQL);
+         timerTest(1, rs);
+         rs.close();
+
+         // Perform a fetch for every tenth row in the result set.
+         rs = stmt.executeQuery(SQL);
+         timerTest(10, rs);
+         rs.close();
+
+         // Perform a fetch for every 100th row in the result set.
+         rs = stmt.executeQuery(SQL);
+         timerTest(100, rs);
+         rs.close();
+
+         // Perform a fetch for every 1000th row in the result set.
+         rs = stmt.executeQuery(SQL);
+         timerTest(1000, rs);
+         rs.close();
+
+         // Perform a fetch for every 128th row (the default) in the result set.
+         rs = stmt.executeQuery(SQL);
+         timerTest(0, rs);
+         rs.close();
+      }
+
+      // Handle any errors that may have occurred.
+      catch (Exception e) {
+         e.printStackTrace();
+      }
+
+      finally {
+         if (rs != null) try { rs.close(); } catch(Exception e) {}
+         if (stmt != null) try { stmt.close(); } catch(Exception e) {}
+         if (con != null) try { con.close(); } catch(Exception e) {}
+      }
+   }
+
+   public static void timerTest(int fetchSize, ResultSet rs) {
+      try {
+
+         // Declare the variables for tracking the row count and elapsed time.
+         int rowCount = 0;
+         long startTime = 0;
+         long stopTime = 0;
+         long runTime = 0;
+
+         // Set the fetch size then iterate through the result set to
+         // cache the data locally.
+         rs.setFetchSize(fetchSize);
+         startTime = System.currentTimeMillis();
+         while (rs.next()) {
+            rowCount++;
+         }
+         stopTime = System.currentTimeMillis();
+         runTime = stopTime - startTime;
+
+         // Display the results of the timer test.
+         System.out.println("FETCH SIZE: " + rs.getFetchSize());
+         System.out.println("ROWS PROCESSED: " + rowCount);
+         System.out.println("TIME TO EXECUTE: " + runTime);
+         System.out.println();
+
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+   }
+}</pre></span></div>
+  </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="4fc4b1c6-3075-4ad7-9244-865d9ede7ae6.htm">使用结果集</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

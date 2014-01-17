@@ -1,0 +1,121 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>JDBC 驱动程序的新增功能</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">JDBC 驱动程序的新增功能</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>此 1.1 版的 Microsoft SQL Server 2005 JDBC Driver 包含多个新功能和增强功能。以下各部分将说明此版本的 JDBC 驱动程序中的增强功能。</p>
+  </div>
+      <h1 class="heading">集成身份验证</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">JDBC 驱动程序目前支持在 Microsoft Windows 操作系统中使用&ldquo;类型 2&rdquo;集成身份验证。有关如何配置计算机以使用集成身份验证的信息，请参阅<a href="44996746-d373-4f59-9863-a8a20bb8024a.htm">创建连接 URL</a>。有关如何在 Java 应用程序中使用 integratedSecurity 连接字符串属性的信息，请参阅<a href="f1b62700-f046-488d-bd6b-a5cd8fc345b7.htm">设置连接属性</a>。</p>
+    </content>
+      </div>
+      <h1 class="heading">数据库镜像</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">JDBC 驱动程序目前支持使用 SQL Server 2005 数据库镜像，该功能可增加数据库可用性和数据冗余。有关如何通过 JDBC 驱动程序使用数据库镜像的详细信息，请参阅<a href="4ff59218-0d3b-4274-b647-9839c4955865.htm">使用数据库镜像 (JDBC)</a>。</p>
+    </content>
+      </div>
+      <h1 class="heading">包大小属性</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">JDBC 驱动程序目前支持使用 packetSize 连接字符串属性，使用该属性可以设置或检索用来与 SQL Server 进行通信的网络包大小。有关新 packetSize 属性的详细信息，请参阅<a href="f1b62700-f046-488d-bd6b-a5cd8fc345b7.htm">设置连接属性</a>。</p>
+    </content>
+      </div>
+      <h1 class="heading">示例应用程序</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">JDBC 驱动程序的帮助系统目前包含一个示例应用程序集，演示了在 Java 应用程序中使用 JDBC 驱动程序的各种技术。有关示例应用程序的详细信息，请参阅<a href="e136b87c-a138-45d6-8c3e-bcef94b7e483.htm">示例 JDBC 驱动程序应用程序</a>。</p>
+    </content>
+      </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="939a8773-2583-49a4-bf00-6b892fbe39dc.htm">JDBC 驱动程序概述</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

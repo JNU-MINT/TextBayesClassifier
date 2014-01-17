@@ -1,0 +1,155 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>通过 JDBC 驱动程序管理结果集</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">通过 JDBC 驱动程序管理结果集</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>结果集是一个对象，表示从数据源返回的一组数据，通常是查询的结果。结果集包含一些行和列，用于保存请求的数据元素，并使用游标对其进行导航。结果集是可更新的，这意味着可以对其进行修改，并将修改内容传给原始数据源。结果集还可以有多种针对基础数据源中更改的敏感度级别。</p>
+<p>创建语句时（即在调用 <a href="937292a6-1525-423e-a2b2-a18fd34c2893.htm">SQLServerConnection</a> 类的 <a href="6d043ba9-b8ec-41d3-bb22-ad2c4aebda6f.htm">createStatement</a> 方法时）已确定了结果集的类型。结果集的基本作用是向 Java 应用程序提供数据库数据的可用表示形式。通常通过针对结果集数据元素并且带类型的 getter 和 setter 方法来完成这项任务。</p>
+<p>下面的实例基于 SQL Server 2005 AdventureWorks 示例数据库，通过调用 <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a> 类的 <a href="599cf463-e19f-4baa-bacb-513cad7c6cd8.htm">executeQuery</a> 方法创建结果集。然后使用 <a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a> 类的 <a href="f81dde01-d328-4b32-8871-1efac645b68e.htm">getString</a> 方法显示结果集中的数据。</p>
+    <div class="sampleCode">
+		<span class="langLabel" name="label"></span><span codeLanguage="other"><pre>public static void executeStatement(Connection con) {
+   try {
+      String SQL = "SELECT TOP 10 * FROM Person.Contact";
+      Statement stmt = con.createStatement();
+      ResultSet rs = stmt.executeQuery(SQL);
+
+      while (rs.next()) {
+         System.out.println(rs.getString(4) + " " + rs.getString(6));
+      }
+      rs.close();
+      stmt.close();
+   }
+   catch (Exception e) {
+      e.printStackTrace();
+   }
+}
+</pre></span>
+	</div>
+<p>本部分中的主题说明结果集用法的各个方面，包括游标类型、并发和行锁定。</p>
+  </div>
+      <h1 class="heading">
+        本节的相关信息
+      </h1>
+      <div id="inThisSectionSection" class="section">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h2 class="heading" xmlns=""></h2><table cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;" xmlns=""><tr>
+            <th>
+主题
+            </th>
+            <th>
+说明
+            </th>
+          </tr><tr>
+          <td>
+            <p><a href="4f4d3db7-4f76-450d-ab63-141237a4f034.htm">了解游标类型</a></p>
+          </td>
+          <td>
+<p>说明 Microsoft SQL Server 2005 JDBC Driver 支持的不同游标类型。</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="98b7dabe-9b12-4e1d-adeb-e5b5cb0c96f3.htm">了解并发控制</a></p>
+          </td>
+          <td>
+<p>说明 JDBC 驱动程序如何支持并发控制。</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="63c76a2f-f2b9-461f-8904-acbda0169ac3.htm">了解行锁定</a></p>
+          </td>
+          <td>
+<p>说明 JDBC 驱动程序如何支持行锁定。</p>
+          </td>
+        </tr></table>
+    </content>
+  </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="939a8773-2583-49a4-bf00-6b892fbe39dc.htm">JDBC 驱动程序概述</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

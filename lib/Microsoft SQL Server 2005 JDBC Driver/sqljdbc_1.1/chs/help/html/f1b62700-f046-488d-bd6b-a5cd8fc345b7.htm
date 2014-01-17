@@ -1,0 +1,384 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>设置连接属性</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">设置连接属性</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>可以通过多种方式指定连接字符串的属性： </p>
+    <ul><li>
+当使用 <b>DriverManager</b> 类进行连接时，在连接 URL 中通过&ldquo;名称=值&rdquo;属性进行指定。<br></br>
+      </li><li>
+在 <b>DriverManager</b> 类中 <b>Connect</b> 方法的 <i>Properties</i> 参数中通过&ldquo;名称=值&rdquo;属性进行指定。 <br></br>
+      </li><li>
+在驱动程序数据源的适当的 setter 方法中指定值。例如： <br></br>
+        <div class="sampleCode"><span codeLanguage="other"><pre><b>datasource.setServerName(value)</b>
+<b>datasource.setDatabaseName(value)</b></pre></span></div>
+      </li></ul>
+<p>属性名区分大小写，重复的属性名将按以下顺序进行解析：</p>
+    <ol><li>
+API 参数（如用户和密码）<br></br>
+      </li><li>
+属性集合<br></br>
+      </li><li>
+连接字符串中的最后一个实例<br></br>
+      </li></ol>
+<p>此外，属性名允许使用未知的值，JDBC 驱动程序不会对这些值进行大小写验证。</p>
+<p>允许使用同义词，并按顺序进行解析，如同处理重复的属性名。</p>
+<p>下表列出了 JDBC 驱动程序当前可用的所有连接字符串属性。</p>
+    <h2 class="heading"></h2><table cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;"><tr>
+          <th>
+属性
+          </th>
+          <th>
+类型
+          </th>
+          <th>
+默认值
+          </th>
+          <th>
+说明
+          </th>
+        </tr><tr>
+        <td>
+<p>applicationName</p>
+        </td>
+        <td>
+<p>字符串 </p>
+<p>[&lt;=128 char]</p>
+        </td>
+        <td>
+<p>null</p>
+        </td>
+        <td>
+<p>如果未提供名称，则使用应用程序名称或&ldquo;Microsoft SQL Server 2005 JDBC Driver&rdquo;。用于在各种 SQL Server 分析和日志记录工具中标识特定的应用程序。</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>databaseName、database</p>
+        </td>
+        <td>
+<p>字符串</p>
+<p>[&lt;=128 char]</p>
+        </td>
+        <td>
+<p>null</p>
+        </td>
+        <td>
+<p>要连接到的数据库名称。如果未声明，则连接到默认的数据库。</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>disableStatementPooling</p>
+        </td>
+        <td>
+<p>布尔型</p>
+<p>["true"|"false"]</p>
+        </td>
+        <td>
+<p>true</p>
+        </td>
+        <td>
+<p>当前仅支持值&ldquo;true&rdquo;。如果设置为&ldquo;false&rdquo;，将发生异常。</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>failoverPartner</p>
+        </td>
+        <td>
+<p>字符串</p>
+<p>[&lt;=128 char]</p>
+        </td>
+        <td>
+<p>null</p>
+        </td>
+        <td>
+<p>在数据库镜像配置中使用的故障转移服务器名称。与主服务器进行初始连接时若发生失败，则会使用此属性；建立初始连接后，将忽略此属性。必须与数据库属性共同使用。</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>instanceName</p>
+        </td>
+        <td>
+<p>字符串</p>
+<p>[&lt;=128 char]</p>
+        </td>
+        <td>
+<p>null</p>
+        </td>
+        <td>
+<p>要连接到的 SQL Server 2000 或 SQL Server 2005 实例名。如果未指定，则连接到默认的实例。对于 instanceName 和端口均未指定的情况，请参阅有关端口的备注。</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>integratedSecurity</p>
+        </td>
+        <td>
+<p>布尔型</p>
+<p>["true"|"false"]</p>
+        </td>
+        <td>
+<p>false</p>
+        </td>
+        <td>
+<p>设置为&ldquo;true&rdquo;表示 SQL Server 将使用 Windows 凭据来验证应用程序用户的身份。如果为&ldquo;true&rdquo;，则 JDBC 驱动程序将搜索本地计算机凭据缓存，以寻找在登录计算机或网络时已提供的凭据。如果为&ldquo;false&rdquo;，则必须提供用户名和密码。</p>
+          <div style="margin: .5em 1.5em .5em 1.5em"><b>注意： </b>
+只有 Microsoft Windows 操作系统才支持此连接属性。<p></p>
+          </div>
+        </td>
+      </tr><tr>
+        <td>
+<p>lastUpdateCount</p>
+        </td>
+        <td>
+<p>布尔型</p>
+<p>["true"|"false"]</p>
+        </td>
+        <td>
+<p>true</p>
+        </td>
+        <td>
+<p>如果值为&ldquo;true&rdquo;，则仅返回传递给服务器的 SQL 语句的最终更新计数，它可用于单个的 SELECT、INSERT 或 DELETE 语句中，以忽略由服务器触发器引起的其他更新计数。将此属性设置为&ldquo;false&rdquo;可导致所有更新计数都被返回，包括由服务器触发器返回的更新计数。</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>lockTimeout</p>
+        </td>
+        <td>
+<p>整型</p>
+        </td>
+        <td>
+          <p>-1</p>
+        </td>
+        <td>
+<p>数据库报告锁定超时之前要等待的毫秒数。默认行为是无限期等待。如果指定，该值将成为此连接上所有语句的默认值。请注意，可以使用 <code> Statement.setQueryTimeout() </code> 设置特定语句的超时值。该值可为 0，指定为无需等待。</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>loginTimeout</p>
+        </td>
+        <td>
+<p>整型 [&gt;=0..65535]</p>
+        </td>
+        <td>
+          <p>0</p>
+        </td>
+        <td>
+<p>因连接失败而中止连接之前驱动程序应等待的秒数。零值表示无超时值。非零值为因连接失败而中止连接之前驱动程序应等待的秒数。</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>packetSize</p>
+        </td>
+        <td>
+<p>整型 [512..32767]</p>
+        </td>
+        <td>
+          <p>4096</p>
+        </td>
+        <td>
+<p>用来与 SQL Server 通信的网络包大小，以字节为单位指定。如果将此属性设置为超出可接受范围的值，将出现异常。</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>password</p>
+        </td>
+        <td>
+<p>字符串 </p>
+<p>[&lt;=128 char]</p>
+        </td>
+        <td>
+<p>null</p>
+        </td>
+        <td>
+<p>数据库密码。</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>portNumber、port</p>
+        </td>
+        <td>
+<p>整型 [&gt;=0..65535]</p>
+        </td>
+        <td>
+          <p>1433</p>
+        </td>
+        <td>
+<p>SQL Server 侦听的端口。如果在连接字符串中指定了端口号，则不会向 sqlbrowser 发出请求。如果端口和 instanceName 都已指定，则将建立到指定端口的连接。但是，将对 instanceName 进行验证，如果它与端口不符，将引发错误。</p>
+          <div style="margin: .5em 1.5em .5em 1.5em"><b>重要事项： </b>
+建议始终指定端口号，因为这比使用 sqlbrowser 更安全。<p></p>
+          </div>
+        </td>
+      </tr><tr>
+        <td>
+<p>selectMethod</p>
+        </td>
+        <td>
+<p>字符串</p>
+<p>["direct"|"cursor"]</p>
+        </td>
+        <td>
+<p>direct</p>
+        </td>
+        <td>
+<p>如果将该属性设置为&ldquo;cursor&rdquo;，则对基于 TYPE_FORWARD_ONLY 和 CONCUR_READ_ONLY 游标的连接创建的每个查询，都会创建一个数据库游标。通常仅当应用程序生成的结果集非常大，以至于客户端内存无法完全容纳时，才需要使用该属性。如果将该属性设置为&ldquo;cursor&rdquo;，则客户端内存中仅保留数目有限的结果集行。默认行为是在客户端内存中保留所有结果集的行。在应用程序需要处理所有行时，此行为可提供最快性能。</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>sendStringParametersAsUnicode</p>
+        </td>
+        <td>
+<p>布尔型</p>
+<p>["true"|"false"]</p>
+        </td>
+        <td>
+<p>true</p>
+        </td>
+        <td>
+<p>设置为&ldquo;false&rdquo;，将指定作为 ASCII 而不是 Unicode 来发送字符数据的预定义参数。该参数可提高对非 Unicode、SQL Server 2000 或 SQL Server 2005 表进行字符数据索引查找时的性能。例如，ASCII 行的键可直接进行比较，无需从 Unicode 进行转换。有关详细信息，请参阅 Microsoft 讨论，网址为 <a href="http://support.microsoft.com/kb/271566" target="_blank" alt=""><linkText xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">support.microsoft.com/kb/271566</linkText></a>（英文）。</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>serverName、server</p>
+        </td>
+        <td>
+<p>字符串</p>
+        </td>
+        <td>
+<p>null</p>
+        </td>
+        <td>
+<p>运行 SQL Server 的计算机。</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>userName、user</p>
+        </td>
+        <td>
+<p>字符串 </p>
+<p>[&lt;=128 char]</p>
+        </td>
+        <td>
+<p>null</p>
+        </td>
+        <td>
+<p>数据库用户。</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>workstationID</p>
+        </td>
+        <td>
+<p>字符串 </p>
+<p>[&lt;=128 char]</p>
+        </td>
+        <td>
+<p>null</p>
+        </td>
+        <td>
+<p>工作站 ID，没有可用的工作站 ID 时，为&ldquo;WSID Not Available&rdquo;。用于在各种 SQL Server 分析和日志记录工具中标识特定的工作站。</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>xopenStates</p>
+        </td>
+        <td>
+<p>布尔型</p>
+<p>["true"|"false"]</p>
+        </td>
+        <td>
+<p>false</p>
+        </td>
+        <td>
+<p>设置为&ldquo;true&rdquo;将指定驱动程序在异常时返回 XOPEN 兼容的状态代码。默认将返回 SQL 99 状态代码。</p>
+        </td>
+      </tr></table>
+  </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="94bcfbe3-f00e-4774-bda8-bb7577518fec.htm">通过 JDBC 驱动程序连接到 SQL Server</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

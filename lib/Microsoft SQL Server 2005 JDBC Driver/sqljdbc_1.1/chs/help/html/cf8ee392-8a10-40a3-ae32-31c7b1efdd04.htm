@@ -1,0 +1,172 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>使用连接</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">使用连接</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>以下各部分提供了使用 Microsoft SQL Server 2005 JDBC Driver 的 <a href="937292a6-1525-423e-a2b2-a18fd34c2893.htm">SQLServerConnection</a> 类来连接到 SQL Server 数据库的不同方法的实例。</p>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>注意： </b>
+如果在使用 JDBC 驱动程序连接到 SQL Server 时遇到问题，请参阅&ldquo;<a href="bfba0b49-2e1f-411d-a625-d25fad9ea12d.htm">连接疑难解答</a>&rdquo;获取有关解决方法的建议。<p></p>
+    </div>
+  </div>
+      <h1 class="heading">使用 DriverManager 类创建连接</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">创建到 SQL Server 数据库的连接的最简便方法是加载 JDBC 驱动程序，然后调用 <b>DriverManager</b> 类的 <b>getConnection</b> 方法，如下所示：</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+String connectionUrl = "jdbc:sqlserver://localhost;database=AdventureWorks;integratedSecurity=true;
+Connection con = DriverManager.getConnection(connectionUrl);</pre></span></div>
+<p xmlns="">此技术将通过使用驱动程序列表中第一个可以与给定 URL 成功连接的可用驱动程序，创建数据库连接。</p>
+    </content>
+      </div>
+      <h1 class="heading">使用 SQLServerDriver 类创建连接</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">如果必须为 <b>DriverManager</b> 指定驱动程序列表中的特定驱动程序，可以使用 <a href="fbdceae5-7e7b-4edb-8c33-c701ca6b2d53.htm">SQLServerDriver</a> 类的 <a href="43813a4c-1cc7-4659-ba27-f1786f1371eb.htm">connect</a> 方法来创建数据库连接，如下所示：</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>Driver d = (Driver) Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+String connectionUrl = "jdbc:sqlserver://localhost;database=AdventureWorks;integratedSecurity=true;
+Connection con = d.connect(connectionUrl, new Properties());</pre></span></div>
+    </content>
+      </div>
+      <h1 class="heading">使用 SQLServerDataSource 类创建连接</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">如果必须使用 <a href="097434fd-2b74-411c-a5ed-eba04481dde5.htm">SQLServerDataSource</a> 类创建连接，可以先使用此类的各种 setter 方法，然后调用 <a href="7f520e96-5313-468f-b987-535ddaea027e.htm">getConnection</a> 方法，如下所示：</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>SQLServerDataSource ds = new SQLServerDataSource();
+ds.setUser("MyUserName");
+ds.setPassword("*****");
+ds.setServerName("localhost");
+ds.setPortNumber(1433); 
+ds.setDatabaseName("AdventureWorks");
+Connection con = ds.getConnection();</pre></span></div>
+    </content>
+      </div>
+      <h1 class="heading">创建目标为非常特殊的数据源的连接</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">如果必须创建目标为非常特殊的数据源的数据库连接，可以采用多种方法。每种方法取决于使用此连接 URL 设置的属性。</p>
+<p xmlns="">若要连接到远程服务器上的默认实例，请使用：</p>
+      <p xmlns=""><code>String url = "jdbc:sqlserver://MyServer;integratedSecurity=true;</code></p>
+<p xmlns="">若要连接到服务器上的特定端口，请使用：</p>
+      <p xmlns=""><code>String url = "jdbc:sqlserver://MyServer:1533;integratedSecurity=true;</code></p>
+<p xmlns="">若要连接到服务器上的命名实例，请使用：</p>
+      <p xmlns=""><code>String url = "jdbc:sqlserver://209.196.43.19;instanceName=INSTANCE1;integratedSecurity=true;</code></p>
+<p xmlns="">若要连接到服务器上的特定数据库，请使用：</p>
+      <p xmlns=""><code>String url = "jdbc:sqlserver://172.31.255.255;database=AdventureWorks;integratedSecurity=true;</code></p>
+<p xmlns="">有关连接 URL 实例的详细信息，请参阅<a href="44996746-d373-4f59-9863-a8a20bb8024a.htm">创建连接 URL</a>。</p>
+    </content>
+      </div>
+      <h1 class="heading">创建具有自定义登录超时的连接</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">如果必须调节服务器负载或网络流量，可以创建具有特定登录超时值（以秒为单位）的连接，如下所示：</p>
+      <p xmlns=""><code>String url = "jdbc:sqlserver://MyServer;loginTimeout=90;integratedSecurity=true;</code></p>
+    </content>
+      </div>
+      <h1 class="heading">创建具有应用程序级别标识的连接</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">如果必须记录日志并进行分析，则必须将连接标识为源于特定应用程序，如下所示：</p>
+      <p xmlns=""><code>String url = "jdbc:sqlserver://MyServer;applicationName=MYAPP.EXE;integratedSecurity=true;</code></p>
+    </content>
+      </div>
+      <h1 class="heading">关闭连接</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">可以通过调用 <b>SQLServerConnection</b> 类的 <a href="f0f26585-bdf7-4737-b434-8c7e115c8e94.htm">close</a> 方法显式地关闭数据库连接，如下所示：</p>
+      <p xmlns=""><code>con.close();</code></p>
+<p xmlns="">这将释放 <b>SQLServerConnection</b> 对象正在使用的数据库资源，或使连接返回到池方案中的连接池。</p>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>注意： </b>
+调用 <b>close</b> 方法还将回滚所有挂起的事务。<p></p>
+      </div>
+    </content>
+      </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="94bcfbe3-f00e-4774-bda8-bb7577518fec.htm">通过 JDBC 驱动程序连接到 SQL Server</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

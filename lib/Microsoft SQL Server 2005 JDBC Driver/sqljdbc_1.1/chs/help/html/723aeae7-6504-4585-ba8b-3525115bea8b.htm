@@ -1,0 +1,284 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>跟踪驱动程序操作</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">跟踪驱动程序操作</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>Microsoft SQL Server 2005 JDBC Driver 支持使用跟踪（或日志记录）协助解决在应用程序中使用 JDBC 驱动程序时出现的问题。若要启用跟踪，JDBC 驱动程序需要使用 java.util.logging 中的日志记录 API，它可提供用于创建 <b>Logger</b> 和 <b>LogRecord</b> 对象的类集。 </p>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>注意： </b>
+对于 JDBC 驱动程序中包含的本地组件 (sqljdbc_xa.dll)，可通过内置诊断 (BID) 框架启用跟踪。有关 BID 的信息，请参阅 <a href="http://go.microsoft.com/fwlink/?LinkId=70042" target="_blank" alt=""><linkText xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">SQL Server 2005 中的数据访问跟踪</linkText></a>。<p></p>
+    </div>
+<p>开发应用程序时，可对 <b>Logger</b> 对象进行调用，它会创建 <b>LogRecord</b> 对象，然后将这些对象传递给 <b>Handler</b> 对象进行处理。<b>Logger</b> 和 <b>Handler</b> 对象都会使用日志记录级别和日志记录筛选器（可选）来规定要处理的 <b>LogRecords</b>。完成日志记录操作后，<b>Handler</b> 对象可选择使用 <b>Formatter</b> 对象发布日志信息。</p>
+<p>默认情况下，java.util.logging 框架会将其输出写入到文件中。该输出日志文件必须对 JDBC 驱动程序运行时所在的上下文具有写入权限。</p>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>注意： </b>
+有关使用各种日志记录对象进行程序跟踪的详细信息，请参阅 Sun Microsystems 网站上的 <a href="http://go.microsoft.com/fwlink/?LinkId=57239" target="_blank" alt=""><linkText xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">Java Logging APIs</linkText></a>（英文）文档。<p></p>
+    </div>
+<p>以下各部分介绍了日志记录级别和可记录的类别，并提供了有关如何在应用程序中启用跟踪的信息。</p>
+  </div>
+      <h1 class="heading">日志记录级别</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">创建的每条日志消息都有相关联的日志记录级别。日志记录级别用于决定日志消息的重要性，这些级别由 java.util.logging 中的 <b>Level</b> 类定义。下表逐一介绍了每个可用的日志记录级别。</p>
+      <h2 class="heading" xmlns=""></h2><table cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;" xmlns=""><tr>
+            <th>
+名称
+            </th>
+            <th>
+说明
+            </th>
+          </tr><tr>
+          <td>
+<p>SEVERE</p>
+          </td>
+          <td>
+<p>表示严重失败，此为最高日志记录级别。在 JDBC 驱动程序中，该级别用于报告错误和异常。</p>
+          </td>
+        </tr><tr>
+          <td>
+<p>WARNING</p>
+          </td>
+          <td>
+<p>指示潜在的问题。</p>
+          </td>
+        </tr><tr>
+          <td>
+<p>INFO</p>
+          </td>
+          <td>
+<p>提供信息性消息。</p>
+          </td>
+        </tr><tr>
+          <td>
+<p>CONFIG</p>
+          </td>
+          <td>
+<p>提供配置消息。在 JDBC 驱动程序中，该级别用于作用域内的全局配置设置。</p>
+          </td>
+        </tr><tr>
+          <td>
+<p>FINE</p>
+          </td>
+          <td>
+<p>提供跟踪信息。在 JDBC 驱动程序中，该级别用于大多数日志消息。</p>
+          </td>
+        </tr><tr>
+          <td>
+<p>FINER</p>
+          </td>
+          <td>
+<p>提供详细的跟踪信息。</p>
+          </td>
+        </tr><tr>
+          <td>
+<p>FINEST</p>
+          </td>
+          <td>
+<p>提供非常详细的跟踪信息。此为最低日志记录级别。</p>
+          </td>
+        </tr><tr>
+          <td>
+<p>OFF</p>
+          </td>
+          <td>
+<p>关闭日志记录。</p>
+          </td>
+        </tr><tr>
+          <td>
+<p>ALL</p>
+          </td>
+          <td>
+<p>启用所有消息的日志记录。</p>
+          </td>
+        </tr></table>
+    </content>
+      </div>
+      <h1 class="heading">日志记录类别</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">创建 <b>Logger</b> 对象时，必须告知该对象您希望从其中获取日志信息的指定实体或类别。JDBC 驱动程序支持下列日志记录类别。</p>
+      <h2 class="heading" xmlns=""></h2><table cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;" xmlns=""><tr>
+            <th>
+名称
+            </th>
+            <th>
+说明
+            </th>
+          </tr><tr>
+          <td>
+<p>SQLServerConnection</p>
+          </td>
+          <td>
+<p><a href="937292a6-1525-423e-a2b2-a18fd34c2893.htm">SQLServerConnection</a> 类中的日志消息。默认日志记录级别为 FINE。</p>
+          </td>
+        </tr><tr>
+          <td>
+<p>SQLServerStatement</p>
+          </td>
+          <td>
+<p><a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a> 类中的日志消息。默认日志记录级别为 FINE。</p>
+          </td>
+        </tr><tr>
+          <td>
+<p>TDS.DATA</p>
+          </td>
+          <td>
+<p>记录 TDS 消息。该类别会创建非常冗长而详细的消息，并且只有通过将日志记录级别设置为 FINEST 才能启用它。</p>
+          </td>
+        </tr><tr>
+          <td>
+<p>TDS.TOKEN</p>
+          </td>
+          <td>
+<p>记录 TDS 消息。该类别仅记录 TDS 包内的标记，并且不如 TDS.DATA 类别详细。</p>
+          </td>
+        </tr><tr>
+          <td>
+<p>XA</p>
+          </td>
+          <td>
+<p>记录 <a href="5ecb4bf1-b8d1-47cf-9cb1-7a18acc11ce2.htm">SQLServerXAConnection</a>、<a href="df957b79-536f-4db7-b6ac-3d59343559fc.htm">SQLServerXAResource</a> 和 <a href="95fc7b07-2498-4a7e-8f7f-ee0d86b598b4.htm">SQLServerXADataSource</a> 类中所有 XA 事务的消息。默认日志记录级别为 FINE。</p>
+          </td>
+        </tr><tr>
+          <td>
+<p>SQLServerDataSource</p>
+          </td>
+          <td>
+<p>记录 <a href="097434fd-2b74-411c-a5ed-eba04481dde5.htm">SQLServerDataSource</a>、<a href="b00e5a90-2af7-4d04-8ef8-256183777dcf.htm">SQLServerConnectionPoolDataSource</a> 和 <a href="4c87e9d3-904a-4b86-90cc-3684034c86ee.htm">SQLServerPooledConnection</a> 类中的消息。默认日志记录级别为 FINE。 </p>
+          </td>
+        </tr></table>
+    </content>
+      </div>
+      <h1 class="heading">以编程方式启用跟踪</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">通过创建 <b>Logger</b> 对象并指明要记录的类别，即可以编程方式启用跟踪。例如，以下代码显示了如何启用 SQL 语句的日志记录：</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>Logger logger = Logger.getLogger("com.microsoft.sqlserver.jdbc.SQLServerStatement");
+logger.setLevel(Level.FINE);</pre></span></div>
+<p xmlns="">若要在代码中关闭日志记录，请使用以下代码：</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>logger.setLevel(Level.OFF);</pre></span></div>
+<p xmlns="">若要记录所有可用类别，请使用以下代码：</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>Logger logger = Logger.getLogger("com.microsoft.sqlserver.jdbc");
+logger.setLevel(Level.FINE);</pre></span></div>
+<p xmlns="">若要禁止记录某个特定类别，请使用以下代码：</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>Logger logger = Logger.getLogger("com.microsoft.sqlserver.jdbc.TDS");
+logger.setLevel(Level.OFF);</pre></span></div>
+    </content>
+      </div>
+      <h1 class="heading">使用 Logging.Properties 文件启用跟踪</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">除了以编程方式启用跟踪外，还可以使用 <code> logging.properties </code> 文件来启用，该文件可在 Java 运行时环境 (JRE) 安装文件的 <code> lib </code> 目录中找到。该文件可用于设置记录程序和处理程序的默认值，在启用跟踪时会用到这些值。</p>
+<p xmlns="">以下是可在 <code>logging.properties</code> 文件中进行的设置的实例：</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>   # Specify the handlers to create in the root logger
+   # (all loggers are children of the root logger).
+   # The following creates two handlers.
+   handlers = java.util.logging.ConsoleHandler, java.util.logging.FileHandler
+
+   # Set the default logging level for the root logger.
+   .level = OFF
+
+   # Set the default logging level for new ConsoleHandler instances.
+   java.util.logging.ConsoleHandler.level = FINE
+
+   # Set the default logging level for new FileHandler instances.
+   java.util.logging.FileHandler.level = OFF
+
+   # Set the default formatter for new ConsoleHandler instances.
+   java.util.logging.ConsoleHandler.formatter = java.util.logging.SimpleFormatter
+
+   # Set the default logging level for the logger named ConnectionPool.
+   ConnectionPool.level = OFF</pre></span></div>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>注意： </b>
+使用 java.util.logging 中的 <b>LogManager</b> 对象可设置 <code> logging.properties </code> 文件中的属性。<p></p>
+      </div>
+    </content>
+      </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="723e2680-a0c5-4a7d-a319-1e49e41078cf.htm">诊断 JDBC 驱动程序问题</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

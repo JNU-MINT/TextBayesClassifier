@@ -1,0 +1,396 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>使用基本数据类型</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">使用基本数据类型</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>JDBC 基本数据类型是 JDBC 1.0 核心 API 中引入的数据类型。Microsoft SQL Server 2005 JDBC Driver 使用 JDBC 基本数据类型将 SQL Server 数据类型转换为 Java 编程语言能够理解的格式，反之亦然。</p>
+<p>下表列出了基本 SQL Server、JDBC 和 Java 编程语言数据类型之间的默认映射：</p>
+    <h2 class="heading"></h2><table cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;"><tr>
+          <th>
+SQL Server 类型
+          </th>
+          <th>
+JDBC 类型 (java.sql.Types)
+          </th>
+          <th>
+Java 语言类型
+          </th>
+        </tr><tr>
+        <td>
+<p>bigint</p>
+        </td>
+        <td>
+<p>BIGINT</p>
+        </td>
+        <td>
+<p>long</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>timestamp</p>
+<p>binary</p>
+        </td>
+        <td>
+<p>BINARY</p>
+        </td>
+        <td>
+<p>byte[]</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>bit</p>
+        </td>
+        <td>
+<p>BIT</p>
+        </td>
+        <td>
+<p>Boolean</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>char</p>
+<p>nchar</p>
+        </td>
+        <td>
+<p>CHAR</p>
+        </td>
+        <td>
+<p>String</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>decimal</p>
+<p>money</p>
+<p>smallmoney</p>
+        </td>
+        <td>
+<p>DECIMAL</p>
+        </td>
+        <td>
+<p>java.math.BigDecimal</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>float</p>
+        </td>
+        <td>
+<p>DOUBLE</p>
+        </td>
+        <td>
+<p>double</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>int</p>
+        </td>
+        <td>
+<p>INTEGER</p>
+        </td>
+        <td>
+<p>int</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>image</p>
+        </td>
+        <td>
+<p>LONGVARBINARY</p>
+        </td>
+        <td>
+<p>byte[]</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>text</p>
+<p>ntext</p>
+        </td>
+        <td>
+<p>LONGVARCHAR</p>
+        </td>
+        <td>
+<p>String</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>numeric</p>
+        </td>
+        <td>
+<p>NUMERIC</p>
+        </td>
+        <td>
+<p>java.math.BigDecimal</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>real</p>
+        </td>
+        <td>
+<p>REAL</p>
+        </td>
+        <td>
+<p>float</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>smallint</p>
+<p>tinyint</p>
+        </td>
+        <td>
+<p>SMALLINT</p>
+        </td>
+        <td>
+<p>short</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>datetime</p>
+<p>smalldatetime</p>
+        </td>
+        <td>
+<p>TIMESTAMP</p>
+        </td>
+        <td>
+<p>java.sql.Timestamp</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>varbinary</p>
+        </td>
+        <td>
+<p>VARBINARY</p>
+        </td>
+        <td>
+<p>byte[]</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>varchar</p>
+<p>nvarchar</p>
+        </td>
+        <td>
+<p>VARCHAR</p>
+        </td>
+        <td>
+<p>String</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>uniqueidentifier</p>
+        </td>
+        <td>
+<p>CHAR</p>
+        </td>
+        <td>
+<p>String</p>
+        </td>
+      </tr></table>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>注意： </b>
+JDBC 驱动程序目前不支持 SQL Server sqlvariant 数据类型。如果使用查询从包含 sqlvariant 数据类型列的表中检索数据，则会发生异常。<p></p>
+    </div>
+<p>以下几部分提供了如何使用 JDBC 驱动程序和基本数据类型的实例。有关如何在 Java 应用程序中使用基本数据类型的更多详细实例，请参阅<a href="59ac80cf-fc66-4493-933d-38e479c5f54d.htm">基本数据类型示例</a>。</p>
+  </div>
+      <h1 class="heading">以字符串的格式检索数据</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">如果必须从映射到任意 JDBC 基本数据类型的数据源检索数据，并以字符串的格式查看这些数据，或者如果不需要强类型的数据，则可以使用 <a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a> 类的 <a href="f81dde01-d328-4b32-8871-1efac645b68e.htm">getString</a> 方法，如下所示：</p>
+      <div class="sampleCode" xmlns="">
+		<span class="langLabel" name="label"></span><span codeLanguage="other"><pre>String SQL = "SELECT TOP 10 * FROM Person.Contact";
+Statement stmt = con.createStatement();
+ResultSet rs = stmt.executeQuery(SQL);
+
+while (rs.next()) {
+   System.out.println(rs.getString(4) + " " + rs.getString(6));
+}
+rs.close();
+stmt.close();
+</pre></span>
+	</div>
+    </content>
+      </div>
+      <h1 class="heading">按数据类型检索数据</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">如果必须从数据源检索数据，并且已知检索的数据类型，则应该使用 <b>SQLServerResultSet</b> 类的 <b>get&lt;Type&gt;</b> 方法（也称为 getter 方法）之一。通过 <b>get&lt;Type&gt;</b> 方法可以使用列名或列索引，如下所示：</p>
+      <div class="sampleCode" xmlns="">
+		<span class="langLabel" name="label"></span><span codeLanguage="other"><pre>ResultSet rs = stmt.executeQuery("SELECT lname, job_id FROM employee
+   WHERE (lname = 'Brown')");
+rs.next();
+short empJobID = rs.getShort("job_id");
+rs.close();
+stmt.close();
+</pre></span>
+	</div>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>注意： </b>
+JDBC 驱动程序不支持 <b>getUnicodeStream</b> 方法和带有小数位的 <b>getBigDecimal</b> 方法，它们已过时。<p></p>
+      </div>
+    </content>
+      </div>
+      <h1 class="heading">按数据类型更新数据</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">如果必须更新数据源中字段的值，应使用 <b>SQLServerResultSet</b> 类的 <b>update&lt;Type&gt;</b> 方法之一。在下面的实例中，<a href="2bb0319e-12cb-4604-a7e3-b22a24b02296.htm">updateInt</a> 方法与 <a href="cfced0ca-a281-40dc-8d2f-370d5f0bf12b.htm">updateRow</a> 方法结合起来用于更新数据源中的数据：</p>
+      <div class="sampleCode" xmlns="">
+		<span class="langLabel" name="label"></span><span codeLanguage="other"><pre>Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE); 
+ResultSet rs = stmt.executeQuery("SELECT lname, job_id FROM employee
+   WHERE (lname = 'Brown')");
+rs.next();
+short empJobID = rs.getInt(2);
+empJobID++;
+rs.first();
+rs.updateInt(2, empJobID);
+rs.updateRow();
+rs.close();
+stmt.close();
+</pre></span>
+	</div>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>注意： </b>
+JDBC 驱动程序无法更新列名超过 127 个字符的  SQL Server 列。如果尝试更新其名称超过 127 个字符的列，将引发异常。<p></p>
+      </div>
+    </content>
+      </div>
+      <h1 class="heading">通过参数化查询来更新数据</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">如果必须通过使用参数化查询来更新数据源中的数据，可以使用 <a href="a8481c06-fbba-432b-8c69-4f4619c20ad4.htm">SQLServerPreparedStatement</a> 类的 <b>set&lt;Type&gt;</b> 方法（也称为 setter 方法）之一来设置参数的数据类型。在下面的实例中，<a href="bd4e4085-f704-4a73-b6a7-7d443d564728.htm">prepareStatement</a> 方法用于预编译参数化查询，然后在调用 <a href="ca534c6b-ef4d-4ae8-8cc3-514728623cff.htm">executeUpdate</a> 方法前，使用 <a href="25dabdc9-c60f-485a-87eb-306067964765.htm">setString</a> 方法设置参数的字符串值。</p>
+      <div class="sampleCode" xmlns="">
+		<span class="langLabel" name="label"></span><span codeLanguage="other"><pre>PreparedStatement pstmt = con.prepareStatement("UPDATE employee SET
+   fname = ? WHERE (lname = 'Brown')");
+String first = "Bob";
+pstmt.setString(1, first);
+int rowCount = pstmt.executeUpdate();
+pstmt.close();
+</pre></span>
+	</div>
+<p xmlns="">有关参数化查询的详细信息，请参阅<a href="3202b88f-ce13-44dd-982c-c6a3b0260378.htm">使用带参数的 SQL 语句</a>。</p>
+    </content>
+      </div>
+      <h1 class="heading">向存储过程传递参数</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">如果必须向存储过程传递带类型的参数，则可使用 <a href="30710a63-c05d-47d9-9cf9-c087a1c76373.htm">SQLServerCallableStatement</a> 类的一个 <b>set&lt;Type&gt;</b> 方法通过索引或名称来设置此参数。在下面的实例中，<a href="265b024c-898a-4bd0-98b5-f06076717b9e.htm">prepareCall</a> 方法用于设置对存储过程的调用，然后在调用 <a href="599cf463-e19f-4baa-bacb-513cad7c6cd8.htm">executeQuery</a> 方法之前，使用 <a href="f38b97b5-d4f0-4f74-a33d-740241a85842.htm">setString</a> 方法设置调用的参数。</p>
+      <div class="sampleCode" xmlns="">
+		<span class="langLabel" name="label"></span><span codeLanguage="other"><pre>CallableStatement cstmt = con.prepareCall("{call employee_jobid(?)}");
+String lname = "Brown";
+cstmt.setString(1, lname);
+Resultset rs = cstmt.executeQuery();
+rs.close();
+cstmt.close();
+</pre></span>
+	</div>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>注意： </b>
+在此实例中，将返回一个结果集，包含此存储过程的运行结果。 <p></p>
+      </div>
+<p xmlns="">有关通过存储过程和输入参数来使用 JDBC 驱动程序的详细信息，请参阅<a href="8f491b70-7d1b-42bd-964f-9a8b86af5eaa.htm">使用带有输入参数的存储过程</a>。</p>
+    </content>
+      </div>
+      <h1 class="heading">从存储过程检索参数</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">如果必须从存储过程检索参数，则必须首先使用 <b>SQLServerCallableStatement</b> 类的 <a href="82f8d608-efc1-4af8-a985-ec25d19420aa.htm">registerOutParameter</a> 方法通过名称或索引注册一个输出参数，然后在调用存储过程后，将返回的输出参数分配给合适的变量。在下面的实例中，使用 <b>prepareCall</b> 方法设置对存储过程的调用，使用 <b>registerOutParameter</b> 方法设置输出参数，然后在调用 <b>executeQuery</b> 方法前，使用 <a href="f38b97b5-d4f0-4f74-a33d-740241a85842.htm">setString</a> 方法设置调用的参数。使用 <a href="9e3c51bc-7285-4f28-92c8-cfa05e49da9e.htm">getShort</a> 方法来检索此存储过程的输出参数返回的值。</p>
+      <div class="sampleCode" xmlns="">
+		<span class="langLabel" name="label"></span><span codeLanguage="other"><pre>CallableStatement cstmt = con.prepareCall("{call employee_jobid (?, ?)}");
+Cstmt.registerOutParameter(2, java.sql.Types.SMALLINT);
+String lname = "Brown";
+cstmt.setString(1, lname);
+Resultset rs = cstmt.executeQuery();
+short empJobID = cstmt.getShort(2);
+rs.close();
+cstmt.close();
+</pre></span>
+	</div>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>注意： </b>
+除返回的输出参数外，还可能返回一个结果集，包含此存储过程的运行结果。<p></p>
+      </div>
+<p xmlns="">有关如何通过存储过程和输出参数来使用 JDBC 驱动程序的详细信息，请参阅<a href="1c006f27-7e99-43d5-974c-7b782659290c.htm">使用带有输出参数的存储过程</a>。</p>
+    </content>
+      </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="7802328d-4d23-4775-9573-4169b127d258.htm">了解 JDBC 驱动程序数据类型</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

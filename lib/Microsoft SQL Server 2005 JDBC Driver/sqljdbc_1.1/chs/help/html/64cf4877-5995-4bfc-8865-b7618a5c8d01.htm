@@ -1,0 +1,134 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>使用带有更新计数的存储过程</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">使用带有更新计数的存储过程</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>为了使用存储过程修改 SQL Server 数据库中的数据，Microsoft SQL Server 2005 JDBC Driver 提供了 <a href="30710a63-c05d-47d9-9cf9-c087a1c76373.htm">SQLServerCallableStatement</a> 类。通过使用 <b>SQLServerCallableStatement</b> 类，可以调用修改数据库中所包含数据的存储过程，然后返回受影响的行数计数（也称为更新计数）。</p>
+<p>使用 <b>SQLServerCallableStatement</b> 类构建对存储过程的调用之后，可以使用 <a href="e1367f39-23d7-4e26-b160-6d988d7e6988.htm">execute</a> 或 <a href="10ae662a-ce3c-4b24-875c-5c2df319d93b.htm">executeUpdate</a> 方法中的任意一个来调用此存储过程。<b>executeUpdate</b> 方法将返回包含受存储过程影响的行数的整数值，而 <b>execute</b> 方法不返回该值。如果使用 <b>execute</b> 方法，并且希望获得受影响的行数计数，则可以在运行存储过程后调用 <a href="e9570228-4500-44b6-b2f1-84ac050b5112.htm">getUpdateCount</a> 方法。</p>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>注意： </b>
+如果要让 JDBC 驱动程序返回所有更新计数，包括任何可能已不再使用的触发器所返回的更新计数，请将 lastUpdateCount 连接字符串属性设置为&ldquo;false&rdquo;。有关 lastUpdateCount 属性的详细信息，请参阅<a href="f1b62700-f046-488d-bd6b-a5cd8fc345b7.htm">设置连接属性</a>。<p></p>
+    </div>
+<p>作为实例，在 SQL Server 2005 AdventureWorks 示例数据库中创建以下表和存储过程：</p>
+    <div class="sampleCode"><span codeLanguage="other"><pre>CREATE TABLE TestTable 
+   (Col1 int IDENTITY, 
+    Col2 varchar(50), 
+    Col3 int);
+
+CREATE PROCEDURE UpdateTestTable
+   @Col2 varchar(50),
+   @Col3 int
+AS
+BEGIN
+   UPDATE TestTable
+   SET Col2 = @Col2, Col3 = @Col3
+END;</pre></span></div>
+<p>在下面的实例中，将向此函数传递 AdventureWorks 示例数据库的打开连接，并使用 <b>execute</b> 方法调用 UpdateTestTable 存储过程，然后使用 <b>getUpdateCount</b> 方法返回受存储过程影响的行计数。</p>
+    <div class="sampleCode">
+		<span class="langLabel" name="label"></span><span codeLanguage="other"><pre>public static void executeUpdateStoredProcedure(Connection con) {
+   try {
+      CallableStatement cstmt = con.prepareCall("{call dbo.UpdateTestTable(?, ?)}");
+      cstmt.setString(1, "A");
+      cstmt.setInt(2, 100);
+      cstmt.execute();
+      int count = cstmt.getUpdateCount();
+      cstmt.close();
+
+      System.out.println("ROWS AFFECTED: " + count);
+   }
+   catch (Exception e) {
+      e.printStackTrace();
+   }
+}
+</pre></span>
+	</div>
+  </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="0041f9e1-09b6-4487-b052-afd636c8e89a.htm">将语句用于存储过程</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

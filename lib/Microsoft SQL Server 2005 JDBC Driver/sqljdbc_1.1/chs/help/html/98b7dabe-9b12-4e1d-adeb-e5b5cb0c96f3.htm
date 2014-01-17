@@ -1,0 +1,229 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>了解并发控制</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">了解并发控制</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>并发控制是指多名用户同时更新行时，用于保护数据库完整性的各种技术。不正确的并发可能导致脏读、幻读和不可重复读等问题。Microsoft SQL Server 2005 JDBC 驱动程序为 SQL Server 用来解决这些问题的所有并发技术提供了接口。 </p>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>注意： </b>
+有关 SQL Server 并发的详细信息，请参阅 SQL Server 联机丛书中的&ldquo;管理并发数据访问&rdquo;。<p></p>
+    </div>
+<p>JDBC 驱动程序支持下列并发类型：</p>
+    <h2 class="heading"></h2><table cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;"><tr>
+          <th>
+并发类型
+          </th>
+          <th>
+特征
+          </th>
+          <th>
+行锁定
+          </th>
+          <th>
+说明
+          </th>
+        </tr><tr>
+        <td>
+<p>CONCUR_READ_ONLY</p>
+        </td>
+        <td>
+<p>只读</p>
+        </td>
+        <td>
+<p>否</p>
+        </td>
+        <td>
+<p>不允许通过游标进行更新，并且不对组成结果集的行进行锁定。</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>CONCUR_UPDATABLE</p>
+        </td>
+        <td>
+<p>乐观读写</p>
+        </td>
+        <td>
+<p>否</p>
+        </td>
+        <td>
+<p>数据库假定未必但有可能发生行竞争。通过比较时间戳检查行的完整性。</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>CONCUR_SS_SCROLL_LOCKS</p>
+        </td>
+        <td>
+<p>悲观读写</p>
+        </td>
+        <td>
+<p>是</p>
+        </td>
+        <td>
+<p>数据库假定很可能发生行竞争。通过行锁定确保行的完整性。</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>CONCUR_SS_OPTIMISTIC_CC</p>
+        </td>
+        <td>
+<p>乐观读写</p>
+        </td>
+        <td>
+<p>否</p>
+        </td>
+        <td>
+<p>数据库假定未必但有可能发生行竞争。通过比较时间戳验证行的完整性。 </p>
+<p>对于 SQL Server 2005，如果表中不包含时间戳列，则服务器会将该类型更改为 CONCUR_SS_OPTIMISTIC_CCVAL。</p>
+<p>对于 SQL Server 2000，如果基础表包含时间戳列，则即使指定了 OPTIMISTIC WITH VALUES，仍将使用 OPTIMISTIC WITH ROW VERSIONING。如果指定了 OPTIMISTIC WITH ROW VERSIONING 并且表中没有时间戳，则使用 OPTIMISTIC WITH VALUES。</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>CONCUR_SS_OPTIMISTIC_CCVAL</p>
+        </td>
+        <td>
+<p>乐观读写</p>
+        </td>
+        <td>
+<p>否</p>
+        </td>
+        <td>
+<p>数据库假定未必但有可能发生行竞争。通过比较行数据检查行的完整性。</p>
+        </td>
+      </tr></table>
+  </div>
+      <h1 class="heading">不可更新的结果集</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">可更新的结果集是可在其中插入、更新和删除行的结果集。在下列情况下，SQL Server 无法创建可更新的游标。产生的异常是&ldquo;结果集不可更新&rdquo;。</p>
+      <h2 class="heading" xmlns=""></h2><table cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;" xmlns=""><tr>
+            <th>
+原因
+            </th>
+            <th>
+说明
+            </th>
+            <th>
+对策
+            </th>
+          </tr><tr>
+          <td>
+<p>语句不是使用 JDBC 2.0 语法创建的</p>
+          </td>
+          <td>
+<p>JDBC 2.0 引入了创建语句的新方法。如果使用 JDBC 1.0 语法，则结果集默认为只读。</p>
+          </td>
+          <td>
+<p>在创建语句时指定结果集的类型和并发性。</p>
+          </td>
+        </tr><tr>
+          <td>
+<p>语句是使用 TYPE_SCROLL_INSENSITIVE 创建的</p>
+          </td>
+          <td>
+<p>SQL Server 创建了一个静态快照游标。它已经与基础表行断开连接，目的是帮助防止其他用户使用此游标进行行更新。</p>
+          </td>
+          <td>
+<p>将 TYPE_SCROLL_SENSITIVE、TYPE_SS_SCROLL_KEYSET、TYPE_SS_SCROLL_DYNAMIC 或 TYPE_FORWARD_ONLY 与 CONCUR_UPDATABLE 一起使用以避免创建静态游标。</p>
+          </td>
+        </tr><tr>
+          <td>
+<p>表的设计无法使用 KEYSET 或 DYNAMIC 游标</p>
+          </td>
+          <td>
+<p>基础表不包含唯一键，因此 SQL Server 无法唯一地标识行。</p>
+          </td>
+          <td>
+<p>向表中添加唯一键，从而为各行提供唯一标识。</p>
+          </td>
+        </tr></table>
+    </content>
+      </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="9ed5ad41-22e0-4e4a-8a79-10512db60d50.htm">通过 JDBC 驱动程序管理结果集</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

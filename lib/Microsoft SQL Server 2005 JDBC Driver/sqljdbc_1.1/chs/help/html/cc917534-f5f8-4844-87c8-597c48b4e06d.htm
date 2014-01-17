@@ -1,0 +1,132 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>使用语句和结果集</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">使用语句和结果集</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>使用 Microsoft SQL Server 2005 JDBC Driver 及其提供的 <b>Statement</b> 和 <b>ResultSet</b> 对象时，可使用多种技术来提高应用程序的性能和可靠性。</p>
+  </div>
+      <h1 class="heading">使用适当的语句对象</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">使用 JDBC 驱动程序的某个 <b>Statement</b> 对象时（如 <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a>、<a href="a8481c06-fbba-432b-8c69-4f4619c20ad4.htm">SQLServerPreparedStatement</a> 或 <a href="30710a63-c05d-47d9-9cf9-c087a1c76373.htm">SQLServerCallableStatement</a> 对象），请确保所使用的对象适用于您的作业。</p>
+      <ul xmlns=""><li>
+如果不带 OUT 参数，则无需使用 <b>SQLServerCallableStatement</b> 对象。而是使用 <b>SQLServerStatement</b> 或 <b>SQLServerPreparedStatement</b> 对象。<br></br>
+        </li><li>
+如果不想多次执行语句或不带 IN 或 OUT 参数，则无需使用 <b>SQLServerCallableStatement</b> 或 <b>SQLServerPreparedStatement</b> 对象。而是使用 <b>SQLServerStatement</b> 对象。<br></br>
+        </li></ul>
+    </content>
+      </div>
+      <h1 class="heading">为 ResultSet 对象使用适当的并发</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">创建生成结果集的语句时，不要请求可更新的并发，除非您的实际意图就是更新这些结果。对于读取较小的结果集来说，默认的只进、只读游标模型速度最快。</p>
+    </content>
+      </div>
+      <h1 class="heading">限制结果集的大小</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">考虑使用 <a href="cccc0667-589b-4655-8ea8-14ae8b2eb9dc.htm">setMaxRows</a> 方法（或 SET ROWCOUNT 或 SELECT TOP N SQL 语法）来限制从可能较大的结果集中返回的行数。如果必须处理大型结果集，请考虑通过设置连接字符串属性 selectMethod=cursor 来使用服务器游标。另一种方法是创建语句，使只进、只读访问具有 com.microsoft.sqlserver.jdbc.SQLServerResultSet.TYPE_SS_SERVER_CURSOR_FORWARD_ONLY (2004) 可滚动性，然后使用 <a href="233bf4f8-4758-42d0-a80b-33e34fa78027.htm">setFetchSize</a> 方法调节性能。</p>
+    </content>
+      </div>
+      <h1 class="heading">使用适当的提取大小</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">对于只读服务器游标，需要权衡的是与服务器之间的往返通信与驱动程序所使用的内存量。对于可更新的服务器游标，提取大小还会影响结果集对更改的敏感度和服务器上的并发。在显式调用 <a href="048fe245-157f-4fd8-be75-ce54b83e02b3.htm">refreshRow</a> 方法或游标离开提取缓冲区之前，当前提取缓冲区中的行更新并不可见。如果使用 CONCUR_SS_SCROLL_LOCKS (1009)，则较大的提取缓冲区具有较好的性能（较少的服务器往返通信），但具有较低的更改敏感度且服务器上的并发会减少。若要获得最大的更改敏感度，请将提取大小设为 1。然而，需要注意的是，这样会导致每提取一行就发生一次服务器往返通信。</p>
+    </content>
+      </div>
+      <h1 class="heading">对较大的 IN 参数使用流</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">可使用已逐渐具体化的流或 BLOB 和 CLOB ，来处理对较大的列值的更新或对较大的 IN 参数的发送。JDBC 驱动程序通过多次往返通信将其&ldquo;分块&rdquo;发送到服务器，这样您便可以设置和更新超出内存允许范围的值。</p>
+    </content>
+      </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="e1592499-b87b-45ee-bab8-beaba8fde841.htm">借助 JDBC 驱动程序提高性能和可靠性</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

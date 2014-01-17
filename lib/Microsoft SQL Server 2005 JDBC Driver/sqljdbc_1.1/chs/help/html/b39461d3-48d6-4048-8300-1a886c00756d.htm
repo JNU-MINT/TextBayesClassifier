@@ -1,0 +1,261 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>使用高级数据类型</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">使用高级数据类型</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>JDBC 高级数据类型是在 JDBC 2.0 核心 API 中引入的。Microsoft SQL Server 2005 JDBC Driver 使用 JDBC 高级数据类型将 SQL Server 数据类型转换为 Java 编程语言所支持的格式。</p>
+<p>下表列出了高级 SQL Server、JDBC 和 Java 编程语言数据类型之间的默认映射。</p>
+    <h2 class="heading"></h2><table cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;"><tr>
+          <th>
+SQL Server 类型
+          </th>
+          <th>
+JDBC 类型 (java.sql.Types)
+          </th>
+          <th>
+Java 语言类型
+          </th>
+        </tr><tr>
+        <td>
+<p>varbinary(max)</p>
+<p>image</p>
+        </td>
+        <td>
+<p>LONGVARBINARY</p>
+        </td>
+        <td>
+<p>byte[]（默认）、Blob、CharacterStream、BinaryStream、String</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>text</p>
+<p>ntext</p>
+<p>varchar(max)</p>
+<p>nvarchar(max)</p>
+        </td>
+        <td>
+<p>LONGVARCHAR</p>
+        </td>
+        <td>
+<p>String（默认）、Clob、CharacterStream、BinaryStream</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>xml</p>
+        </td>
+        <td>
+<p>LONGVARCHAR</p>
+        </td>
+        <td>
+<p>String（默认）、CharacterStream、Clob、byte[]、BinaryStream、Blob</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>udt</p>
+        </td>
+        <td>
+<p>VARBINARY（最大大小为 8000 字节）</p>
+        </td>
+        <td>
+<p>String（默认）、byte[]、BinaryStream、Object</p>
+        </td>
+      </tr></table>
+<p>以下部分提供了如何使用 JDBC 驱动程序和高级数据类型的实例。</p>
+  </div>
+      <h1 class="heading">BLOB 和 CLOB 数据类型</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">JDBC 驱动程序实现了所有 java.sql.Blob 和 java.sql.Clob 接口的 JDBC 3.0 方法。通过使用这些方法，可以检索并更新 text、ntext、xml 和 image 类型的列。 </p>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>注意： </b>
+可以与 SQL Server 2005 大值数据类型一同使用 CLOB 值。具体来说，CLOB 类型可与 varchar(max) 和 nvarchar(max) 数据类型一同使用， BLOB 类型可与 varbinary(max) 和 xml 数据类型一同使用。 <p></p>
+      </div>
+    </content>
+      </div>
+      <h1 class="heading">大值数据类型</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">在 SQL Server 的早期版本中，使用大值数据类型需要特定操作。大值数据类型是指超过最大行大小 8 KB 的数据类型。SQL Server 2005 为 varchar、nvarchar 和 varbinary 数据类型引入 max 说明符，从而允许存储 2^31 字节的值。表列和 Transact-SQL 变量可以指定 varchar(max)、nvarchar(max) 或 varbinary(max) 数据类型。</p>
+<p xmlns="">大值类型主要用于以下场合：从数据库中检索这些类型，或者将其添加到数据库。以下部分介绍了完成这些任务的几种不同方法。</p>
+    </content>
+        <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h1 class="heading" xmlns="">从数据库中检索大值类型</h1><div id="sectionSection" class="section" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">当从数据库中检索非二进制大值数据类型（例如 varchar(max) 数据类型）时，一种方法是将该数据作为字符流进行读取。以下实例使用了 <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a> 类的 <a href="599cf463-e19f-4baa-bacb-513cad7c6cd8.htm">executeQuery</a> 方法从数据库中检索数据，并将其返回为结果集。然后，使用 <a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a> 类的 <a href="c70e210f-0288-47cc-9268-a29c45979729.htm">getCharacterStream</a> 方法从结果集读取大值数据。</p>
+          <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>ResultSet rs = stmt.executeQuery("SELECT TOP 1 * FROM Test1");
+rs.next();
+Reader reader = rs.getCharacterStream(2);</pre></span></div>
+          <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>注意： </b>
+此方法也可用于 text、ntext和 nvarchar(max) 数据类型。<p></p>
+          </div>
+<p xmlns="">当从数据库检索某个二进制大值数据类型（例如 varbinary(max) 数据类型）时，可以采用几种方法。最有效的方法是将数据作为二进制流进行读取，如下所示：</p>
+          <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>ResultSet rs = stmt.executeQuery("SELECT photo FROM mypics");
+Rs.next();
+InputStream is = rs.getBinaryStream(2);</pre></span></div>
+<p xmlns="">也可以使用 <a href="d16a0aea-6144-4fcb-bcbc-5d7daa36d327.htm">getBytes</a> 方法将数据作为字节数组进行读取，如下所示：</p>
+          <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>ResultSet rs = stmt.executeQuery("SELECT photo FROM mypics");
+Rs.next();
+byte [] b = rs.getBytes(2);</pre></span></div>
+          <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>注意： </b>
+还可以将数据作为 BLOB 进行读取。但是，这种方法与前两种方法相比效率较低。<p></p>
+          </div>
+        </content></div>
+      <h1 class="heading" xmlns="">向数据库添加大值类型</h1><div id="sectionSection" class="section" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">通过 JDBC 驱动程序上载较大数据适用于内存大小合适的情况，而对于大于内存的情况，流是主要选择。但是，最有效的上载较大数据的方法是通过流接口。</p>
+<p xmlns="">使用字符串或字节也是一种选择，如下所示：</p>
+          <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>PreparedStatement pstmt = con.prepareStatement("INSERT INTO test1 (c1_id, c2_vcmax) VALUES (?, ?)");
+pstmt.setInt(1, 1);
+pstmt.setString(2, htmlStr);
+pstmt.executeUpdate();</pre></span></div>
+          <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>注意： </b>
+此种方法也可用于存储在 text、ntext 以及 nvarchar(max) 列中的值。<p></p>
+          </div>
+<p xmlns="">如果服务器上有图像库，并且必须向 varbinary(max) 列上载整个二进制图像文件，则对于 JDBC 驱动程序最有效的方法是直接使用流，如下所示：</p>
+          <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>Statement stmt = con.createStatement();
+PreparedStatement pstmt = con.prepareStatement("INSERT INTO test1 
+VALUES( ?, ? )");
+FileReader in = new FileReader(new File("CLOBFile20mb.txt");
+long len = fileIn.length();
+int id = 1;
+pstmt.setInt(1,id);
+pstmt.setCharacterStream(2, in, (int)len);
+pstmt.executeUpdate();
+in.close();</pre></span></div>
+          <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>注意： </b>
+使用 CLOB 或 BLOB 方法不是上载较大数据的有效方法。<p></p>
+          </div>
+        </content></div>
+      <h1 class="heading" xmlns="">修改数据库中的大值类型</h1><div id="sectionSection" class="section" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">在大多数情况下，对更新或修改数据库中的大值建议使用的方法为：使用 Transact-SQL 命令（例如 UPDATE、WRITE 和 SUBSTRING）通过 <a href="a8481c06-fbba-432b-8c69-4f4619c20ad4.htm">SQLServerPreparedStatement</a> 和 <a href="30710a63-c05d-47d9-9cf9-c087a1c76373.htm">SQLServerCallableStatement</a> 类传递参数。</p>
+<p xmlns="">如果必须替换较大文本文件（例如已存档的 HTML 文件）中某个字的实例，则可以使用 <b>Clob</b> 对象，如下所示：</p>
+          <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>Statement stmt = con.createStatement();
+ResultSet rs = stmt.executeQuery("SELECT * FROM test1");
+rs.next();
+Clob clob = rs.getClob(2);
+long pos = clob.position("dog", 1);
+clob.setString(1, "cat", len, 3);
+rs.updateClob(2, clob);
+rs.updateRow();</pre></span></div>
+<p xmlns="">此外，可以在服务器上完成全部工作，仅将参数传递到准备好的 UPDATE 语句。</p>
+<p xmlns="">有关大值类型的详细信息，请参阅 SQL Server 联机丛书中的&ldquo;使用大值类型&rdquo;。</p>
+        </content></div>
+    </sections>
+      </div>
+      <h1 class="heading">XML 数据类型</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">SQL Server 2005 提供了 xml 数据类型，从而允许您在 SQL Server 数据库中存储 XML 文档和片段。xml 数据类型是 SQL Server 中的内置数据类型，在某种程度上与其他内置类型（例如 int 和 varchar）相似。像其他内置类型一样，创建表时可以使用 xml 数据类型作为列类型；也可以将其用作变量类型、参数类型或函数返回类型，或者位于 Transact-SQL CAST 和 CONVERT 函数中的数据类型。</p>
+<p xmlns="">在 JDBC 驱动程序中，xml 数据类型可作为字符串、字节数组、流、CLOB、或 BLOB 对象进行映射。字符串是默认的表示形式。在 JDBC 驱动程序中使用 xml 数据类型可支持以下内容：</p>
+      <ul xmlns=""><li>
+在大多数常见的编程场景中，对作为标准 Java UTF-16 字符串的 XML 的访问<br></br>
+        </li><li>
+输入以 UTF-8 和其他 8 格式进行编码的 XML<br></br>
+        </li><li>
+为了可与其他 XML 处理器和磁盘文件进行互换而以 UTF-16 进行编码时，对作为带有前导 BOM 的字节数组的 XML 的访问<br></br>
+        </li></ul>
+<p xmlns="">SQL Server 要求以 UTF-16 编码的 XML 具有前导 BOM。当以字节数组形式提供 XML 参数值时，应用程序必须提供此前导 BOM。SQL Server 始终以 UTF-16 字符串形式输出 XML 值，而不带有 BOM 或嵌入式编码声明。当将 XML 值作为 byte[]、BinaryStream 或 Blob 进行检索时，会为该值预置一个 UTF-16 BOM。</p>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>注意： </b>
+JDBC 驱动程序不支持读取 xml 数据类型的存储过程输出参数。但是，它确实支持使用 xml 数据类型的输入参数。如果必须使用 xml 数据类型输出参数，则应在读取前，先在存储过程中将该 xml 数据类型转换为 VARCHAR 或 LONGVARCHAR。<p></p>
+      </div>
+<p xmlns="">有关 xml 数据类型的详细信息，请参阅 SQL Server 联机丛书中的&ldquo;xml 数据类型&rdquo;。</p>
+    </content>
+      </div>
+      <h1 class="heading">用户定义的数据类型</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">通过允许在 SQL Server 数据库中存储对象和自定义数据结构，在 SQL Server 2005 中引入了用户定义的类型 (UDT)，从而扩展了 SQL 类型系统。UDT 可以包含多种数据类型，也可以具有多种行为，这一点使它与传统的由单个 SQL Server 系统数据类型组成的别名数据类型区分开来。使用能生成可验证代码并由 Microsoft 公共语言运行时 (CLR) 所支持的任何语言，即可定义 UDT。包括 Microsoft Visual C# 和 Visual Basic .NET。数据被公开为基于 .NET Framework 的类或结构的字段和属性，行为由类或结构的方法定义。 </p>
+<p xmlns="">在 SQL Server 2005 中，UDT 可用作表的列定义、Transact-SQL 批处理的变量或 Transact-SQL 函数或存储过程的参数。</p>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>注意： </b>
+JDBC 驱动程序不支持对 UDT 列上的 <b>AsciiStream</b> 和 <b>CharacterStream</b> 使用 getter 或 setter 方法。此外，与 xml 数据类型相类似，JDBC 驱动程序不支持读取 udt 数据类型的存储过程输出参数。但是，它支持将 udt 数据类型用作输入参数。如果必须将 udt 数据类型用作输出参数，则应在读取前，先在存储过程中将 udt 数据类型转换为 varbinary(max) 数据类型。<p></p>
+      </div>
+<p xmlns="">有关用户定义数据类型的详细信息，请参阅 SQL Server 联机丛书中的&ldquo;使用和修改用户定义类型的实例&rdquo;。</p>
+    </content>
+      </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="7802328d-4d23-4775-9573-4169b127d258.htm">了解 JDBC 驱动程序数据类型</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

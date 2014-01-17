@@ -1,0 +1,137 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>使用带有返回状态的存储过程</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">使用带有返回状态的存储过程</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>您可以调用的 SQL Server 存储过程是返回状态、结果或参数的存储过程。这通常用于指示存储过程执行成功还是失败。可以使用 Microsoft SQL Server 2005 JDBC Driver 提供的 <a href="30710a63-c05d-47d9-9cf9-c087a1c76373.htm">SQLServerCallableStatement</a> 类，调用此类存储过程并处理其返回的数据。</p>
+<p>使用 JDBC 驱动程序调用这种存储过程时，必须结合 <a href="937292a6-1525-423e-a2b2-a18fd34c2893.htm">SQLServerConnection</a> 类的 <a href="265b024c-898a-4bd0-98b5-f06076717b9e.htm">prepareCall</a> 方法使用 <code>call</code> SQL 转义序列。返回状态参数的 <code>call</code> 转义序列的语法如下所示：</p>
+    <p><code>{[?=]call procedure-name[([parameter][,[parameter]]...)]}</code></p>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>注意： </b>
+有关 SQL 转义序列的详细信息，请参阅<a href="00f9e25a-088e-4ac6-aa75-43eacace8f03.htm">使用 SQL 转义序列</a>。<p></p>
+    </div>
+<p>构造 <code> call </code> 转义序列时，请使用 ?（问号）字符来指定返回状态参数。此字符充当要从该存储过程返回的参数值的占位符。要为返回状态参数指定值，必须在执行存储过程前使用 <b>SQLServerCallableStatement</b> 类的 <a href="82f8d608-efc1-4af8-a985-ec25d19420aa.htm">registerOutParameter</a> 方法指定参数的数据类型。 </p>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>注意： </b>
+当 JDBC 驱动程序与 SQL Server 数据库一起使用时，<b>registerOutParameter</b> 方法中为返回状态参数指定的值将始终为整数，您可通过使用 java.sql.Types.INTEGER 数据类型进行指定。<p></p>
+    </div>
+<p>此外，向 <b>registerOutParameter</b> 方法传递返回状态参数值时，不仅需要指定要使用的参数的数据类型，还必须指定参数在存储过程中的序数位置。对于返回状态参数，其序数位置始终为 1，这是因为它始终是调用存储过程时的第一个参数。</p>
+<p>作为实例，在 SQL Server 2005 AdventureWorks 示例数据库中创建以下存储过程：</p>
+    <div class="sampleCode"><span codeLanguage="other"><pre>CREATE PROCEDURE CheckContactCity
+   @cityName CHAR(50)
+AS
+BEGIN
+   IF ((SELECT COUNT(*)
+   FROM Person.Address
+   WHERE City = @cityName) &gt; 1)
+   RETURN 1
+ELSE
+   RETURN 0
+END</pre></span></div>
+<p>该存储过程返回状态值 1 或 0，这取决于是否能在表 Person.Address 中找到 cityName 参数指定的城市。</p>
+<p>在下面的实例中，将向此函数传递 AdventureWorks 示例数据库的打开连接，然后使用 <a href="e1367f39-23d7-4e26-b160-6d988d7e6988.htm">execute</a> 方法调用 CheckContactCity 存储过程：</p>
+    <div class="sampleCode">
+		<span class="langLabel" name="label"></span><span codeLanguage="other"><pre>public static void executeStoredProcedure(Connection con) {
+   try {
+      CallableStatement cstmt = con.prepareCall("{? = call dbo.CheckContactCity(?)}");
+      cstmt.registerOutParameter(1, java.sql.Types.INTEGER);
+      cstmt.setString(2, "Atlanta");
+      cstmt.execute();
+      System.out.println("RETURN STATUS: " + cstmt.getInt(1));
+   }
+   cstmt.close();
+   catch (Exception e) {
+      e.printStackTrace();
+   }
+}
+</pre></span>
+	</div>
+  </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="0041f9e1-09b6-4487-b052-afd636c8e89a.htm">将语句用于存储过程</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

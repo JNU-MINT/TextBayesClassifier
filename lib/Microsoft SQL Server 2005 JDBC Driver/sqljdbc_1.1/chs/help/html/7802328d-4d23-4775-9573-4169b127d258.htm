@@ -1,0 +1,142 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>了解 JDBC 驱动程序数据类型</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">了解 JDBC 驱动程序数据类型</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>Microsoft SQL Server 2005 JDBC 驱动程序支持在将 SQL Server 用作其数据库的 Java 应用程序中使用 JDBC 基本数据类型和高级数据类型。</p>
+<p>对 SQL Server 数据类型和 Java 语言类型以及对象之间的转换而言，JDBC 类型系统可起到中介作用。JDBC 类型是以 SQL-92 类型和 SQL-99 类型为模型而建立的。JDBC 驱动程序遵守 JDBC 规范，用于在可预见性和灵活性之间达成适当的平衡。</p>
+<p>本节中的主题说明如何使用基本数据类型和高级数据类型，以及如何将数据类型转换成其他数据类型。</p>
+  </div>
+      <h1 class="heading">
+        本节的相关信息
+      </h1>
+      <div id="inThisSectionSection" class="section">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h2 class="heading" xmlns=""></h2><table cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;" xmlns=""><tr>
+            <th>
+主题
+            </th>
+            <th>
+说明
+            </th>
+          </tr><tr>
+          <td>
+            <p><a href="d7044936-5b8c-4def-858c-28a11ef70a97.htm">使用基本数据类型</a></p>
+          </td>
+          <td>
+<p>说明 JDBC 基本数据类型。包含如何使用结果集、参数化查询以及存储过程处理数据类型的示例。</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="b39461d3-48d6-4048-8300-1a886c00756d.htm">使用高级数据类型</a></p>
+          </td>
+          <td>
+<p>说明 JDBC 高级数据类型。</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="ab8fa00f-cb16-47e2-94b8-3a76f56c2b84.htm">了解数据类型的差异</a></p>
+          </td>
+          <td>
+<p>说明各 JDBC 驱动程序数据类型之间的区别。</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="98fa7488-aac3-45b4-8aa4-83ed6ab638b4.htm">了解数据类型转换</a></p>
+          </td>
+          <td>
+<p>说明如何在使用 getter 和 setter 方法时处理数据类型转换。</p>
+          </td>
+        </tr></table>
+    </content>
+  </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="939a8773-2583-49a4-bf00-6b892fbe39dc.htm">JDBC 驱动程序概述</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

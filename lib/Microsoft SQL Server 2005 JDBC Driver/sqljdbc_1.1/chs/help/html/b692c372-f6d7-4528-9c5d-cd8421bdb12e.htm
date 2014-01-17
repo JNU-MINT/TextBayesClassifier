@@ -1,0 +1,136 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>updateCharacterStream Method (int, java.io.Reader, int)</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">updateCharacterStream Method (int, java.io.Reader, int)</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+    <p>Updates the designated column with a character stream value given the column index and length.</p>
+  </div>
+      <div id="declarationSyntaxes" class="section">
+        <div id="syntaxCodeBlocks" class="code">
+          <span codeLanguage="">
+            <pre>
+public void <b>updateCharacterStream</b>(int <i>index</i>,
+                                  java.io.Reader <i>x</i>,
+                                  int <i>length</i>)</pre>
+          </span>
+        </div>
+      </div>
+      <h1 class="heading">
+        参数
+      </h1>
+      <div id="parameters" class="section">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns=""><i>index</i></p>
+      <p xmlns="">An integer that indicates the column index.</p>
+      <p xmlns=""><i>x</i></p>
+      <p xmlns="">A <b>Reader</b> object.</p>
+      <p xmlns=""><i>length</i></p>
+      <p xmlns="">An integer that indicates the length of the stream.</p>
+    </content>
+  </div>
+      <h1 class="heading">
+        异常
+      </h1>
+      <div id="exceptions" class="section">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns=""><a href="af5ef257-7cf6-4db3-b1ee-07d22d82bef1.htm">SQLServerException</a></p>
+    </content>
+  </div>
+      <h1 class="heading">
+        备注
+      </h1>
+      <div id="languageReferenceRemarksSection" class="section">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">This <b>updateCharacterStream</b> method is specified by the <b>updateCharacterStream</b> method in the java.sql.ResultSet interface.</p>
+      <p xmlns="">This method passes Unicode characters from a <b>Reader</b> object to selected text and binary columns. This includes all text columns and binary, varbinary, varbinary(max), image, and xml columns, but not udt columns. When the <i>length</i> is set to -1, the stream is allowed, but a specific length is not required. If the <b>Reader</b> passes a stream of a different length than what is specified, the JDBC driver will stop the update while it tries to preserve the connection and the current transaction.</p>
+    </content>
+  </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet Class</a> | <a href="78f39ec7-e27c-4534-bb19-fae806afd08c.htm">updateCharacterStream Method (SQLServerResultSet)</a> | <a href="9a1f4d07-ada9-43c7-9281-1f059554c4d6.htm">SQLServerResultSet Methods</a> | <a href="2a438d5d-2d6a-46a0-a2ae-f35fbae4a472.htm">SQLServerResultSet Members</a></div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

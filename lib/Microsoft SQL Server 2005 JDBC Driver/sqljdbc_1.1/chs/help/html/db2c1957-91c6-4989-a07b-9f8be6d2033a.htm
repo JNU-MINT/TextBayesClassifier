@@ -1,0 +1,119 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>使用参数元数据</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">使用参数元数据</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>为了查询 <a href="a8481c06-fbba-432b-8c69-4f4619c20ad4.htm">SQLServerPreparedStatement</a> 对象或 <a href="30710a63-c05d-47d9-9cf9-c087a1c76373.htm">SQLServerCallableStatement</a> 对象以了解其包含的参数，Microsoft SQL Server 2005 JDBC Driver 实现了 <a href="546290e0-9411-4a2b-aa36-61251e70e9cf.htm">SQLServerParameterMetaData</a> 类。该类包含很多以单个值的格式返回信息的字段和方法。</p>
+<p>若要创建 <b>SQLServerParameterMetaData</b> 对象，可以使用 <b>SQLServerPreparedStatement</b> 和 <b>SQLServerCallableStatement</b> 类的 <a href="c2876dec-ce29-4b61-9d74-ec3173b8cba5.htm">getParameterMetaData</a> 方法。</p>
+<p>在下面的实例中，将向此函数传递 SQL Server 2005 AdventureWorks 示例数据库的打开连接，使用 <b>SQLServerCallableStatement</b> 类的 <b>getParameterMetaData</b> 方法返回 <b>SQLServerParameterMetaData</b> 对象，然后使用 <b>SQLServerParameterMetaData</b> 对象的多种方法，显示 HumanResources.uspUpdateEmployeeHireInfo 存储过程中包含的参数的模式和类型有关信息。</p>
+    <div class="sampleCode">
+		<span class="langLabel" name="label"></span><span codeLanguage="other"><pre>public static void getParameterMetaData(Connection con) {
+   try {
+      CallableStatement cstmt = con.prepareCall("{call HumanResources.uspUpdateEmployeeHireInfo(?, ?, ?, ?, ?)}");
+      ParameterMetaData pmd = cstmt.getParameterMetaData();
+      int count = pmd.getParameterCount();
+      for (int i = 1; i &lt;= count; i++) {
+         System.out.println("TYPE: " + pmd.getParameterTypeName(i) + " MODE: " + pmd.getParameterMode(i));
+      }
+      cstmt.close();
+   }
+   catch (Exception e) {
+      e.printStackTrace();
+   }
+}
+</pre></span>
+	</div>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>注意： </b>
+<b>SQLServerParameterMetaData</b> 类和预定义的语句一起使用时有一些限制。JDBC 驱动程序支持 SELECT、DELETE、INSERT 和 UPDATE 语句。但是，这些语句不能包含子查询。此外，JDBC 驱动程序还支持使用 IN、IS 和 LIKE 谓词。对于搜索条件，JDBC 驱动程序支持使用 IS、&lt;、&gt;、LIKE、&gt;=、&lt;=、NOT IN、&lt;&gt;、!&gt;、!&lt; 和 != 比较运算符。不支持 FREETEXT 运算符。<p></p>
+    </div>
+  </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="5cfb35d4-ddcd-40a2-8091-f29cddc32552.htm">使用 JDBC 驱动程序处理元数据</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

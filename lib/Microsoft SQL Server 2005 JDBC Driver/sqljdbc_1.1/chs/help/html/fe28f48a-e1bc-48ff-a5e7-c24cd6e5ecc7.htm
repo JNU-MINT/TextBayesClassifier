@@ -1,0 +1,145 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>使用 SQL 语句</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">使用 SQL 语句</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>使用 Microsoft SQL Server 2005 JDBC Driver 和内联 SQL 语句处理 SQL Server 数据库中的数据时，有多个类可供使用。使用哪个类取决于要运行的 SQL 语句的类型。</p>
+<p>如果 SQL 语句不包含 IN 参数，则使用 <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a> 类；但如果包含 IN 参数，则使用 <a href="a8481c06-fbba-432b-8c69-4f4619c20ad4.htm">SQLServerPreparedStatement</a> 类。 </p>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>注意： </b>
+如果需要使用同时包含 IN 和 OUT 参数的 SQL 语句，则必须将这些语句作为存储过程来实现，并使用 <a href="30710a63-c05d-47d9-9cf9-c087a1c76373.htm">SQLServerCallableStatement</a> 类对其进行调用。有关使用存储过程的详细信息，请参阅<a href="0041f9e1-09b6-4487-b052-afd636c8e89a.htm">将语句用于存储过程</a>。<p></p>
+    </div>
+<p>下列部分说明了使用 SQL 语句来处理 SQL Server 数据库中数据的不同方案。</p>
+  </div>
+      <h1 class="heading">
+        本节的相关信息
+      </h1>
+      <div id="inThisSectionSection" class="section">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h2 class="heading" xmlns=""></h2><table cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;" xmlns=""><tr>
+            <th>
+主题
+            </th>
+            <th>
+说明
+            </th>
+          </tr><tr>
+          <td>
+            <p><a href="4b0728bd-059b-4b71-895c-999335bc7427.htm">使用不带参数的 SQL 语句</a></p>
+          </td>
+          <td>
+<p>说明如何使用不包含参数的 SQL 语句。</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="3202b88f-ce13-44dd-982c-c6a3b0260378.htm">使用带参数的 SQL 语句</a></p>
+          </td>
+          <td>
+<p>说明如何使用包含参数的 SQL 语句。</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="f49ea499-df3c-4e85-9fc7-450fb99622a6.htm">使用 SQL 语句修改数据库对象</a></p>
+          </td>
+          <td>
+<p>说明如何使用 SQL 语句修改数据库对象。</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="4704199b-c0ae-4c77-8a2e-6963715b4ffb.htm">使用 SQL 语句修改数据</a></p>
+          </td>
+          <td>
+<p>说明如何使用 SQL 语句修改数据库中的数据。</p>
+          </td>
+        </tr></table>
+    </content>
+  </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="7f8f3e8f-841e-4449-9154-b5366870121f.htm">通过 JDBC 驱动程序使用语句</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

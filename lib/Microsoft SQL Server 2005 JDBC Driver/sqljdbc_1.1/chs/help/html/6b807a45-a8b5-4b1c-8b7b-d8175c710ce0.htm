@@ -1,0 +1,130 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>处理复杂语句</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">处理复杂语句</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>使用 Microsoft SQL Server 2005 JDBC Driver 时，您可能必须处理复杂语句，其中包括运行时动态生成的语句。复杂语句通常执行多种任务，包括更新、插入和删除。这类语句可能还会返回多个结果集和输出参数。在这些情况下，运行该语句的 Java 代码预先可能不知道返回的对象和数据的类型和数目。</p>
+<p>为了有效地处理复杂语句，JDBC 驱动程序提供多种方法查询返回的对象和数据，以便您的应用程序可正确处理这些内容。处理复杂语句的关键在于 <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a> 类的 <a href="e1367f39-23d7-4e26-b160-6d988d7e6988.htm">execute</a> 方法。该方法返回一个布尔值。当该值为 true 时，从该语句返回的第一个结果为结果集。当该值为 false 时，返回的第一个结果为更新计数。</p>
+<p>知道返回的对象或数据的类型后，可以使用 <a href="929a14e2-8e98-4c32-89aa-86733c717ec1.htm">getResultSet</a> 或 <a href="e9570228-4500-44b6-b2f1-84ac050b5112.htm">getUpdateCount</a> 方法处理这些数据。要继续处理从复杂语句返回的下一个对象或数据，可以调用 <a href="df89db50-0b2f-4094-820a-30be25ad72fe.htm">getMoreResults</a> 方法。</p>
+<p>在下面的实例中，将向此函数传递 SQL Server 2005 AdventureWorks 示例数据库的打开连接，构造一条组合了存储过程调用和 SQL 语句的复杂语句，再运行这些语句，然后使用 <code>do</code> 循环处理返回的所有结果集和更新计数。</p>
+    <div class="sampleCode">
+		<span class="langLabel" name="label"></span><span codeLanguage="other"><pre>public static void executeComplexStatement(Connection con) {
+   try {
+      String sqlStringWithUnknownResults = "{call dbo.uspGetEmployeeManagers(50)};SELECT TOP 10 * FROM Person.Contact";
+      Statement stmt = con.createStatement();
+      boolean results = stmt.execute(sqlStringWithUnknownResults);
+      int count = 0;
+      do {
+         if (results) {
+            ResultSet rs = stmt.getResultSet();
+            System.out.println("Result set data displayed here.");
+         } else {
+            count = stmt.getUpdateCount();
+            if (count &gt;= 0) {
+               System.out.println("DDL or update data displayed here.");
+            } else {
+               System.out.println("No more results to process.");
+            }
+         }
+         results = stmt.getMoreResults();
+      } while (results || count != -1);
+      rs.close();
+      stmt.close();
+   }
+   catch (Exception e) {
+      e.printStackTrace();
+   }
+}
+</pre></span>
+	</div>
+  </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="7f8f3e8f-841e-4449-9154-b5366870121f.htm">通过 JDBC 驱动程序使用语句</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,1 @@
+　　1.往次测试的客户端将无法使用，并且无法升级，请玩家彻底删除后下载并安装全新客户端。　　2.安装客户端时，会提示安装DXSETUP及vcredist_x86两个组件以增强兼容性，我们建议您不要取消这两项的勾选。　　3.操作系统推荐使用WIN7 64位或者XP SP3，不推荐深度优化、删减的操作系统。&nbsp;Copyright &copy; 1996-2013 SINA Corporation, All Rights Reserved

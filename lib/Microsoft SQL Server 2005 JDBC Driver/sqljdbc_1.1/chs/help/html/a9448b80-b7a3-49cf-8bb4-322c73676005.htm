@@ -1,0 +1,170 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>了解对 J2EE 的支持</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">了解对 J2EE 的支持</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>以下各节说明 Microsoft SQL Server 2005 JDBC 驱动程序如何为 J2EE 和 JDBC 3.0 的可选 API 功能提供支持。帮助系统中提供的源代码示例为如何开始使用这些功能提供了参考。</p>
+<p>首先，请确保 Java 环境（JDK 和 JRE）包含 javax.sql 程序包。任何使用可选 API 的 JDBC 应用程序都需要该程序包。JDK 1.4 及其更高版本已包含该程序包，因此无需单独安装。 </p>
+  </div>
+      <h1 class="heading">驱动程序名称</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">驱动程序类名称是 <b>com.microsoft.sqlserver.jdbc.SQLServerDriver</b>。该驱动程序包含在 sqljdbc.jar 文件中。</p>
+<p xmlns="">只要加载带有 JDBC <b>DriverManager</b> 类的驱动程序时就需要使用该类名称。必须在驱动程序配置中指定该驱动程序的类名称时也需要使用该类名称。例如，在 J2EE 应用程序服务器中配置数据源时可能需要输入驱动程序类名称。</p>
+    </content>
+      </div>
+      <h1 class="heading">数据源</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">JDBC 驱动程序提供对 J2EE / JDBC 3.0 数据源的支持。JDBC 驱动程序 <a href="95fc7b07-2498-4a7e-8f7f-ee0d86b598b4.htm">SQLServerXADataSource</a> 类由 <b>com.microsoft.sqlserver.jdbc.SQLServerXADataSource</b> 实现。 </p>
+    </content>
+        <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h1 class="heading" xmlns="">数据源名称</h1><div id="sectionSection" class="section" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">可使用数据源连接数据库。下表说明可随 JDBC 驱动程序使用的数据源：</p>
+          <h2 class="heading" xmlns=""></h2><table cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;" xmlns=""><tr>
+                <th>
+数据源类型
+                </th>
+                <th>
+类名称
+                </th>
+                <th>
+说明
+                </th>
+              </tr><tr>
+              <td>
+<p>DataSource</p>
+              </td>
+              <td>
+<p>com.microsoft.sqlserver.jdbc.SQLServerDataSource</p>
+              </td>
+              <td>
+<p>非池数据源</p>
+              </td>
+            </tr><tr>
+              <td>
+<p>ConnectionPoolDataSource</p>
+              </td>
+              <td>
+<p>com.microsoft.sqlserver.jdbc.SQLServerConnectionPoolDataSource</p>
+              </td>
+              <td>
+<p>配置 J2EE 应用程序服务器连接池的数据源。应用程序在 J2EE 应用程序服务器中运行时通常会用到该数据源。</p>
+              </td>
+            </tr><tr>
+              <td>
+<p>XADataSource</p>
+              </td>
+              <td>
+<p>com.microsoft.sqlserver.jdbc.SQLServerXADataSource</p>
+              </td>
+              <td>
+<p>配置 J2EE XA 数据源的数据源。应用程序在 J2EE 应用程序服务器和 XA 事务管理器中运行时通常会用到该数据源。</p>
+              </td>
+            </tr></table>
+        </content></div>
+      <h1 class="heading" xmlns="">数据源属性</h1><div id="sectionSection" class="section" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">所有数据源都支持设置和获取与基础驱动程序的属性集相关联的任何属性的功能。 </p>
+<p xmlns="">示例：</p>
+          <p xmlns=""><code>setServerName("localhost");</code></p>
+          <p xmlns=""><code>setDatabaseName("AdventureWorks"); </code></p>
+<p xmlns="">下列内容显示了应用程序如何使用数据源进行连接：</p>
+          <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>initialize JNDI ..
+Context ctx = new InitialContext(System.getProperties());
+...
+DataSource ds = (DataSource) ctx.lookup("MyDataSource");
+Connection c = ds.getConnection("user", "pwd");</pre></span></div>
+<p xmlns="">有关数据源属性的详细信息，请参阅<a href="f3363d05-07fc-4bf8-ae5e-2a7a968808ad.htm">设置数据源属性</a>。</p>
+        </content></div>
+    </sections>
+      </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="939a8773-2583-49a4-bf00-6b892fbe39dc.htm">JDBC 驱动程序概述</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,134 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>使用自动生成的键</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">使用自动生成的键</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>Microsoft SQL Server 2005 JDBC Driver 支持可选的 JDBC 3.0 API 以检索自动生成的行标识符。这项功能的主要意义在于，为更新数据库表的应用程序提供获得 IDENTITY 值的方法，从而无需执行查询以及对服务器进行再次往返通信。</p>
+<p>由于 SQL Server 不支持标识符的伪列，因此必须使用自动生成键功能的更新必须对包含 IDENTITY 列的表进行操作。SQL Server 仅允许每个表包含一个 IxDENTITY 列。<a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a> 类的 <a href="a3325950-0e81-4ae8-aa0c-e1f6d371adcd.htm">getGeneratedKeys</a> 方法返回的结果集仅包含一列，并且返回的列名为 GENERATED_KEYS。如果对不包含 IDENTITY 列的表请求生成的键，则 JDBC 驱动程序将返回空结果集。</p>
+<p>作为实例，在 SQL Server 2005 AdventureWorks 示例数据库中创建下表：</p>
+    <div class="sampleCode"><span codeLanguage="other"><pre>CREATE TABLE TestTable 
+   (Col1 int IDENTITY, 
+    Col2 varchar(50), 
+    Col3 int);</pre></span></div>
+<p>在下面的实例中，将向此函数传递 AdventureWorks 示例数据库的打开连接，并构造一条将向表添加数据的 SQL 语句，然后运行该语句并显示 IDENTITY 列的值。</p>
+    <div class="sampleCode">
+		<span class="langLabel" name="label"></span><span codeLanguage="other"><pre>public static void executeInsertWithKeys(Connection con) {
+   try {
+      String SQL = "INSERT INTO TestTable (Col2, Col3) VALUES ('S', 50)";
+      Statement stmt = con.createStatement();
+      int count = stmt.executeUpdate(SQL, Statement.RETURN_GENERATED_KEYS);
+      ResultSet rs = stmt.getGeneratedKeys();
+
+      ResultSetMetaData rsmd = rs.getMetaData();
+      int columnCount = rsmd.getColumnCount();
+      if (rs.next()) {
+         do {
+            for (int i=1; i&lt;=columnCount; i++) {
+               String key = rs.getString(i);
+               System.out.println("KEY " + i + " = " + key);
+            }
+         } while(rs.next());
+      }
+      else {
+         System.out.println("NO KEYS WERE GENERATED.");
+      }
+      rs.close();
+      stmt.close();
+   }
+   catch (Exception e) {
+      e.printStackTrace();
+   }
+}
+</pre></span>
+	</div>
+  </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="7f8f3e8f-841e-4449-9154-b5366870121f.htm">通过 JDBC 驱动程序使用语句</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

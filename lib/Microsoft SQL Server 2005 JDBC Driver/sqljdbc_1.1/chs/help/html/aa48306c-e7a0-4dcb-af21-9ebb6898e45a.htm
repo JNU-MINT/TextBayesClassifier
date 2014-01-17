@@ -1,0 +1,132 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>使用保持能力</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">使用保持能力</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>默认情况下，事务中创建的结果集将在事务提交到数据库后关闭，或在回滚时关闭。但是，即便在事务提交后，使结果集处于打开状态有时也会很有用。为此，Microsoft SQL Server 2005 JDBC Driver 支持使用结果集的保持能力。 </p>
+<p>可通过使用 <a href="937292a6-1525-423e-a2b2-a18fd34c2893.htm">SQLServerConnection</a> 类的 <a href="552eebd0-4c38-43f0-961f-35244f99109b.htm">setHoldability</a> 方法设置结果集的保持能力。使用 <b>setHoldability</b> 方法设置保持能力时，可使用结果集保持能力的常量 HOLD_CURSORS_OVER_COMMIT 或 CLOSE_CURSORS_AT_COMMIT。</p>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>注意： </b>
+创建 <b>Statement</b> 对象之一时，JDBC 驱动程序不支持设置保持能力。包含带有结果集保持能力参数的重载的语句对象会在调用时引发异常。<p></p>
+    </div>
+<p>结果集的保持能力是在仅为服务器端游标创建结果集时，与结果集相关联的 <b>SQLServerConnection</b> 对象的保持能力。它不适用于客户端游标。</p>
+<p>在下面的实例中，结果集的保持能力将在执行 <code>try</code> 块中包含两个单独语句的本地事务时进行设置。该语句将根据 SQL Server 2005 AdventureWorks 示例数据库中的表 Production.ScrapReason 来运行，并使用保存点回滚第二个语句。这会导致只有第一个语句提交给数据库。</p>
+    <div class="sampleCode">
+		<span class="langLabel" name="label"></span><span codeLanguage="other"><pre>public static void executeTransaction(Connection con) {
+   try {
+      con.setAutoCommit(false);
+      con.setHoldability(ResultSet.HOLD_CURSORS_OVER_COMMIT);
+      Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+      stmt.executeUpdate("INSERT INTO Production.ScrapReason(Name) VALUES('Bad part')");
+      ResultSet rs = stmt.executeQuery("SELECT * FROM Production.ScrapReason");
+      con.commit();
+      System.out.println("Transaction succeeded.");
+
+      //Display results.
+      while (rs.next()) {
+         System.out.println(rs.getString(2));
+      }
+      stmt.close();
+   }
+   catch (SQLException ex) {
+      ex.printStackTrace();
+   try {
+      con.rollback();
+      System.out.println("Transaction failed.");
+   }
+   catch (SQLException se) {
+      se.printStackTrace();
+   }
+}
+</pre></span>
+	</div>
+  </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="afbb776f-05dc-4e79-bb25-2c340483e401.htm">通过 JDBC 驱动程序执行事务</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

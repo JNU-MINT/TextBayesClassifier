@@ -1,0 +1,140 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>了解事务</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">了解事务</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>事务是组合到工作的逻辑单位的操作组。它们用于控制和维护事务中的各项操作的一致性和完整性（尽管系统中可能发生错误）。 </p>
+<p>对于 Microsoft SQL Server 2005 JDBC Driver，事务可以是本地的，也可以是分布式的。事务还可以使用隔离级别。有关 JDBC 驱动程序支持的隔离级别的详细信息，请参阅<a href="2c41e23a-da6c-4650-b5fc-b5fe53ba65c3.htm">了解隔离级别</a>。</p>
+  </div>
+      <h1 class="heading">使用本地事务</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">当事务是单步提交事务时，该事务被视为本地的，并由数据库直接进行处理。JDBC 驱动程序通过使用 <a href="937292a6-1525-423e-a2b2-a18fd34c2893.htm">SQLServerConnection</a> 类的各种方法支持本地事务，这些方法包括 <a href="db1e22d2-e53f-474e-8c99-cb1fff7f491a.htm">setAutoCommit</a>、<a href="c7346165-51bf-4844-b64c-29833c147236.htm">commit</a> 和 <a href="7adb6772-4047-4d8e-931d-b3d20eec44b5.htm">rollback</a>。通常由此应用程序显式地管理本地事务，或由 J2EE 应用程序服务器自动管理。</p>
+<p xmlns="">以下实例执行 <code> try </code> 块中包含的两个独立语句的本地事务。这些语句将对 AdventureWorks SQL Server 2005 示例数据库中的 Production.ScrapReason 表运行，并且如果没有引发异常，则将其提交。如果引发异常，<code> catch </code> 块中的代码将回滚此事务。</p>
+      <div class="sampleCode" xmlns="">
+		<span class="langLabel" name="label"></span><span codeLanguage="other"><pre>public static void executeTransaction(Connection con) {
+   try {
+      //Switch to manual transaction mode by setting
+      //autocommit to false. Note that this starts the first 
+      //manual transaction.
+      con.setAutoCommit(false);
+      Statement stmt = con.createStatement();
+      stmt.executeUpdate("INSERT INTO Production.ScrapReason(Name) VALUES('Wrong size')");
+      stmt.executeUpdate("INSERT INTO Production.ScrapReason(Name) VALUES('Wrong color')");
+      con.commit(); //This commits the transaction and starts a new one.
+      stmt.close(); //This turns off the transaction.
+      System.out.println("Transaction succeeded. Both records were written to the database.");
+   }
+   catch (SQLException ex) {
+      ex.printStackTrace();
+      try {
+         con.rollback();
+         System.out.println("Transaction failed. No records were written to the database.");
+      }
+      catch (SQLException se) {
+         se.printStackTrace();
+      }
+   }
+}
+</pre></span>
+	</div>
+    </content>
+      </div>
+      <h1 class="heading">使用分布式事务</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">分布式事务可在两个或多个联网的数据库上更新数据，同时保留事务处理的重要的原子性、一致性、独立性和稳定性 (ACID) 等属性。JDBC 2.0 Optional API 规范中的 JDBC API 添加了分布式事务支持。分布式事务的管理通常由 J2EE 应用程序服务器环境中的 Java Transaction Service (JTS) 事务管理器自动执行。但是，Microsoft SQL Server 2005 JDBC Driver 支持任意 Java Transaction API (JTA) 兼容的分布式事务管理器下的分布式事务。</p>
+<p xmlns="">JDBC 驱动程序与 Microsoft 分布式事务处理协调器 (Distributed Transaction Coordinator, MS DTC) 无缝集成，通过 SQL Server 2000 和 SQL Server 2005 提供真正的分布式事务支持。MS DTC 是 Microsoft 为 Microsoft Windows 系统提供的分布式事务处理工具。MS DTC 使用 Microsoft 推出的久经考验的事务处理技术来支持 XA 功能，例如完整的两步分布式提交协议和分布式事务的恢复。</p>
+<p xmlns="">有关如何使用分布式事务的详细信息，请参阅<a href="574e326f-0520-4003-bdf1-62d92c3db457.htm">了解 XA 事务</a>。</p>
+    </content>
+      </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="afbb776f-05dc-4e79-bb25-2c340483e401.htm">通过 JDBC 驱动程序执行事务</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

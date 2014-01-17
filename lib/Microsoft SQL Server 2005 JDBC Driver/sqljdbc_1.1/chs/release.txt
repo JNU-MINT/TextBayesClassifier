@@ -1,0 +1,235 @@
+﻿版本信息
+Microsoft SQL Server 2005 JDBC Driver 1.1
+2006 年 8 月
+
+
+简介
+------------
+本文件是对 Microsoft SQL Server 2005 JDBC Driver 文档的补充，其中包含了软件的最新重大信息或其他重要信息。
+安装 JDBC 驱动程序之前，应该将本文件从头至尾阅读一遍。
+
+您的反馈对我们非常重要，我们将竭尽全力对您的反馈做出及时响应。有关使用 JDBC 驱动程序新闻组和联机论坛来提供反
+馈的信息，请参阅 Microsoft SQL Server 2005 JDBC Driver 页，网址为 http://msdn.microsoft.com/data/ref/jdbc。
+
+
+安装
+------------
+JDBC 驱动程序的安装说明位于 install.txt 中。有关在 Windows 和 Unix 操作系统中安装 JDBC 驱动程序的信息，请参
+考该文件。
+
+
+版本目录
+----------------
+Microsoft SQL Server 2005 JDBC Driver 可执行 zip 或 tar 文件会将下列文件解压缩到指定位置（到所选的安装目录的
+相对位置）：
+
+<安装目录>\sqljdbc_<版本>\<语言>\install.txt
+<安装目录>\sqljdbc_<版本>\<语言>\release.txt
+<安装目录>\sqljdbc_<版本>\<语言>\license.txt
+<安装目录>\sqljdbc_<版本>\<语言>\sqljdbc.jar
+<安装目录>\sqljdbc_<版本>\<语言>\auth\x86\sqljdbc_auth.dll
+<安装目录>\sqljdbc_<版本>\<语言>\auth\x64\sqljdbc_auth.dll
+<安装目录>\sqljdbc_<版本>\<语言>\help\default.htm
+<安装目录>\sqljdbc_<版本>\<语言>\help\index.htm
+<安装目录>\sqljdbc_<版本>\<语言>\help\toc.htm
+<安装目录>\sqljdbc_<版本>\<语言>\help\html\<文档页...>
+<安装目录>\sqljdbc_<版本>\<语言>\help\local\<文档文件...>
+<安装目录>\sqljdbc_<版本>\<语言>\help\samples\<示例文件...>
+<安装目录>\sqljdbc_<版本>\<语言>\xa\xa_install.sql
+<安装目录>\sqljdbc_<版本>\<语言>\xa\x86\sqljdbc_xa.dll
+<安装目录>\sqljdbc_<版本>\<语言>\xa\x64\sqljdbc_xa.dll
+
+
+变更列表
+-----------
+以下是自 2006 年 1月 Microsoft SQL Server 2005 JDBC Driver 1.0 版发行以来对其所做变更的列表。
+409319 能够从任何线程中取消语句的执行，而无需关闭连接。
+
+423894 Sun CTS：在 SQL Server 2000 所支持函数的列表中，DatabaseMetaData.getNumericFunctions 不再返回 MOD。
+
+426389 如果设置了 selectMethod=cursor 连接属性，对 UPDATE WHERE 查询调用 Statement.execute 不会再引发带有
+消息“sp_cursoropen/sp_cursorprepare: 该语句参数只能是单个 select 语句或单个存储过程”的 SQLException。
+
+436718 设置了 selectMethod=cursor 连接属性时，对 INSERT INTO 查询调用 PreparedStatement.execute 不会再引发
+带有消息“该语句参数只能是带有单个 SELECT 语句的一个批过程或存储过程，不带 FOR BROWSE、COMPUTE BY 或变量赋
+值”的 SQLException。
+
+434562 现在，对于 GUID、NCHAR、NVARCHAR 和 NVARCHAR(max) SQL Server 类型，在执行各种元数据调用时，会在
+ DATA_TYPE 列中报告相应的 JDBC 类型。这些类型分别为 sql.types.char、sql.types.varchar 和 sql.types.longvarchar。
+
+450639 将 SQL Server 2005 配置为 JBoss JMS 消息存储时，驱动程序不再引发带有消息“服务器无法继续执行该事务，
+说明: 4600000001”的SQLException。
+
+425030 驱动程序可正确设置和检索系统默认时区以外各时区的日期、时间和时间戳。
+
+432090 执行 DBCC SHOW_STATISTICS 语句可生成正确的结果集。
+
+429427 调用 CallableStatement.clearParameters 之后，在随后检索 OUT 参数值的调用中，不会再引发 NullPointerException。
+
+433170 XA 事务行为已在多个方面得到更正。
+
+438767 对于 Calendar 对象以及不同时区与区域设置中夏令时 (DST) 过渡期间的值，getTime 和 getDate 方法的行为已经得到更正。
+
+422875 带有小数位的 PreparedStatement.setObject 和 ResultSet.updateObject 将正确保留数值的小数位。
+
+435796 执行 SQL WRITETEXT 不再引发带有消息“找不到存储过程输出参数的 TDS_RET_STATUS”的 SQLException。
+
+424295 对于 SQL Server 2005 服务器，DatabaseMetaData.getMaxConnections 不再引发带有消息“配置选项‘用户连接’
+不存在，或者它可能是高级选项”的 SQLException。
+
+423881 驱动程序可正确返回触发器的更新计数。
+
+20012145 调用 Connection.setAutoCommit 方法时，驱动程序可在 SQL Server 数据库中设置事务模式并正确报告驱动程序的自动提交模式。
+
+428803 若为二进制流或字符流设置的实际长度与传递给 setter 的不同，在执行语句时，引发相应的 SQLException 后，不会再关闭连接。
+
+430837 当从 SQLServerXADataSource 获取的连接不属于 XA 事务的范围时，它们可在本地事务中使用。
+
+20012126 BIGINT SQL 类型可用于将 java.sql.BIGINT 预定义的语句参数值发送至 SQL Server 数据库，这将使查询执行计划效率更高。
+
+428197 当预定义语句的批处理中包含多于一项时，批处理执行可正常运行。
+
+426966 SQL 语句中对双引号分隔的原义字符的处理能力得到了提高。
+
+429085 可正确处理所有时区中夏令时 (DST) 的历史更改。
+
+433394 设置 BLOB 值后调用 Statement.executeBatch 时，不再引发带有消息“不支持从 BLOB 转换为 BINARY”的 SQLException。
+
+435448 向具有 5.0 JRE 的服务器发送 BigDecimal 预定义语句参数值时，驱动程序不再引发带有消息“com.microsoft.sqlserver.jdbc.SQLServerException: '-' 附近有语法错误”的 SQLException。
+
+423733 调用 ResultSet.beforeFirst 或 ResultSet.afterLast 后，ResultSet.rowDeleted 不再引发 ArrayIndexOutOfBounds 异常。
+
+429214 java.sql.Time 和 java.sql.Date 对象的未使用部分已规范化为正确的值。
+
+424450 向 SQL Server 2005 服务器的 varbinary(max) 列发送长度介于 4022 和 4025 字节之间的二进制流或 ASCII 流值，
+将不再引发 IndexOutOfBoundsException。
+
+428725 转换为整数类型时，getter 方法可正确截断小数位数值。
+
+432590 使用 PreparedStatement.setObject 方法将长度超过 4000 个字符的 ASCII 流作为 Type.VARCHAR 发送至服务器时，
+将发送整个流，而不会在 4000 个字符处截断。
+
+445528 只有数字和字符数据类型才支持 SQLServerResultSet.getBoolean 方法。该方法将值 "1"、1 和 "true" 转换为 true，
+将值 "0"、0 和 "false" 转换为 false。对于所有其他值均未定义行为。
+
+421916 SQLServerPreparedStatement 和 SQLServerCallableStatement 类的 setObject(参数, null) 方法不再引发
+ NullPointerException。有关详细信息，请参阅 JDBC 帮助系统中的 setObject API 主题。
+
+450271 SQLServerPreparedStatement 对象不会重新引发上次执行中已引发的异常。
+
+441998 在 XA 事务中，将默认事务隔离从 SERIALIZABLE 更改为 READ_COMMITTED。
+
+442038 现在，在不使用夏令时期间，通过 Calendar 对象使用 setTimestamp 方法可生成正确的时间戳。
+
+443970 selectMethod 连接字符串属性设置为“cursor”时，SQLServerStatement 执行支持查询超时。
+
+444121 现在支持 EBCDIC 数据库排序。
+
+439751现在可在 {call ...} SQL 转义语法中使用终止换行符。
+
+440734 关闭由 getXXXStream 方法返回的已关闭的流不再引发异常。
+
+
+已知问题
+------------
+以下是有关 Microsoft SQL Server 2005 JDBC Driver 的已知问题：
+
+
+1) 驱动程序的加载与 SQL SERVER 2000 JDBC DRIVER 相冲突
+
+如果在同一进程中同时加载 Microsoft SQL Server 2000 JDBC Driver 和 Microsoft SQL Server 2005 JDBC Driver，
+则在某些情况下，针对 2005 版 JDBC 驱动程序调用 DriverManager.getConnection 方法时，2000 版 JDBC 驱动程序
+会错误地接受此方法。
+
+导致该问题的原因是如果首先加载了 2000 版 JDBC 驱动程序，它会错误地接受“jdbc:sqlserver://”URL 前缀。 
+
+若要解决此问题，请先加载 2005 版 JDBC 驱动程序类，如下所示：
+
+Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver"); // 2005 版
+Class.forName("com.microsoft.jdbc.sqlserver.SQLServerDriver"); // 2000 版
+
+这样可确保 2005 版 JDBC 驱动程序处理“jdbc:sqlserver://”URL 前缀，而 2000 版 JDBC 驱动程序处理
+“jdbc:microsoft:sqlserver://”URL 前缀。
+
+
+2) 获取预定义语句的参数元数据存在限制
+
+SQLServerParameterMetaData 类和预定义语句一起使用时存在一些限制。若要正确获取参数元数据，SQL INSERT 语句
+需要可选的 INTO 子句，SQL DELETE 语句需要可选的 FROM 子句。
+
+
+3) SQL SERVER 2000 数据转换限制
+
+SQL Server 2000 和 JDBC 驱动程序一起使用时，存在下列数据转换限制：
+
+	- String 数据无法转换为基础 money 或 smallmoney 列。
+	- 长度超过 4000 个字符的 String 数据无法转换为 char 或 varchar 基础列。
+	- 如果 sendStringParametersAsUnicode 连接字符串属性设置为 false 或调用了 setAsciiStream 方法，则长度
+超过 4000 个字符的 String 数据无法转换为 nchar 或 nvarchar 基础列。
+	- 如果 sendStringParametersAsUnicode 连接字符串属性设置为 true，则 String 数据无法转换为 text 列。
+如果需要支持从 string 到 text 列的转换，请将 sendStringParametersAsUnicode 属性设置为 false。
+
+
+4) 命名参数的限制
+
+名称中含有左方括号“[”的存储过程不支持命名参数。例如 “stor[edProc”之类的名称。请注意，这并不影响平常使用
+“[]”将存储过程名称进行转义。
+
+
+5) XAResource.setTransactionTimeout 失败
+
+请注意，如果没有为参与 XA 事务的每台 SQL Server 计算机应用以下修补程序，XAResource.setTransactionTimeout 将不会正常运行：
+
+“899756 修补程序：MSDTC没有检测进程终止，MSDTC 无法为 Windows Server 2003 中的 XA 事务设置超时值”，网址为 http://support.microsoft.com/kb/899756。
+
+如果未应用此修补程序，则唯一有效的超时值为默认值 0，表示无限的超时值。
+
+
+6) WINDOWS XP 中的 XA 事务失败
+
+除非应用以下修补程序，否则若 Windows XP 中运行了 SQL Server，XA 事务将不会正常运行：
+
+“XA 事务与 SQL Server一起使用时性能下降”，网址为 http://support.microsoft.com/kb/318818
+
+请注意，仅当参与 XA 事务的 SQL Server 在 Windows XP 中运行时，才会出现此问题。如果 Windows XP 中运行的客户端
+应用程序所连接的远程 SQL Server 不是运行在 Windows XP 中，则这些应用程序可以参与 XA 事务。此问题不适用于
+ Windows 2000 和 Windows Server 2003。
+
+
+7) SUN SOLARIS 需要 GZIP 来安装 JDBC 驱动程序
+
+如果在 Sun Solaris 计算机上安装 JDBC 驱动程序，可能需要先安装 GZIP 才能解压缩驱动程序文件。可从 www.gzip.org 下载 GZIP。
+
+
+8) 使用数据库镜像时连接超时
+
+在数据库镜像配置中使用 JDBC 驱动程序时，默认的连接超时值为 0，这会导致无限次的连接尝试。因此，当您尝试连接的
+主数据库和镜像数据库最初都处于关闭状态时，JDBC 驱动程序将无限次地交替连接每台服务器，直到一台恢复为联机状态。
+若要避免无限次的连接尝试，请为 loginTimeout 连接字符串属性指定有限的值或在应用程序中引入超时逻辑。
+
+
+9) BIGDECIMAL 值的转换
+
+将 BigDecimal 值转换为字符串表示形式时，这些值的转换取决于所使用的 JVM 版本。 
+
+例如，以下代码说明了这些差异：
+
+String str = new BigDecimal("1E10").toString();
+System.out.println("String is " + str);
+//使用 JVM 1.4 时：打印出“String is 10000000000”
+//使用 JVM 1.5 时：打印出“String is 1E+10”
+
+通过 JVM 1.5 运行应用程序时，若要在使用 BigDecimal 值时获得一致的行为，应用程序应使用 BigDecimal.toPlainString 方法。
+
+
+10) 返回的 UNIQUEIDENTIFIER 列类型值不同
+
+使用某种元数据类检索列类型时，所返回的 UNIQUEIDENTIFIER 列类型的值不一致。使用 SQLServerDatabaseMetaData 类检索
+此值时，返回的值为 CHAR。但是，如果使用 SQLServerResultSetMetaData 或 SQLServerParementerMetaData 类检索该值，
+返回的值为 VARCHAR。此外，UNIQUEIDENTIFIER 列类型映射到了 java.sql.Types.CHAR 数据类型。
+
+
+11) 使用集成安全性时 JDBC IPV6 连接行为不一致
+
+数字 IPV6 地址与集成安全性一起使用时，打开连接所用的时间会更长，甚至失败。只要使用计算机名，通过集成安全性连接到
+ IPV6 服务器便可生效。

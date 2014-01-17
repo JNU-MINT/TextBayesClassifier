@@ -1,0 +1,138 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>使用 JDBC 驱动程序</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">使用 JDBC 驱动程序</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>本部分提供使用 Microsoft SQL Server 2005 JDBC Driver 与 SQL Server 数据库建立简单连接的快速入门指导。在连接到 SQL Server 数据库之前，必须首先在本地计算机或服务器上安装 SQL Server，并且必须在本地计算机上安装 JDBC 驱动程序。</p>
+  </div>
+      <h1 class="heading">设置 Classpath</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">JDBC 驱动程序并未包含在 Java SDK 中。因此，如果要使用该驱动程序，必须将 classpath 设置为包含 sqljdbc.jar 文件。如果 classpath 缺少 sqljdbc.jar 项，应用程序将引发&ldquo;找不到类&rdquo;的常见异常。</p>
+<p xmlns="">sqljdbc.jar 文件的安装位置如下：</p>
+<p xmlns="">&lt;<i>安装目录</i>&gt;\sqljdbc_&lt;<i>版本</i>&gt;\&lt;<i>语言</i>&gt;\sqljdbc.jar</p>
+<p xmlns="">下面是用于 Windows 应用程序的 CLASSPATH 语句实例：</p>
+      <p xmlns=""><code>CLASSPATH =.;C:\Program Files\Microsoft SQL Server 2005 JDBC Driver\sqljdbc_1.1\enu\sqljdbc.jar</code></p>
+<p xmlns="">下面是用于 Unix/Linux 应用程序的 CLASSPATH 语句实例：</p>
+      <p xmlns=""><code>CLASSPATH =.:/home/usr1/mssqlserver2005jdbc/Driver/sqljdbc_1.1/enu/sqljdbc.jar</code></p>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>注意： </b>
+在 Window 系统中，如果目录名长于 8.3 或文件夹名中包含空格，将导致 classpath 出现问题。如果怀疑存在这类问题，应暂时将 sqljdbc.jar 文件移动到名称简单的目录中，例如 <code> C:\Temp</code>，更改 classpath，然后测试这样是否解决了问题。<p></p>
+      </div>
+    </content>
+        <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h1 class="heading" xmlns="">直接在命令提示符运行的应用程序</h1><div id="sectionSection" class="section" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">在操作系统中配置 classpath。将 sqljdbc.jar 追加到系统的 classpath 中。或者，使用 <code> java -classpath </code> 选项，可以在运行此应用程序的 Java 命令行上指定 classpath。</p>
+        </content></div>
+      <h1 class="heading" xmlns="">在 IDE 中运行的应用程序</h1><div id="sectionSection" class="section" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">每个 IDE 供应商都提供了在 IDE 中设置 classpath 的不同方法。仅在操作系统中设置 classpath 将无法正常工作。必须将 sqljdbc.jar 添加到 IDE classpath。</p>
+        </content></div>
+      <h1 class="heading" xmlns="">Servlet 和 JSP</h1><div id="sectionSection" class="section" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">Servlet 和 JSP 在 servlet/JSP 引擎（如 Tomcat）中运行。必须根据 servlet/JSP 引擎文档来设置 classpath。仅在操作系统中设置 classpath 将无法正常工作。一些 servlet/JSP 引擎提供了设置屏幕，用于设置引擎的 classpath。在这种情况下，必须将正确的 JDBC Driver JAR 文件追加到现有的引擎 classpath，然后重新启动引擎。在其他情况下，通过在引擎安装期间将 sqljdbc.jar 文件复制到 lib 之类的特定目录，可以部署此驱动程序。也可以在引擎专用的配置文件中指定引擎驱动程序的 classpath。</p>
+        </content></div>
+      <h1 class="heading" xmlns="">Enterprise Java Beans</h1><div id="sectionSection" class="section" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">Enterprise Java Bean (EJB) 在 EJB 容器中运行。EJB 容器来自多家供应商。Java 小程序在浏览器中运行，但是从 Web 服务器上下载。将 sqljdbc.jar 复制到 Web 服务器根目录，并在小程序的 HTML 存档选项卡中指定 JAR 文件的名称，例如 <code>&lt;applet ... archive=sqljdbc.jar&gt;</code>。</p>
+        </content></div>
+    </sections>
+      </div>
+      <h1 class="heading">与数据库建立简单连接</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">若要使用 <b>DriverManager</b> 类连接到数据库，必须首先按如下方式注册驱动程序：</p>
+      <p xmlns=""><code>Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");</code></p>
+<p xmlns="">加载驱动程序后，可通过使用连接 URL 来建立连接：</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>String connectionUrl = "jdbc:sqlserver://localhost:1433;" +
+   "databaseName=AdventureWorks;user=MyUserName;password=*****;";
+Connection con = DriverManager.getConnection(connectionUrl);</pre></span></div>
+<p xmlns="">有关如何连接数据源和使用连接 URL 的详细信息，请参阅<a href="44996746-d373-4f59-9863-a8a20bb8024a.htm">创建连接 URL</a>和<a href="f1b62700-f046-488d-bd6b-a5cd8fc345b7.htm">设置连接属性</a>。</p>
+    </content>
+      </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="939a8773-2583-49a4-bf00-6b892fbe39dc.htm">JDBC 驱动程序概述</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

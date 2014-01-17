@@ -1,0 +1,129 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>了解数据类型转换</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">了解数据类型转换</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>为了简化 Java 编程语言数据类型到 SQL Server 数据类型的转换，Microsoft SQL Server 2005 JDBC Driver 根据 JDBC 规范的要求提供了数据类型转换。为了提高灵活性，所有类型均可与 Object、String 和 Bytes 数据类型进行相互转换。</p>
+  </div>
+      <h1 class="heading">Getter 方法转换</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">基于 SQL Server 2005 的数据类型，以下图表包含 <a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a> 类的 <b>get&lt;Type&gt;</b> 方法的 JDBC 驱动程序转换图，以及 <a href="30710a63-c05d-47d9-9cf9-c087a1c76373.htm">SQLServerCallableStatement</a> 类的 <b>get&lt;Type&gt;</b> 方法支持的转换。</p>
+      <div xmlns=""><img src="../local/Local_952677832_jdbcgetterconversions.gif" target="_blank" alt="JDBCGetterConversions"></img></div>
+<p xmlns="">JDBC 驱动程序的 getter 方法支持三种基本的转换类别：</p>
+      <ul xmlns=""><li>
+<b>Non-Lossy (x)</b>：在 getter 类型等于或小于基础服务器类型的情况下执行转换。例如，对基础服务器十进制数列调用 <b>getBigDecimal</b> 时，无需进行转换。<br></br>
+        </li><li>
+<b>Converted (y)</b>：从数字服务器类型到 Java 语言类型的转换，此时的转换为常规转换，并遵循 Java 语言转换规则。对于这些转换，总是直接截取有效位数（从不四舍五入），而溢出则按目标类型取模处理，以较小者为准。例如，对包含&ldquo;1.9999&rdquo;的基础十进制数列调用 <b>getInt</b> 将返回&ldquo;1&rdquo;；如果基础十进制数值为&ldquo;3000000000&rdquo;，则 int 值将溢出为&ldquo;-1294967296&rdquo;。<br></br>
+        </li><li>
+<b>Data Dependent (z)</b>：从基础字符类型转换到数字类型时，要求字符类型所包含的值可转换成数字类型。不执行其他转换。如果值对于 getter 类型过大，则该值无效。例如，如果对包含&ldquo;53&rdquo;的 varchar(50) 列调用 <b>getInt</b>，则该值作为 int 返回；但如果基础值为&ldquo;xyz&rdquo;或&ldquo;3000000000&rdquo;，则发生错误。<br></br>
+        </li></ul>
+    </content>
+      </div>
+      <h1 class="heading">Setter 方法转换</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">对于传递给 <b>SQLServerResultSet</b> 类的 <b>update&lt;Type&gt;</b> 方法，以及 <a href="a8481c06-fbba-432b-8c69-4f4619c20ad4.htm">SQLServerPreparedStatement</a> 类的 <b>setObject&lt;Type&gt;</b> 方法的 Java 类型的数据，可应用下列转换。 </p>
+      <div xmlns=""><img src="../local/Local_417763548_jdbcsetterconversions.gif" target="_blank" alt="JDBCSetterConversions"></img></div>
+<p xmlns="">没有指定目标类型的 <b>setObject</b> 方法将使用默认映射。带类型的参数 setter（<b>SQLServerPreparedStatement</b> 类的 <b>set&lt;Type&gt;</b> 方法，以及 <b>SQLServerCallableStatement</b> 类的 <b>set&lt;Type&gt;</b> 方法）也使用默认的 Java 到 JDBC 的类型映射，并且会将该类型传递给服务器。服务器将尝试所有转换，并在失败时返回错误。</p>
+<p xmlns="">对于字符串数据类型，如果值超过 VARCHAR 的长度，它将映射到 LONGVARCHAR。byte[] 也是如此。长于 VARBINARY 的值会变成 LONGVARBINARY 类型。</p>
+<p xmlns="">JDBC 驱动程序的 setter 方法支持两种基本的转换类别：</p>
+      <ul xmlns=""><li>
+<b>Non-Lossy (x)</b>：在 setter 类型等于或小于基础服务器类型的情况下，执行的数字转换。例如，对基础服务器十进制数列调用 <b>setBigDecimal</b> 时，无需进行转换。对于从数字到字符的转换，Java 数字数据类型将被转换成字符串。例如，使用值&ldquo;53&rdquo;对 varchar(50) 列调用 <b>setDouble</b> 时将在该目标列中生成字符值&ldquo;53&rdquo;。<br></br>
+        </li><li>
+<b>Converted (y)</b>：从 Java 数字类型到较小的基础服务器数字类型的转换。该转换为常规转换，并且遵循 SQL Server 转换约定。总是直接截取有效位数（从不四舍五入），而溢出将引发不支持转换的错误。例如，通过值&ldquo;1.9999&rdquo;对基础整数列使用 <b>updateDecimal</b> 时，将在目标列中生成&ldquo;1&rdquo;；但如果传递的值为&ldquo;3000000000&rdquo;，驱动程序将引发错误。<br></br>
+        </li></ul>
+<p xmlns="">SQL Server 执行大部分设置和更新转换，并且在出现问题时将错误传递回 JDBC 驱动程序。客户端转换是例外情况，并且仅在使用日期、时间、时间戳、布尔值和字符串值的情况下执行转换。</p>
+<p xmlns="">如果调用 <b>updateObject</b> 和 <b>setObject</b>，则这些方法将查找传递的对象类型，然后调用相应类型的 setter 方法。</p>
+    </content>
+      </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="7802328d-4d23-4775-9573-4169b127d258.htm">了解 JDBC 驱动程序数据类型</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

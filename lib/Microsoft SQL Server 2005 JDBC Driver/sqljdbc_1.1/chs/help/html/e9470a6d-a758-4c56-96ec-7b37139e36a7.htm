@@ -1,0 +1,126 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>使用不带参数的存储过程</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">使用不带参数的存储过程</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>在可以调用的 SQL Server 存储过程中，最简单的类型是不包含任何参数并且返回单个结果集的存储过程。可以使用 Microsoft SQL Server 2005 JDBC Driver 提供的 <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a> 类，调用此类存储过程并处理其返回的数据。</p>
+<p>使用 JDBC 驱动程序调用不带参数的存储过程时，必须使用 <code> call </code> SQL 转义序列。不带参数的 <code> call </code> 转义序列的语法如下所示：</p>
+    <p><code>{call procedure-name}</code></p>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>注意： </b>
+有关 SQL 转义序列的详细信息，请参阅<a href="00f9e25a-088e-4ac6-aa75-43eacace8f03.htm">使用 SQL 转义序列</a>。<p></p>
+    </div>
+<p>作为实例，在 SQL Server 2005 AdventureWorks 示例数据库中创建以下存储过程：</p>
+    <div class="sampleCode"><span codeLanguage="other"><pre>CREATE PROCEDURE GetContactFormalNames 
+AS
+BEGIN
+   SELECT TOP 10 Title + ' ' + FirstName + ' ' + LastName AS FormalName 
+   FROM Person.Contact
+END</pre></span></div>
+<p>此存储过程返回单个结果集，其中包含一列数据（由 Person.Contact 表中前十个联系人的称呼、名称和姓氏组成）。 </p>
+<p>在下面的实例中，将向此函数传递 AdventureWorks 示例数据库的打开连接，然后使用 <a href="599cf463-e19f-4baa-bacb-513cad7c6cd8.htm">executeQuery</a> 方法调用 GetContactFormalNames 存储过程。</p>
+    <div class="sampleCode"><span codeLanguage="other"><pre>public static void executeSprocNoParams(Connection con) {
+   try {
+      Statement stmt = con.createStatement();
+      ResultSet rs = stmt.executeQuery("{call dbo.GetContactFormalNames}");
+
+      while (rs.next()) {
+         System.out.println(rs.getString("FormalName"));
+      }
+      rs.close();
+      stmt.close();
+   }
+   catch (Exception e) {
+      e.printStackTrace();
+   }
+}</pre></span></div>
+  </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="0041f9e1-09b6-4487-b052-afd636c8e89a.htm">将语句用于存储过程</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

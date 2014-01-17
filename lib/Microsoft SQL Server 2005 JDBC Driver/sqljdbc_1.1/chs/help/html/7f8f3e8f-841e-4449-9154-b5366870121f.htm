@@ -1,0 +1,170 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>通过 JDBC 驱动程序使用语句</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">通过 JDBC 驱动程序使用语句</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>可以通过多种方式使用 Microsoft SQL Server 2005 JDBC Driver 来处理 SQL Server 数据库中的数据。JDBC 驱动程序可用于运行针对数据库的 SQL 语句，也可用于通过使用输入和输出参数来调用数据库中的存储过程。JDBC 驱动程序还支持使用 SQL 转义序列、更新计数、自动生成的键，并支持在批处理操作内执行更新。</p>
+<p>JDBC 驱动程序提供了三个从 SQL Server 数据库检索数据的类：</p>
+    <ol><li>
+<a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a> - 用于运行不带参数的 SQL 语句。<br></br>
+      </li><li>
+<a href="a8481c06-fbba-432b-8c69-4f4619c20ad4.htm">SQLServerPreparedStatement</a> - （继承自 <b>SQLServerStatement</b>），用于运行编译的可能包含 IN 参数的 SQL 语句。<br></br>
+      </li><li>
+<a href="30710a63-c05d-47d9-9cf9-c087a1c76373.htm">SQLServerCallableStatement</a> - （继承自 <b>SQLServerPreparedStatement</b>），用于运行可能包含 IN 参数、OUT 参数或两者都包含的存储过程。<br></br>
+      </li></ol>
+<p>本部分中的主题讨论如何使用这三个语句类中的各个类来处理 SQL Server 数据库中的数据。</p>
+  </div>
+      <h1 class="heading">
+        本节的相关信息
+      </h1>
+      <div id="inThisSectionSection" class="section">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h2 class="heading" xmlns=""></h2><table cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;" xmlns=""><tr>
+            <th>
+主题
+            </th>
+            <th>
+说明
+            </th>
+          </tr><tr>
+          <td>
+            <p><a href="fe28f48a-e1bc-48ff-a5e7-c24cd6e5ecc7.htm">使用 SQL 语句</a></p>
+          </td>
+          <td>
+<p>说明如何通过 JDBC 驱动程序使用 SQL 语句来处理 SQL Server 数据库中的数据。</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="0041f9e1-09b6-4487-b052-afd636c8e89a.htm">将语句用于存储过程</a></p>
+          </td>
+          <td>
+<p>说明如何通过 JDBC 驱动程序使用存储过程来处理 SQL Server 数据库中的数据。</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="ab6a3cfa-073b-44e9-afca-a8675cfe5fd1.htm">使用多个结果集</a></p>
+          </td>
+          <td>
+<p>说明如何使用 JDBC 驱动程序从多个结果集检索数据。</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="00f9e25a-088e-4ac6-aa75-43eacace8f03.htm">使用 SQL 转义序列</a></p>
+          </td>
+          <td>
+<p>说明如何使用 SQL 转义序列，例如日期和时间常量和函数。</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="55a062c7-45ce-40e3-9a6f-4a0f4da4e2a6.htm">使用自动生成的键</a></p>
+          </td>
+          <td>
+<p>说明如何使用自动生成的键。</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="1a576d95-7da6-4b7b-8b32-59e5b4d354c4.htm">执行批处理操作</a></p>
+          </td>
+          <td>
+<p>说明如何使用 JDBC 驱动程序执行批处理操作。</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="6b807a45-a8b5-4b1c-8b7b-d8175c710ce0.htm">处理复杂语句</a></p>
+          </td>
+          <td>
+<p>说明如何使用 JDBC 驱动程序运行复杂语句，这些语句执行多种任务并且可能返回不同类型的数据。</p>
+          </td>
+        </tr></table>
+    </content>
+  </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="939a8773-2583-49a4-bf00-6b892fbe39dc.htm">JDBC 驱动程序概述</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

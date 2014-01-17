@@ -1,0 +1,188 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>使用数据库镜像 (JDBC)</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">使用数据库镜像 (JDBC)</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>数据库镜像主要是用来增加数据库可用性和数据冗余的软件解决方案。Microsoft SQL Server 2005 JDBC Driver 为数据库镜像提供了隐式支持，这样，在为数据库配置好该功能后，开发人员便无需编写任何代码或采取任何措施。</p>
+<p>数据库镜像是按数据库实现的，它在备用服务器上保留一份 SQL Server 2005 产品数据库的副本。此服务器可以是热备份服务器，也可以是暖备份服务器，这取决于数据库镜像会话的配置和状态。热备份服务器支持不会丢失任何已提交事务的快速故障转移，暖备份服务器支持强制服务（可能会丢失数据）。</p>
+<p>产品数据库称为&ldquo;主&rdquo;<i></i>数据库，备份副本称为&ldquo;镜像&rdquo;<i></i>数据库。主数据库和镜像数据库必须位于不同的 SQL Server 2005 实例（服务器实例）中，如果可能，它们应位于不同的计算机中。</p>
+<p>生产服务器实例（称为主服务器）与备份服务器实例（称为镜像服务器）进行通信。主服务器和镜像服务器充当数据库镜像会话中的伙伴。如果主服务器失败，则镜像服务器可通过称作&ldquo;故障转移&rdquo;<i></i>的过程使其数据库成为主数据库。例如，Partner_A 和 Partner_B 为两个伙伴服务器，主数据库最初位于主服务器 Partner_A 上，镜像数据库位于镜像服务器 Partner_B 上。如果 Partner_A 脱机，则 Partner_B 上的数据库便可通过故障转移而成为当前主数据库。Partner_A 重新加入镜像会话后，它将成为镜像服务器，而其数据库将成为镜像数据库。</p>
+<p>如果 Partner_A 服务器发生了无法恢复的损坏，则可将 Partner_C 服务器联机，充当 Partner_B（此时为主服务器）的镜像服务器。然而，在这种情况下，客户端应用程序必须包含编程逻辑，以确保更新连接字符串属性，来反映数据库镜像配置中使用的新服务器名称。否则，连接该服务器将失败。</p>
+<p>备用数据库镜像配置提供了多种级别的性能和数据安全性，并支持多种形式的故障转移。有关详细信息，请参阅 SQL Server 联机丛书中的&ldquo;数据库镜像概述&rdquo;。</p>
+  </div>
+      <h1 class="heading">编程注意事项</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">当主数据服务器失败时，客户端应用程序将收到相应的 API 调用错误，这表明到数据库的连接已断开。出现这种情况时，所有未提交的数据库更改都将丢失，当前事务将回滚。如果发生这种情况，应用程序应关闭连接（或释放数据源对象）并尝试重新将其打开。进行连接时，新连接将以透明方式重新定向到镜像数据库（此时充当主服务器），而无需客户端修改连接字符串或数据源对象。</p>
+<p xmlns="">连接刚刚建立时，主服务器将向出现故障转移时要使用的客户端发送其故障转移伙伴的标识。当应用程序尝试与失败的主服务器建立初始连接时，客户端并不知道故障转移伙伴的标识。为了使客户端能够应对这种情况，failoverPartner 连接字符串属性以及可选的 <a href="5310b7c2-9d10-474f-ad3a-218fe5da694b.htm">setFailoverPartner</a> 数据源方法都允许客户端在本机指定故障转移伙伴的标识。该客户端属性仅可在此种情况下使用，如果主服务器可用，则不使用该属性。 </p>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>注意： </b>
+如果通过连接字符串和数据源对象都指定了 failoverPartner，则必须还要设置数据库属性，否则将引发异常。有关 failoverPartner 和其他连接字符串属性的详细信息，请参阅<a href="f1b62700-f046-488d-bd6b-a5cd8fc345b7.htm">设置连接属性</a>。<p></p>
+      </div>
+<p xmlns="">如果客户端所提供的故障转移伙伴服务器并非是充当指定数据库故障转移伙伴的服务器时，服务器将拒绝该连接。尽管 <a href="097434fd-2b74-411c-a5ed-eba04481dde5.htm">SQLServerDataSource</a> 类提供了 <a href="885f927f-9c48-42e0-a7fb-fd936d2b8130.htm">getFailoverPartner</a> 方法，但此方法仅返回在连接字符串或 <b>setFailoverPartner</b> 方法中指定的故障转移伙伴的名称。若要检索当前使用的实际故障转移伙伴的名称，请使用以下 Transact-SQL 语句：</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>SELECT m.mirroring_role_DESC, m.mirroring_state_DESC,
+m.mirroring_partner_instance FROM sys.databases as db,
+sys.database_mirroring AS m WHERE db.name = 'MirroringDBName'
+AND db.database_id = m.database_id</pre></span></div>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>注意： </b>
+需要更改此语句以使用您的镜像数据库名称。<p></p>
+      </div>
+<p xmlns="">应考虑缓存伙伴信息以便更新连接字符串或设计重试策略，以防第一次连接尝试失败。</p>
+    </content>
+      </div>
+      <h1 class="heading">实例</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">在下面的实例中，我们首先尝试与主服务器建立连接。如果连接失败并引发异常，则尝试连接镜像服务器（可能已升级为新的主服务器）。请注意连接字符串中 failoverPartner 属性的用法。</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>import java.sql.*;
+
+public class clientFailover {
+
+   public static void main(String[] args) {
+
+      // Create a variable for the connection string.
+      String connectionUrl = "jdbc:sqlserver://serverA:1433;" +
+         "databaseName=AdventureWorks;integratedSecurity=true;" +
+         "failoverPartner=serverB";
+
+      // Declare the JDBC objects.
+      Connection con = null;
+      Statement stmt = null;
+
+      try {
+         // Establish the connection to the principal server.
+         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+         con = DriverManager.getConnection(connectionUrl);
+         System.out.println("Connected to the principal server.");
+
+         // Note that if a failover of serverA occurs here, then an
+         // exception will be thrown and the failover partner will
+         // be used in the first catch block below.
+
+         // Create and execute an SQL statement that inserts some data.
+         stmt = con.createStatement();
+
+         // Note that the following statement assumes that the 
+         // TestTable table has been created in the AdventureWorks
+         // sample database.
+         stmt.executeUpdate("INSERT INTO TestTable (Col2, Col3) VALUES ('a', 10)");
+      }
+
+      // Handle any errors that may have occurred.
+      catch (SQLException se) {
+         try {
+            // The connection to the principal server failed,
+            // try the mirror server which may now be the new
+            // principal server.
+            System.out.println("Connection to principal server failed, " +
+            "trying the mirror server.");
+            con = DriverManager.getConnection(connectionUrl);
+            System.out.println("Connected to the new principal server.");
+            stmt = con.createStatement();
+            stmt.executeUpdate("INSERT INTO TestTable (Col2, Col3) VALUES ('a', 10)");
+         }
+         catch (Exception e) {
+            e.printStackTrace();
+         }
+      }
+      catch (Exception e) {
+         e.printStackTrace();
+      }
+      // Close the JDBC objects.
+      finally {
+         if (stmt != null) try { stmt.close(); } catch(Exception e) {}
+         if (con != null) try { con.close(); } catch(Exception e) {}
+      }
+   }
+}</pre></span></div>
+    </content>
+      </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="94bcfbe3-f00e-4774-bda8-bb7577518fec.htm">通过 JDBC 驱动程序连接到 SQL Server</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

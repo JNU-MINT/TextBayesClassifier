@@ -1,0 +1,167 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>将语句用于存储过程</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">将语句用于存储过程</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>存储过程是一个数据库过程，类似于其他编程语言中的过程，它包含于数据库本身。在 SQL Server 中，通过使用 Transact-SQL，或使用公用语言运行库 (CLR) 和 Visual Studio 2005 编程语言之一（如 Visual Basic 或 C#），可以创建存储过程。通常，SQL Server 存储过程可执行下列操作：</p>
+    <ul><li>
+接受输入参数，然后以输出参数的形式向调用过程或批处理返回多个值。<br></br>
+      </li><li>
+包含编程语句，这些语句可在数据库中执行操作，包括调用其他过程。 <br></br>
+      </li><li>
+向调用过程或批处理返回一个状态值，以指示成功或失败（及失败原因）。<br></br>
+      </li></ul>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>注意： </b>
+有关 SQL Server 存储过程的详细信息，请参阅 SQL Server 联机丛书中的&ldquo;了解存储过程&rdquo;。<p></p>
+    </div>
+<p>为了使用存储过程来处理 SQL Server 数据库中的数据，Microsoft SQL Server 2005 JDBC Driver 提供了 <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a>、<a href="a8481c06-fbba-432b-8c69-4f4619c20ad4.htm">SQLServerPreparedStatement</a> 和 <a href="30710a63-c05d-47d9-9cf9-c087a1c76373.htm">SQLServerCallableStatement</a> 类。要使用那个类取决于存储过程是否需要 IN（输入）或 OUT（输出）参数。如果存储过程不需要 IN 和 OUT 参数，则可以使用 <b>SQLServerStatement</b> 类；如果要多次调用存储过程或仅需要 IN 参数，则可以使用 <b>SQLServerPreparedStatement</b> 类。如果存储过程同时需要 IN 和 OUT 参数，则应使用 <b>SQLServerCallableStatement</b> 类。只有在存储过程仅需要 OUT 参数时，才应使用 <b>SQLServerCallableStatement</b> 类。</p>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>注意： </b>
+存储过程还可以返回更新计数和多个结果集。有关详细信息，请参阅<a href="64cf4877-5995-4bfc-8865-b7618a5c8d01.htm">使用带有更新计数的存储过程</a>和<a href="ab6a3cfa-073b-44e9-afca-a8675cfe5fd1.htm">使用多个结果集</a>。<p></p>
+    </div>
+<p>使用 JDBC 驱动程序调用带参数的存储过程时，必须结合 <a href="937292a6-1525-423e-a2b2-a18fd34c2893.htm">SQLServerConnection</a> 类的 <a href="265b024c-898a-4bd0-98b5-f06076717b9e.htm">prepareCall</a> 方法使用 <code> call </code> SQL 转义序列。<code> call </code> 转义序列的完整语法如下：</p>
+    <p><code>{[?=]call procedure-name[([parameter][,[parameter]]...)]}</code></p>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>注意： </b>
+有关 <code> call </code> 和其他 SQL 转义序列的详细信息，请参阅<a href="00f9e25a-088e-4ac6-aa75-43eacace8f03.htm">使用 SQL 转义序列</a>。<p></p>
+    </div>
+<p>本部分中的主题说明使用 JDBC 驱动程序和 <code> call </code> SQL 转义序列调用 SQL Server 存储过程的可用方法。</p>
+  </div>
+      <h1 class="heading">
+        本节的相关信息
+      </h1>
+      <div id="inThisSectionSection" class="section">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h2 class="heading" xmlns=""></h2><table cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;" xmlns=""><tr>
+            <th>
+主题
+            </th>
+            <th>
+说明
+            </th>
+          </tr><tr>
+          <td>
+            <p><a href="e9470a6d-a758-4c56-96ec-7b37139e36a7.htm">使用不带参数的存储过程</a></p>
+          </td>
+          <td>
+<p>说明如何使用 JDBC 驱动程序运行不包含输入或输出参数的存储过程。</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="8f491b70-7d1b-42bd-964f-9a8b86af5eaa.htm">使用带有输入参数的存储过程</a></p>
+          </td>
+          <td>
+<p>说明如何使用 JDBC 驱动程序运行包含输入参数的存储过程。</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="1c006f27-7e99-43d5-974c-7b782659290c.htm">使用带有输出参数的存储过程</a></p>
+          </td>
+          <td>
+<p>说明如何使用 JDBC 驱动程序运行包含输出参数的存储过程。</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="4b126e95-8458-41d6-af37-fc6662859f19.htm">使用带有返回状态的存储过程</a></p>
+          </td>
+          <td>
+<p>说明如何使用 JDBC 驱动程序运行包含返回状态值的存储过程。</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="64cf4877-5995-4bfc-8865-b7618a5c8d01.htm">使用带有更新计数的存储过程</a></p>
+          </td>
+          <td>
+<p>说明如何使用 JDBC 驱动程序运行返回更新计数的存储过程。</p>
+          </td>
+        </tr></table>
+    </content>
+  </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="7f8f3e8f-841e-4449-9154-b5366870121f.htm">通过 JDBC 驱动程序使用语句</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

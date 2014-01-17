@@ -1,0 +1,133 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>JDBC 驱动程序的国际功能</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">JDBC 驱动程序的国际功能</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>Microsoft SQL Server 2005 JDBC Driver 的国际功能包括：</p>
+    <ul><li>
+通过使用与 SQL Server 相同的语言来为用户提供完全本地化的体验。<br></br>
+      </li><li>
+对于受区域设置影响的 SQL Server 数据，支持 Java 1.4 级的语言转换。<br></br>
+      </li><li>
+无论使用何种操作系统，都支持国际语言。<br></br>
+      </li></ul>
+  </div>
+      <h1 class="heading">处理字符数据</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">默认情况下，将 Java 中的字符数据作为 Unicode 进行处理；Java String 对象表示 Unicode 字符数据。在 JDBC 驱动程序中，唯一可以不遵守此规则的是 ASCII 流 getter 和 setter 方法，这属于比较特殊的情况，因为这些方法使用的字节流带有单个已知代码页 (ASCII) 的隐式假定。</p>
+<p xmlns="">此外，JDBC 驱动程序提供了 sendStringParametersAsUnicode 连接字符串属性。此属性可用于指定作为 ASCII 而不是 Unicode 来发送的字符数据的预定义参数。 </p>
+<p xmlns="">有关 sendStringParametersAsUnicode 连接字符串属性的详细信息，请参阅<a href="f1b62700-f046-488d-bd6b-a5cd8fc345b7.htm">设置连接属性</a>。</p>
+    </content>
+        <sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h1 class="heading" xmlns="">驱动程序传入转换</h1><div id="sectionSection" class="section" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">来自服务器的 Unicode 文本数据不是必须要转换的数据。它将作为 Unicode 直接进行传递。来自服务器的非 Unicode 数据从数据库或列级别的数据代码页直接转换为 Unicode。JDBC 驱动程序将使用 Java 虚拟机 (JVM) 转换例程执行这些转换。这些转换将通过所有类型化 String 和 Character 流 getter 方法得到执行。</p>
+<p xmlns="">如果 JVM 无法对来自数据库的数据提供相应的代码页支持，则 JDBC 驱动程序将引发&ldquo;Java 环境不支持 XXX 代码页&rdquo;异常。</p>
+        </content></div>
+      <h1 class="heading" xmlns="">驱动程序传出转换</h1><div id="sectionSection" class="section" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">从驱动程序发送至服务器的字符数据以 Unicode 开头。Unicode 将传递到服务器，在服务器中，如果目标列不是 Unicode 类型化列（nchar、nvarchar、ntext），则会进行相应的转换。在此情况下，对于 String 和 Character 流，Unicode 文本将通过 JDBC 驱动程序 setter 方法和 updater 方法进行传递。</p>
+        </content></div>
+    </sections>
+      </div>
+      <h1 class="heading">格式问题</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">对于日期、时间和货币，本地化数据的所有格式设置都使用 <b>Locale</b> 对象以及 Date、Calendar 和 Number 数据类型的各种格式设置方法在 Java 语言级完成。只有在极少数的情况下，JDBC 驱动程序需要传递本地化格式中受区域设置影响的数据，同时需要结合默认的 JVM 区域设置来使用相应的格式化程序。</p>
+    </content>
+      </div>
+      <h1 class="heading">非 Unicode 参数</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">可以通过设置 sendStringParametersAsUnicode 连接字符串属性，将 String 参数以非 Unicode 形式传递到 SQL Server，这是一项性能改进。sendStringParametersAsUnicode 的默认设置为&ldquo;true&rdquo;，表示将以 Unicode 形式发送 String 参数。如果将 sendStringParametersAsUnicode 设置为&ldquo;false&rdquo;，则该连接上的所有 String 参数都将发送到带有数据库默认排序规则的服务器。</p>
+    </content>
+      </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="939a8773-2583-49a4-bf00-6b892fbe39dc.htm">JDBC 驱动程序概述</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

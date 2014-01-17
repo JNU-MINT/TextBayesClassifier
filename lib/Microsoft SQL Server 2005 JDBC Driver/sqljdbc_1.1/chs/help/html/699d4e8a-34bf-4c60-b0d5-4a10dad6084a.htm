@@ -1,0 +1,136 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>使用连接池</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">使用连接池</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>Microsoft SQL Server 2005 JDBC Driver 提供对 J2EE 连接池的支持。JDBC 驱动程序实现了 JDBC 3.0 所需的接口，从而该驱动程序可参与任何中间件供应商提供的与 JDBC 3.0 兼容的连接池实现。中间件（例如 J2EE 应用程序服务器）通常提供兼容的连接池工具。JDBC 驱动程序将参与这些环境中的已池化的连接。</p>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>注意： </b>
+尽管 JDBC 驱动程序支持 J2EE 连接池，但其自身并不提供池实现。<p></p>
+    </div>
+<p>用于连接池实现的类如下。</p>
+    <h2 class="heading"></h2><table cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;"><tr>
+          <th>
+类
+          </th>
+          <th>
+实现
+          </th>
+          <th>
+说明
+          </th>
+        </tr><tr>
+        <td>
+<p>com.microsoft.sqlserver.jdbc.SQLServerXADataSource</p>
+        </td>
+        <td>
+<p>javax.sql.ConnectionPoolDataSource 和 javax.sql.XADataSource</p>
+        </td>
+        <td>
+<p>建议您对所有 J2EE 服务器需求都使用 <a href="95fc7b07-2498-4a7e-8f7f-ee0d86b598b4.htm">SQLServerXADataSource</a> 类，因为它实现了所有的 JDBC 3.0 池和 XA 接口。</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>com.microsoft.sqlserver.jdbc.SQLServerConnectionPoolDataSource</p>
+        </td>
+        <td>
+<p>javax.sql.ConnectionPoolDataSource</p>
+        </td>
+        <td>
+<p>该类是一个连接工厂，它使得 J2EE 应用程序服务器可使用物理连接来填充它的连接池。如果 J2EE 供应商的配置需要实现 javax.sql.ConnectionPoolDataSource 的类，则将类名称指定为 <a href="b00e5a90-2af7-4d04-8ef8-256183777dcf.htm">SQLServerConnectionPoolDataSource</a>。通常，建议改用 <a href="95fc7b07-2498-4a7e-8f7f-ee0d86b598b4.htm">SQLServerXADataSource</a> 类，因为它同时实现了池和 XA 接口，并且已在很多 J2EE 服务器配置中进行了验证。</p>
+        </td>
+      </tr></table>
+<p>JDBC 应用程序代码应始终显式地关闭连接，以便从池中获得最大利益。如果应用程序显式地关闭连接，则池实现可立即重新使用此连接。如果连接未关闭，则其他应用程序无法重新使用它。应用程序可使用 <code> finally </code> 构造来确保关闭已池化的连接，即使发生异常。 </p>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>注意： </b>
+JDBC 驱动程序在将连接返回池中时，不会立即调用 sp_reset_connection 存储过程。但是，驱动程序将依靠第三方 Java 应用程序服务器使连接返回其原始状态。<p></p>
+    </div>
+  </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="94bcfbe3-f00e-4774-bda8-bb7577518fec.htm">通过 JDBC 驱动程序连接到 SQL Server</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

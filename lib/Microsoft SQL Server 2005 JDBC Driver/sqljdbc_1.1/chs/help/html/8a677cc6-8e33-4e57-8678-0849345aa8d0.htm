@@ -1,0 +1,337 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>getIndexInfo Method (SQLServerDatabaseMetaData)</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">getIndexInfo Method (SQLServerDatabaseMetaData)</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+    <p>Retrieves a description of the indexes and statistics for the given table.</p>
+  </div>
+      <div id="declarationSyntaxes" class="section">
+        <div id="syntaxCodeBlocks" class="code">
+          <span codeLanguage="">
+            <pre>
+public java.sql.ResultSet <b>getIndexInfo</b>(java.lang.String <i>cat</i>,
+                                       java.lang.String <i>schema</i>,
+                                       java.lang.String <i>table</i>,
+                                       boolean <i>unique</i>,
+                                       boolean <i>approximate</i>)</pre>
+          </span>
+        </div>
+      </div>
+      <h1 class="heading">
+        参数
+      </h1>
+      <div id="parameters" class="section">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns=""><i>cat</i></p>
+      <p xmlns="">A string that contains the catalog name.</p>
+      <p xmlns=""><i>schema</i></p>
+      <p xmlns="">A string that contains the schema name.</p>
+      <p xmlns=""><i>table</i></p>
+      <p xmlns="">A string that contains the table name.</p>
+      <p xmlns=""><i>unique</i></p>
+      <p xmlns="">True if only indexes for unique values are returned. False if all indexes are returned.</p>
+      <p xmlns=""><i>approximate</i></p>
+      <p xmlns="">True if the results reflect approximate or out-of-date values. False if the results are accurate.</p>
+    </content>
+  </div>
+      <h1 class="heading">
+        返回值
+      </h1>
+      <div id="returnValue" class="section">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">A <a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a> object.</p>
+    </content>
+  </div>
+      <h1 class="heading">
+        异常
+      </h1>
+      <div id="exceptions" class="section">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns=""><a href="af5ef257-7cf6-4db3-b1ee-07d22d82bef1.htm">SQLServerException</a></p>
+    </content>
+  </div>
+      <h1 class="heading">
+        备注
+      </h1>
+      <div id="languageReferenceRemarksSection" class="section">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">This <b>getIndexInfo</b> method is specified by the <b>getIndexInfo</b> method in the java.sql.DatabaseMetaData interface.</p>
+      <p xmlns="">The result set returned by the <b>getIndexInfo</b> method will contain the following information:</p>
+      <h2 class="heading" xmlns=""></h2><table cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;" xmlns=""><tr>
+            <th>
+              Name
+            </th>
+            <th>
+              Type
+            </th>
+            <th>
+              Description
+            </th>
+          </tr><tr>
+          <td>
+            <p>TABLE_CAT</p>
+          </td>
+          <td>
+            <p>string</p>
+          </td>
+          <td>
+            <p>The name of the database in which the specified table resides.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>TABLE_SCHEM</p>
+          </td>
+          <td>
+            <p>string</p>
+          </td>
+          <td>
+            <p>The schema for the table.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>TABLE_NAME</p>
+          </td>
+          <td>
+            <p>string</p>
+          </td>
+          <td>
+            <p>The name of the table.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>NON_UNIQUE</p>
+          </td>
+          <td>
+            <p>boolean</p>
+          </td>
+          <td>
+            <p>Indicates whether the index values can be non-unique.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>INDEX_QUALIFIER</p>
+          </td>
+          <td>
+            <p>string</p>
+          </td>
+          <td>
+            <p>The name of the index owner. It will be null when TYPE is tableIndexStatistic.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>INDEX_NAME</p>
+          </td>
+          <td>
+            <p>string</p>
+          </td>
+          <td>
+            <p>The name of the index.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>TYPE</p>
+          </td>
+          <td>
+            <p>short</p>
+          </td>
+          <td>
+            <p>The type of the index. It can be one of the following values:</p>
+            <p>tableIndexStatistic (0)</p>
+            <p>tableIndexClustered (1)</p>
+            <p>tableIndexHashed (2)</p>
+            <p>tableIndexOther (3)</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>ORDINAL_POSITION</p>
+          </td>
+          <td>
+            <p>short</p>
+          </td>
+          <td>
+            <p>The ordinal position of the column in the index. The first column in the index is 1.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>COLUMN_NAME</p>
+          </td>
+          <td>
+            <p>string</p>
+          </td>
+          <td>
+            <p>The name of the column.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>ASC_OR_DESC</p>
+          </td>
+          <td>
+            <p>string</p>
+          </td>
+          <td>
+            <p>The order used in the collation of the index. It can be one of the following values:</p>
+            <p>A (ascending)</p>
+            <p>D (descending)</p>
+            <p>NULL (not applicable)</p>
+            <div style="margin: .5em 1.5em .5em 1.5em"><b>注意： </b>
+              SQL Server always returns "A".<p></p>
+            </div>
+          </td>
+        </tr><tr>
+          <td>
+            <p>CARDINALITY</p>
+          </td>
+          <td>
+            <p>integer</p>
+          </td>
+          <td>
+            <p>The number of rows in the table or unique values in the index.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>PAGES</p>
+          </td>
+          <td>
+            <p>integer</p>
+          </td>
+          <td>
+            <p>The number of pages used to store the index or table.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>FILTER_CONDITION</p>
+          </td>
+          <td>
+            <p>string</p>
+          </td>
+          <td>
+            <p>The filter condition.</p>
+            <div style="margin: .5em 1.5em .5em 1.5em"><b>注意： </b>
+              SQL Server always returns null.<p></p>
+            </div>
+          </td>
+        </tr></table>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>注意： </b>
+        For more information about the data returned by the <b>getIndexInfo</b> method, see "sp_indexes (Transact-SQL)" in SQL Server Books Online.<p></p>
+      </div>
+    </content>
+  </div>
+      <h1 class="heading">
+        示例
+      </h1>
+      <div id="codeExampleSection" class="section">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <content>
+        <p xmlns="">The following example demonstrates how to use the <b>getIndexInfo</b> method to return information about the indexes and statistics of the Person.Contact table in the SQL Server 2005 AdventureWorks sample database.</p>
+      </content>
+    </description>
+    <div class="sampleCode"><span codeLanguage="other"><pre>public static void executeGetIndexInfo(Connection con) {
+   try {
+      DatabaseMetaData dbmd = con.getMetaData();
+      ResultSet rs = dbmd.getIndexInfo("AdventureWorks", "Person", "Contact", false, true);
+      ResultSetMetaData rsmd = rs.getMetaData();
+
+      // Display the result set data.
+      int cols = rsmd.getColumnCount();
+      while(rs.next()) {
+         for (int i = 1; i &lt;= cols; i++) {
+            System.out.println(rs.getString(i));
+         }
+      }
+      rs.close();
+   } 
+
+   catch (Exception e) {
+      e.printStackTrace();
+   }
+}</pre></span></div>
+  </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="8b8049d0-8c6d-4476-866b-098709f37eec.htm">SQLServerDatabaseMetaData Class</a> | <a href="772de447-c922-4b85-8e10-5f0d9277966c.htm">SQLServerDatabaseMetaData Methods</a> | <a href="327ba0bc-438a-494c-b119-1cd4a096bb58.htm">SQLServerDatabaseMetaData Members</a></div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

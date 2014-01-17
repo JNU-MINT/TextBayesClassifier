@@ -1,0 +1,286 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>了解游标类型</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">了解游标类型</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>关系数据库中的操作会作用于一个完整的行集。SELECT 语句返回的行集由所有满足此语句的 WHERE 子句条件的行组成。语句所返回的完整行集称为结果集。应用程序常常无法将整个结果集作为一个单元来有效地进行处理。这些应用程序需要一种机制，以便一次处理一行或一小组行。游标是对结果集的扩展，它提供了这项机制。</p>
+<p>游标通过下列方式扩展了结果集处理：</p>
+    <ul><li>
+允许定位到结果集的特定行。<br></br>
+      </li><li>
+从结果集的当前位置检索单个行或一组行。<br></br>
+      </li><li>
+支持对位于结果集中当前位置的行进行数据修改。<br></br>
+      </li><li>
+支持以不同的可见性级别，来呈现其他用户对结果集所包含的数据库数据所做的更改。<br></br>
+      </li></ul>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>注意： </b>
+有关 SQL Server 游标类型的完整说明，请参阅 SQL Server 联机丛书中的&ldquo;游标类型（数据库引擎）&rdquo;主题。<p></p>
+    </div>
+<p>JDBC 规范提供以下支持：能或不能区分由其他作业执行的更改的只进游标和可滚动游标，并且这些游标可能是只读或是可更新的。Microsoft SQL Server 2005 JDBC 驱动程序的 <a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a> 类提供了这项功能。</p>
+<p>JDBC 驱动程序支持下列游标类型：</p>
+    <h2 class="heading"></h2><table cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;"><tr>
+          <th>
+游标类型
+          </th>
+          <th>
+SQL Server 游标类型
+          </th>
+          <th>
+特征
+          </th>
+          <th>
+说明
+          </th>
+        </tr><tr>
+        <td>
+<p>TYPE_FORWARD_ONLY (CONCUR_READ_ONLY)</p>
+        </td>
+        <td>
+<p>快进</p>
+        </td>
+        <td>
+<p>只进、只读</p>
+        </td>
+        <td>
+<p>如果与 CONCUR_READ_ONLY 一起使用，则使用的 SQL Server 游标类型取决于 SelectMethod 连接属性的设置。如果其值为&ldquo;cursor&rdquo;，则使用快进服务器游标，其行为类似 TYPE_SS_SERVER_CURSOR_FORWARD_ONLY 游标。如果其值为默认值&ldquo;direct&rdquo;，则返回全缓冲的客户端结果集，其行为类似 TYPE_SS_DIRECT_FORWARD_ONLY 游标。该区别反映了对服务器资源消耗的设计折衷。请注意&ldquo;direct&rdquo;不能用于非常大的结果集。应改为使用&ldquo;cursor&rdquo;或显式地使用 TYPE_SS_SERVER_CURSOR_FORWARD_ONLY。</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>TYPE_FORWARD_ONLY (CONCUR_UPDATABLE)</p>
+        </td>
+        <td>
+<p>快进</p>
+        </td>
+        <td>
+<p>只进、可更新</p>
+        </td>
+        <td>
+<p>应用程序必须单向（向前）经过结果集，以更新一行或多行。请注意 selectMethod 连接属性不影响 TYPE_FORWARD_ONLY (CONCUR_UPDATABLE)。可更新结果集始终使用服务器游标。</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>TYPE_SCROLL_INSENSITIVE</p>
+        </td>
+        <td>
+<p>静态</p>
+        </td>
+        <td>
+<p>可滚动、不可更新</p>
+        </td>
+        <td>
+<p>应用程序需要数据库快照。</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>TYPE_SCROLL_SENSITIVE</p>
+        </td>
+        <td>
+<p>键集</p>
+        </td>
+        <td>
+<p>可滚动且可更新。行更新是可见的，而删除则显示为丢失数据。从结果集内部插入是可见的，但从结果集外部插入是不可见的。</p>
+        </td>
+        <td>
+<p>应用程序只能查看现有行的已更改数据。</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>TYPE_SS_DIRECT_FORWARD_ONLY</p>
+        </td>
+        <td>
+<p>N/A</p>
+        </td>
+        <td>
+<p>只进、只读</p>
+        </td>
+        <td>
+<p>整数值 = 2003。提供全缓冲的只读客户端游标。不创建服务器游标。</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>TYPE_SS_SERVER_CURSOR_FORWARD_ONLY</p>
+        </td>
+        <td>
+<p>快进</p>
+        </td>
+        <td>
+<p>只进</p>
+        </td>
+        <td>
+<p>整数值 = 2004。速度快，访问所有数据。</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>TYPE_SS_SCROLL_STATIC</p>
+        </td>
+        <td>
+<p>静态</p>
+        </td>
+        <td>
+<p>不反映其他用户的更新</p>
+        </td>
+        <td>
+<p>整数值 = 1004。应用程序需要数据库快照。这是 JDBC TYPE_SCROLL_INSENSITIVE 的 SQL Server 专用同义词。</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>TYPE_SS_SCROLL_KEYSET</p>
+        </td>
+        <td>
+<p>键集</p>
+        </td>
+        <td>
+<p>反映其他用户的更新；行成员资格是固定的</p>
+        </td>
+        <td>
+<p>整数值 = 1005。应用程序只能查看现有行的已更改数据。这是 JDBC TYPE_SCROLL_SENSITIVE 的 SQL Server 专用同义词。</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>TYPE_SS_SCROLL_DYNAMIC</p>
+        </td>
+        <td>
+<p>动态</p>
+        </td>
+        <td>
+<p>可滚动且可更新。行更新是可见的，删除则表现为在当前的提取缓冲区内暂时丢失数据。从结果集内部和外部插入都是可见的。</p>
+        </td>
+        <td>
+<p>整数值 = 1006。应用程序必须查看现有行的已更改数据，并查看在游标生存期中插入和删除的行。</p>
+        </td>
+      </tr></table>
+  </div>
+      <h1 class="heading">游标定位</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">TYPE_FORWARD_ONLY、TYPE_SS_DIRECT_FORWARD_ONLY 和 TYPE_SS_SERVER_CURSOR_FORWARD_ONLY 游标仅支持 <a href="60248447-6908-4036-a779-a501453cd553.htm">next</a> 定位方法。</p>
+<p xmlns="">TYPE_SS_SCROLL_DYNAMIC 游标不支持 <a href="638e8148-8ca0-4e1f-9ec2-04a11bc9809b.htm">absolute</a> 和 <a href="a266e3bc-05c2-44e2-9346-125ae6780216.htm">getRow</a> 方法。对于动态游标，可通过结合对 <a href="67ed9447-7b10-4c87-98e7-f4c2e2470b3a.htm">first</a> 和 <a href="2bcdbb69-95fd-4ae8-8488-1a75a91fe2e0.htm">relative</a> 方法的调用来模拟 <b>absolute</b> 方法。</p>
+<p xmlns="">只有 TYPE_FORWARD_ONLY、TYPE_SS_DIRECT_FORWARD_ONLY、TYPE_SS_SERVER_CURSOR_FORWARD_ONLY、TYPE_SS_SCROLL_KEYSET 和 TYPE_SS_SCROLL_STATIC 游标支持 <b>getRow</b> 方法。所有只进游标类型的 <b>getRow</b> 方法都会返回目前已通过游标阅读的行数。</p>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>注意： </b>
+当应用程序调用不支持的游标定位，或调用不支持的 <b>getRow</b> 方法时，将引发异常，并显示消息&ldquo;此游标类型不支持请求的操作&rdquo;。<p></p>
+      </div>
+<p xmlns="">只有 YPE_SS_SCROLL_KEYSET 游标和等效的 TYPE_SCROLL_SENSITIVE 游标可展示已删除的行。如果将游标定位到已删除的行中，则列值不可用，且 <a href="9c6db315-e614-4604-b020-41af6a214cc1.htm">rowDeleted</a> 方法返回&ldquo;true&rdquo;。调用 <b>get&lt;Type&gt;</b> 方法会引发异常，并显示消息&ldquo;无法从已删除的行获取值&rdquo;。无法更新已删除的行。如果尝试对已删除的行调用 <b>update&lt;Type&gt;</b> 方法，将引发异常，并显示消息&ldquo;无法更新已删除的行&rdquo;。TYPE_SS_SCROLL_DYNAMIC 游标在从当前的提取缓冲区移出之前，其行为与此相同。</p>
+<p xmlns="">仅当向前游标和动态游标在提取缓冲区中可访问时，它们才以相似的方式展示已删除的行。对于向前游标，这相当简单。对于动态游标，当提取大小大于 1 时，这更为复杂。应用程序可以在由提取缓冲区定义的窗口中向前移动和向后移动游标，但是，当离开在其中更新已删除行的最初提取缓冲区时，已删除行将消失。如果应用程序不希望使用动态游标查看暂时删除的行，则应使用 fetch relative (0)。</p>
+<p xmlns="">如果 TYPE_SS_SCROLL_KEYSET 或 TYPE_SCROLL_SENSITIVE 游标行的键值随游标一起更新，则该行将保留其在结果集中的最初位置，而不管已更新的行是否满足游标的选择条件。如果在游标外部更新行，则已删除行将出现在该行的最初位置，但是，仅当游标中出现的另一个包含新键值的行被删除时，该行才在游标中显示。 </p>
+<p xmlns="">对于动态游标，更新行将保留这些行在提取缓冲区中的位置，直到离开提取缓冲区所定义的窗口。已更新的行随后可能会在结果集的其他位置再次显示，也可能完全消失。必须避免结果集中暂时不一致的应用程序应该使用的提取大小为 1（使用 CONCUR_SS_SCROLL_LOCKS 并行性设置时，默认大小为 8 行；使用其他并行性设置时，默认大小为 128 行）。</p>
+    </content>
+      </div>
+      <h1 class="heading">游标转换</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">SQL Server 有时可以选择实现一种游标类型，而不使用请求的游标类型，这称为隐式游标转换（或游标降级）。</p>
+<p xmlns="">有关隐式游标转换的详细信息，请参阅 SQL Server 联机丛书中的&ldquo;使用隐式游标转换&rdquo;主题。</p>
+    </content>
+      </div>
+      <h1 class="heading">游标更新</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">当游标类型和并发支持更新时，游标支持就地更新。如果游标没有定位到结果集中的可更新行上（调用 <b>get&lt;Type&gt;</b> 方法失败），则调用 <b>update&lt;Type&gt;</b> 方法将引发异常，并显示消息&ldquo;ResultSet 没有当前行&rdquo;。JDBC 规范声明对游标为 CONCUR_READ_ONLY 的列调用更新方法时会引发异常。如果行不可更新（如由于竞争更新或删除等乐观并发冲突），则在调用 <a href="363d1008-1396-4fc0-8e27-c9ba2499e7f1.htm">insertRow</a>、<a href="cfced0ca-a281-40dc-8d2f-370d5f0bf12b.htm">updateRow</a> 或 <a href="aa04a644-c7c2-4738-8b6e-7fea566d2c16.htm">deleteRow</a> 前可能不会引发异常。</p>
+<p xmlns="">调用 <b>update&lt;Type&gt;</b> 后，<b>get&lt;Type&gt;</b> 将无法访问受影响的列，直到调用 <b>updateRow</b> 或 <a href="2ecacca4-f7bc-4f5d-886a-da7747fdccae.htm">cancelRowUpdates</a> 为止。这会避免以下问题：使用不同于服务器所返回的类型更新列，随后调用 getter 可能导致客户端类型转换，而这将给出错误的结果。调用 <b>get&lt;Type&gt;</b> 将引发异常，并显示消息&ldquo;调用 updateRow() 或 cancelRowUpdates() 前无法访问已更新的列&rdquo;。</p>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>注意： </b>
+如果在没有更新列时调用 <b>updateRow</b> 方法，JDBC 驱动程序将引发异常，并显示消息&ldquo;在没有更新列的情况下调用了 updateRow()&rdquo;。<p></p>
+      </div>
+<p xmlns="">调用 <a href="f3c54bfe-d5b7-4f6e-ae6c-3e8954e5b1c9.htm">moveToInsertRow</a> 后，如果对结果集调用 <b>get&lt;Type&gt;</b>、<b>update&lt;Type&gt;</b>、<b>insertRow,</b> 和游标定位方法（包括 <a href="9a7c754c-2d72-4207-b3bd-2afc6047fb3d.htm">moveToCurrentRow</a>）之外的任何方法，都会引发异常。<b>moveToInsertRow</b> 方法有效地使结果集变成插入模式，游标定位方法则终止插入模式。相对游标定位调用将相对于调用 <b>moveToInsertRow</b> 前游标所在位置来移动游标。调用游标定位后，最终的目标游标位置成为新的游标位置。</p>
+<p xmlns="">如果在插入模式时游标定位调用失败，则调用失败后游标的位置是调用 <b>moveToInsetRow</b> 前最初的游标位置。如果 <b>insertRow</b> 失败，则游标将保留在插入行，并保留插入模式。</p>
+<p xmlns="">最初插入行中的列处于未初始化状态。调用 <b>update&lt;Type&gt;</b> 方法会将列的状态设置为已初始化。对于未初始化的列，调用 <b>get&lt;Type&gt;</b> 方法会引发异常。调用 <b>insertRow</b> 方法会使插入行中的所有列返回到未初始化状态。</p>
+<p xmlns="">如果在调用 <b>insertRow</b> 方法时未初始化任何列，则会插入该列的默认值。如果没有默认值，但列可以为空，则插入 NULL。如果没有默认值且列不能为空，服务器将返回一条错误，并引发异常。</p>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>注意： </b>
+        <p></p>
+在插入模式下调用 <b>getRow</b> 方法将返回 0。 <p></p>
+JDBC 驱动程序不支持定位更新或定位删除。根据 JDBC 规范，调用 <a href="3f3ec4f2-103a-4e16-9206-c5bd8639f946.htm">setCursorName</a> 方法没有任何影响，而调用 <a href="e5b3af67-423a-4551-a4c6-a4bc076bd504.htm">getCursorName</a> 方法将引发异常。 <p></p>
+只读游标和静态游标永远无法更新。 <p></p>
+SQL Server 将服务器游标限制到单个结果集中。如果批处理或存储过程包含多条语句，则必须使用只进只读的客户端游标。<p></p>
+      </div>
+    </content>
+      </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="9ed5ad41-22e0-4e4a-8a79-10512db60d50.htm">通过 JDBC 驱动程序管理结果集</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

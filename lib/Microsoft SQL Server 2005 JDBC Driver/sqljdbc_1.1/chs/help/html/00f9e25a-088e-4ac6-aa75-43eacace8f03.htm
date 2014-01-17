@@ -1,0 +1,313 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>使用 SQL 转义序列</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">使用 SQL 转义序列</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>Microsoft SQL Server 2005 JDBC 驱动程序支持使用 SQL 转义序列，如同 JDBC API 所定义的一样。转义序列用在 SQL 语句中，指示驱动程序应以不同方式处理 SQL 字符串的转义部分。当 JDBC 驱动程序处理 SQL 字符串的转义部分时，会将这部分字符串转换成 SQL Server 可识别的 SQL 代码。</p>
+<p>JDBC API 需要五种类型的转义序列，而 JDBC 驱动程序支持所有这些序列：</p>
+    <ul><li>
+LIKE 通配符文字<br></br>
+      </li><li>
+函数处理<br></br>
+      </li><li>
+日期和时间原义字符<br></br>
+      </li><li>
+存储过程调用<br></br>
+      </li><li>
+外部联接<br></br>
+      </li></ul>
+<p>JDBC 驱动程序使用的转义序列语法如下： </p>
+    <p><code>{keyword ...parameters...}</code></p>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>注意： </b>
+系统始终为 JDBC 驱动程序启用 SQL 转义处理。<p></p>
+    </div>
+<p>下列部分描述了这五种类型的转义序列以及 JDBC 驱动程序对其的支持方式。</p>
+  </div>
+      <h1 class="heading">LIKE 通配符</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">JDBC 驱动程序支持将 LIKE 子句通配符用作原义字符的 <code>{escape 'escape character'}</code> 语法。例如，以下代码将返回 col3 的值，其中 col2 的值从字面上来说以下划线开头（而不是使用其通配符）。</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>ResultSet rst = stmt.executeQuery("SELECT col3 FROM test1 WHERE col2 
+LIKE '\\_%' {escape '\\'}");</pre></span></div>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>注意： </b>
+转义序列必须位于 SQL 语句的结尾。对于一个命令字符串中的多条 SQL 语句，转义序列需要位于每条相关 SQL 语句的结尾。<p></p>
+      </div>
+    </content>
+      </div>
+      <h1 class="heading">函数处理</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">JDBC 驱动程序通过下列语法支持 SQL 语句中的函数转义序列：</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>{fn functionName}</pre></span></div>
+<p xmlns="">其中 <code>functionName</code> 是 JDBC 驱动程序支持的函数。例如：</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>SELECT {fn UPPER(Name)} FROM Employee</pre></span></div>
+<p xmlns="">下表列出了使用函数转义序列时 JDBC 驱动程序支持的各种函数：</p>
+      <h2 class="heading" xmlns=""></h2><table cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;" xmlns=""><tr>
+            <th>
+字符串函数
+            </th>
+            <th>
+数字函数
+            </th>
+            <th>
+日期时间函数
+            </th>
+            <th>
+系统函数
+            </th>
+          </tr><tr>
+          <td>
+<p>ASCII</p>
+<p>CHAR</p>
+<p>CONCAT</p>
+<p>DIFFERENCE</p>
+<p>INSERT</p>
+<p>LCASE</p>
+<p>LEFT</p>
+<p>LENGTH</p>
+<p>LOCATE</p>
+<p>LTRIM</p>
+<p>REPEAT</p>
+<p>REPLACE</p>
+<p>RIGHT</p>
+<p>RTRIM</p>
+<p>SOUNDEX</p>
+<p>SPACE</p>
+<p>SUBSTRING</p>
+<p>UCASE</p>
+          </td>
+          <td>
+<p>ABS</p>
+<p>ACOS</p>
+<p>ASIN</p>
+<p>ATAN</p>
+<p>ATAN2</p>
+<p>CEILING</p>
+<p>COS</p>
+<p>COT</p>
+<p>DEGREES</p>
+<p>EXP</p>
+<p>FLOOR</p>
+<p>LOG</p>
+<p>LOG10</p>
+<p>MOD</p>
+<p>PI</p>
+<p>POWER</p>
+<p>RADIANS</p>
+<p>RAND</p>
+<p>ROUND</p>
+<p>SIGN</p>
+<p>SIN</p>
+<p>SQRT</p>
+<p>TAN</p>
+<p>TRUNCATE</p>
+          </td>
+          <td>
+<p>CURDATE</p>
+<p>CURTIME</p>
+<p>DAYNAME</p>
+<p>DAYOFMONTH</p>
+<p>DAYOFWEEK</p>
+<p>DAYOFYEAR</p>
+<p>EXTRACT</p>
+<p>HOUR</p>
+<p>MINUTE</p>
+<p>MONTH</p>
+<p>MONTHNAME</p>
+<p>NOW</p>
+<p>QUARTER</p>
+<p>SECOND</p>
+<p>TIMESTAMPADD</p>
+<p>TIMESTAMPDIFF</p>
+<p>WEEK</p>
+<p>YEAR</p>
+          </td>
+          <td>
+<p>DBNAME</p>
+<p>IFNULL</p>
+<p>USER</p>
+          </td>
+        </tr></table>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>注意： </b>
+如果尝试使用数据库不支持的函数，将出现错误。<p></p>
+      </div>
+    </content>
+      </div>
+      <h1 class="heading">日期和时间原义字符</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">日期、时间和时间戳原义字符的转义语法如下： </p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>{literal-type 'value'}</pre></span></div>
+<p xmlns="">其中 <code>literal-type</code> 为下列类型之一：</p>
+      <h2 class="heading" xmlns=""></h2><table cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;" xmlns=""><tr>
+            <th>
+原义字符类型
+            </th>
+            <th>
+说明
+            </th>
+            <th>
+值格式
+            </th>
+          </tr><tr>
+          <td>
+<p>d</p>
+          </td>
+          <td>
+<p>日期</p>
+          </td>
+          <td>
+<p>年-月-日</p>
+          </td>
+        </tr><tr>
+          <td>
+<p>t</p>
+          </td>
+          <td>
+<p>时间</p>
+          </td>
+          <td>
+<p>小时:分钟:秒 [1]</p>
+          </td>
+        </tr><tr>
+          <td>
+<p>ts</p>
+          </td>
+          <td>
+<p>时间戳</p>
+          </td>
+          <td>
+<p>年-月-日 小时:分钟:秒[.f...]</p>
+          </td>
+        </tr></table>
+<p xmlns="">例如：</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>UPDATE Orders SET OpenDate={d '2005-01-31'} 
+WHERE OrderID=1025</pre></span></div>
+    </content>
+      </div>
+      <h1 class="heading">存储过程调用</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">JDBC 驱动程序支持存储过程调用的 <code>{? = call proc_name(?,...)}</code> 和 <code>{call proc_name(?,...)}</code> 转义语法，具体使用哪种语法取决于是否需要处理返回参数。 </p>
+<p xmlns="">过程是存储在数据库中的可执行对象。通常，它是预编译好的一条或多条 SQL 语句。调用存储过程的转义序列语法如下： </p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>{[?=]call procedure-name[([parameter][,[parameter]]...)]}</pre></span></div>
+<p xmlns="">其中 <code>procedure-name</code> 指定存储过程的名称，<code>parameter</code> 指定存储过程参数。</p>
+<p xmlns="">有关使用 <code>call</code> 转义序列及存储过程的详细信息，请参阅<a href="0041f9e1-09b6-4487-b052-afd636c8e89a.htm">将语句用于存储过程</a>。</p>
+    </content>
+      </div>
+      <h1 class="heading">外部联接</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">JDBC 驱动程序支持 SQL92 左侧、右侧及完全外部联接语法。外部联接的转义序列如下： </p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>{oj outer-join}</pre></span></div>
+<p xmlns="">其中 outer-join 为：</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>table-reference {LEFT | RIGHT | FULL} OUTER JOIN  
+{table-reference | outer-join} ON search-condition</pre></span></div>
+<p xmlns="">其中 <code>table-reference</code> 是表名，<code>search-condition</code> 是希望对表使用的联接条件。</p>
+<p xmlns="">例如：</p>
+      <div class="sampleCode" xmlns=""><span codeLanguage="other"><pre>SELECT Customers.CustID, Customers.Name, Orders.OrderID, Orders.Status 
+   FROM {oj Customers LEFT OUTER JOIN 
+      Orders ON Customers.CustID=Orders.CustID} 
+   WHERE Orders.Status='OPEN'</pre></span></div>
+<p xmlns="">JDBC 驱动程序支持下列外部联接转义序列：</p>
+      <ul xmlns=""><li>
+左侧外部联接<br></br>
+        </li><li>
+右侧外部联接<br></br>
+        </li><li>
+完全外部联接<br></br>
+        </li><li>
+嵌套外部联接<br></br>
+        </li></ul>
+    </content>
+      </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="7f8f3e8f-841e-4449-9154-b5366870121f.htm">通过 JDBC 驱动程序使用语句</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

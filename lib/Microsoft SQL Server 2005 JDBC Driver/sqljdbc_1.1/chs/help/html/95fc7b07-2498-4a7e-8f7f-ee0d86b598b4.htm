@@ -1,0 +1,118 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>SQLServerXADataSource Class</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">SQLServerXADataSource Class</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+    <p>Represents a factory for <a href="5ecb4bf1-b8d1-47cf-9cb1-7a18acc11ce2.htm">SQLServerXAConnection</a> objects that is used internally.</p>
+    <p><b>Package:</b> com.microsoft.sqlserver.jdbc</p>
+    <p><b>Extends:</b> <a href="b00e5a90-2af7-4d04-8ef8-256183777dcf.htm">SQLServerConnectionPoolDataSource</a></p>
+    <p><b>Implements:</b> javax.sql.XADataSource</p>
+  </div>
+      <div id="declarationSyntaxes" class="section">
+        <div id="syntaxCodeBlocks" class="code">
+          <span codeLanguage="">
+            <pre>
+public class <b>SQLServerXADataSource</b></pre>
+          </span>
+        </div>
+      </div>
+      <h1 class="heading">
+        备注
+      </h1>
+      <div id="languageReferenceRemarksSection" class="section">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">An object that implements the <b>SQLServerXADataSource</b> interface is typically registered with a naming service that uses the Java Naming and Directory Interface (JNDI). </p>
+      <p xmlns="">The <b>SQLServerXADataSource</b> class provides database connections for use in distributed (XA) transactions. The <b>SQLServerXADataSource</b> class also supports connection pooling of physical connections. The <b>SQLServerXADataSource</b> and <b>SQLServerXAConnection</b> interfaces, which are defined in the package javax.sql, are implemented by SQL Server.</p>
+      <p xmlns="">A <b>SQLServerXAConnection</b> object is a pooled connection that can participate in a distributed transaction. More precisely, <b>SQLServerXAConnection</b> extends the <b>SQLServerPooledConnection</b> interface by adding the method <a href="e1d2828f-fd20-44b0-b796-dc70f77c5b03.htm">getXAResource</a>. This method produces a <a href="df957b79-536f-4db7-b6ac-3d59343559fc.htm">SQLServerXAResource</a> object that can be used by a transaction manager to coordinate the work done on this connection with the other participants in the distributed transaction. Because they extend the <b>SQLServerPooledConnection</b> interface, <b>SQLServerXAConnection</b> objects support all the methods of <b>SQLServerPooledConnection</b> objects. They are reusable physical connections to an underlying data source and produce logical connection handles that can be passed back to a JDBC application.</p>
+      <p xmlns=""><b>SQLServerXAConnection</b> objects are produced by a <b>SQLServerXADataSource</b> object. <b>SQLServerConnectionPoolDataSource</b> objects and <b>SQLServerXADataSource</b> objects are similar because they are both implemented below a data source layer that is visible to the JDBC application. This architecture lets SQL Server support distributed transactions in a way that is transparent to the application. <b>SQLServerXADataSource</b> can be configured to integrate with Microsoft Distributed Transaction Coordinator (DTC) to provide true, distributed transaction processing.</p>
+    </content>
+  </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="04178645-915f-4569-8907-d45e299bbe7d.htm">SQLServerXADataSource Members</a> | <a href="e4e1ae9d-18a6-41db-8bd2-9cf0eee4cccb.htm">JDBC Driver API Reference</a></div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

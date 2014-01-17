@@ -1,0 +1,128 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>部署 JDBC 驱动程序</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">部署 JDBC 驱动程序</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>部署使用 Microsoft SQL Server 2005 JDBC Driver 的应用程序时，必须同时重新分配 JDBC 驱动程序和该应用程序。与 Windows 操作系统的组件 Windows 数据访问组件 (Data Access Components,Windows DAC) 不同，JDBC 驱动程序被认为是 SQL Server 的组件。</p>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>注意： </b>
+尽管可以根据应用程序的需求随意分配 JDBC 驱动程序，但必须先进行注册才能执行此操作。若要进行注册以重新分配 JDBC 驱动程序，请参阅 <a href="http://go.microsoft.com/fwlink/?LinkId=70164" target="_blank" alt=""><linkText xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">Register for Microsoft SQL Server 2005 JDBC Driver Redistribution Rights</linkText></a>（英文）。<p></p>
+    </div>
+<p>有两种方法可用于部署 JDBC 驱动程序和应用程序。一种方法是将 JDBC 驱动程序文件添加到您自己的自定义安装包中。第二种方法涉及到使用 Microsoft 所提供的 JDBC 安装包，您可以从 <a href="http://go.microsoft.com/fwlink/?LinkId=70166" target="_blank" alt=""><linkText xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">Microsoft SQL Server 2005 JDBC Driver Developer Center（Microsoft SQL Server 2005 JDBC Driver 开发中心）</linkText></a>进行下载。</p>
+<p>以下各部分讨论如何在 Windows 和 UNIX 操作系统上使用 JDBC 安装包。</p>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>注意： </b>
+有关部署 Java 应用程序的一般信息，请参阅 Sun Microsystems 网站上的 <a href="http://go.microsoft.com/fwlink/?LinkId=70165" target="_blank" alt=""><linkText xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">Java Deployment Overview</linkText></a>（英文）。<p></p>
+    </div>
+  </div>
+      <h1 class="heading">在 Windows 系统中部署 JDBC 驱动程序</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">在 Windows 操作系统中部署 JDBC 驱动程序时，必须使用安装包的可执行 zip 文件版本，其名称通常为 <code>sqljdbc_&lt;version&gt;_enu.exe</code>。</p>
+<p xmlns="">若要无提示运行可执行 zip 文件，必须在命令行或批处理文件中使用 <code> /auto </code> 命令行选项，如下所示：</p>
+      <p xmlns=""><code>sqljdbc_&lt;version&gt;_enu.exe /auto</code></p>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>注意： </b>
+使用 <code> /auto </code> 选项时，执行的并不是真正的无提示安装，因为 WinZip 对话框仍会出现在用户屏幕中。然而，您无需与其进行交互，解压缩操作完成后，它会立即关闭。<p></p>
+      </div>
+    </content>
+      </div>
+      <h1 class="heading">在 UNIX 系统中部署驱动程序</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">在 UNIX 操作系统中部署 JDBC 驱动程序时，必须使用安装包的 gzip 文件版本，其名称通常为 <code>sqljdbc_&lt;version&gt;_enu.tar.gz</code>。</p>
+<p xmlns="">在安装 JDBC 驱动程序前，请确保用户的系统中安装了 gzip 和 tar 实用程序，并已将包含这两个实用程序可执行文件的文件夹添加到了 PATH 环境变量中。</p>
+<p xmlns="">若要无提示运行 gzip 文件，请在命令行或批处理文件中使用 <code> xfz </code> 命令行选项，如下所示：</p>
+      <p xmlns=""><code>tar xfz sqljdbc_&lt;version&gt;_enu.tar.gz</code></p>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>注意： </b>
+使用 <code> xfz </code> 选项时，执行的并不是真正的无提示安装，因为某些警告可能会发送到标准输出。<p></p>
+      </div>
+    </content>
+      </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="939a8773-2583-49a4-bf00-6b892fbe39dc.htm">JDBC 驱动程序概述</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

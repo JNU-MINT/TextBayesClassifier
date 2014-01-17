@@ -1,0 +1,146 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>prepareCall Method (java.lang.String, int, int, int)</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">prepareCall Method (java.lang.String, int, int, int)</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+    <p>Creates a <a href="30710a63-c05d-47d9-9cf9-c087a1c76373.htm">SQLServerCallableStatement</a> object that generates <a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a> objects with the given type, concurrency, and holdability.</p>
+  </div>
+      <div id="declarationSyntaxes" class="section">
+        <div id="syntaxCodeBlocks" class="code">
+          <span codeLanguage="">
+            <pre>
+public java.sql.CallableStatement <b>prepareCall</b>(java.lang.String <i>sql</i>,
+                                              int <i>nType</i>,
+                                              int <i>nConcur</i>,
+                                              int <i>nHold</i>)</pre>
+          </span>
+        </div>
+      </div>
+      <h1 class="heading">
+        参数
+      </h1>
+      <div id="parameters" class="section">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns=""><i>sql</i></p>
+      <p xmlns="">A string containing an SQL statement.</p>
+      <p xmlns=""><i>nType</i></p>
+      <p xmlns="">An integer that indicates the result set type.</p>
+      <p xmlns=""><i>nConcur</i></p>
+      <p xmlns="">An integer that indicates the result set concurrency type.</p>
+      <p xmlns=""><i>nHold</i></p>
+      <p xmlns="">An integer that indicates the result set holdability.</p>
+    </content>
+  </div>
+      <h1 class="heading">
+        返回值
+      </h1>
+      <div id="returnValue" class="section">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">A <b>CallableStatement</b> object.</p>
+    </content>
+  </div>
+      <h1 class="heading">
+        异常
+      </h1>
+      <div id="exceptions" class="section">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns=""><a href="af5ef257-7cf6-4db3-b1ee-07d22d82bef1.htm">SQLServerException</a></p>
+    </content>
+  </div>
+      <h1 class="heading">
+        备注
+      </h1>
+      <div id="languageReferenceRemarksSection" class="section">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">This <b>prepareCall</b> method is specified by the <b>prepareCall</b> method in the java.sql.Connection interface.</p>
+    </content>
+  </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="937292a6-1525-423e-a2b2-a18fd34c2893.htm">SQLServerConnection Class</a> | <a href="265b024c-898a-4bd0-98b5-f06076717b9e.htm">prepareCall Method (SQLServerConnection)</a> | <a href="c3db6be0-9e2b-4408-ab22-b6ecfc42961e.htm">SQLServerConnection Methods</a> | <a href="3115a533-756b-4c78-aee9-4ba7253c85e0.htm">SQLServerConnection Members</a></div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

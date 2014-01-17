@@ -1,0 +1,162 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>连接 URL 示例</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">连接 URL 示例</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>此 Microsoft SQL Server 2005 JDBC Driver 示例应用程序说明了如何使用连接 URL 来连接 SQL Server 数据库。还说明了如何使用 SQL 语句从 SQL Server 数据库中检索数据。</p>
+<p>此示例的代码文件名为 connectURL.java，该文件可在以下位置找到：</p>
+<p>&lt;<i>安装目录</i>&gt;\sqljdbc_&lt;<i>版本</i>&gt;\&lt;<i>语言</i>&gt;\help\samples\connections</p>
+  </div>
+      <h1 class="heading">
+        要求
+      </h1>
+      <div id="requirementsSection" class="section">
+    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">若要运行此示例应用程序，必须将 classpath 设置为包含 sqljdbc.jar 文件。如果 classpath 缺少 sqljdbc.jar 项，示例应用程序将引发&ldquo;找不到类&rdquo;的常见异常。还需要访问 SQL Server 2000 AdventureWorks 示例数据库。</p>
+<p xmlns="">有关如何设置 classpath 的详细信息，请参阅<a href="6faaf05b-8b70-4ed2-9b44-eee5897f1cd0.htm">使用 JDBC 驱动程序</a>。</p>
+    </content>
+  </div>
+      <h1 class="heading">
+        示例
+      </h1>
+      <div id="codeExampleSection" class="section">
+    <description xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <content>
+<p xmlns="">在下面的实例中，示例代码在连接 URL 中设置了多个连接属性，然后调用 <b>DriverManager</b> 类的 <b>getConnection</b> 方法，以返回 <a href="937292a6-1525-423e-a2b2-a18fd34c2893.htm">SQLServerConnection</a> 对象。</p>
+<p xmlns="">接下来，示例代码使用 <b>SQLServerConnection</b> 对象的 <a href="6d043ba9-b8ec-41d3-bb22-ad2c4aebda6f.htm">createStatement</a> 方法来创建 <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a> 对象，然后调用 <a href="599cf463-e19f-4baa-bacb-513cad7c6cd8.htm">executeQuery</a> 方法来执行 SQL 语句。</p>
+<p xmlns="">最后，示例代码使用 <b>executeQuery</b> 方法返回的 <a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a> 对象来遍历 SQL 语句返回的结果。</p>
+      </content>
+    </description>
+    <div class="sampleCode"><span codeLanguage="other"><pre>import java.sql.*;
+
+public class connectURL {
+
+   public static void main(String[] args) {
+
+      // Create a variable for the connection string.
+      String connectionUrl = "jdbc:sqlserver://localhost:1433;" +
+         "databaseName=AdventureWorks;user=UserName;password=*****";
+
+      // Declare the JDBC objects.
+      Connection con = null;
+      Statement stmt = null;
+      ResultSet rs = null;
+
+      try {
+         // Establish the connection.
+         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+         con = DriverManager.getConnection(connectionUrl);
+
+         // Create and execute an SQL statement that returns some data.
+         String SQL = "SELECT TOP 10 * FROM Person.Contact";
+         stmt = con.createStatement();
+         rs = stmt.executeQuery(SQL);
+
+         // Iterate through the data in the result set and display it.
+         while (rs.next()) {
+            System.out.println(rs.getString(4) + " " + rs.getString(6));
+         }
+      }
+
+      // Handle any errors that may have occurred.
+      catch (Exception e) {
+         e.printStackTrace();
+      }
+      finally {
+         if (rs != null) try { rs.close(); } catch(Exception e) {}
+         if (stmt != null) try { stmt.close(); } catch(Exception e) {}
+         if (con != null) try { con.close(); } catch(Exception e) {}
+      }
+   }
+}</pre></span></div>
+  </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="ce43cc20-46a3-42ff-a3fb-75ad1ed10e08.htm">连接和检索数据</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

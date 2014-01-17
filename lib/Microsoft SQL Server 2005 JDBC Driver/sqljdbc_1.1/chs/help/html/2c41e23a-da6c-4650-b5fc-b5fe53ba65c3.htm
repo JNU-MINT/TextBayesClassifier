@@ -1,0 +1,202 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>了解隔离级别</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">了解隔离级别</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>事务指定的隔离级别定义一个事务必须与其他事务所修改的资源或数据的隔离程度。隔离级别的确定标准，是允许哪些并发操作的副作用，如脏读或幻读。</p>
+<p>事务隔离级别控制下例内容：</p>
+    <ul><li>
+读取数据时是否进行锁定，以及需要的锁定类型。<br></br>
+      </li><li>
+读取锁定持续的时间。<br></br>
+      </li><li>
+引用由其他事务所修改的行的读取操作是否会：<br></br>
+        <ul><li>
+在释放行的独占锁定之前阻止访问。<br></br>
+          </li><li>
+检索在语句或事务启动时已存在行的提交版本。<br></br>
+          </li><li>
+读取未提交的数据修改。<br></br>
+          </li></ul>
+      </li></ul>
+<p>选择事务隔离级别不影响保护数据修改所需的锁定。事务始终对其修改的任何数据进行独占锁定，并在事务完成前保留该锁定，而不管为该事务设置的隔离级别。对于读取操作，事务隔离级别主要定义保护级别，以使其不受其他事务所作修改的影响。</p>
+<p>较低的隔离级别会提高多名用户同时访问数据的能力，但是也会增加用户可能遭遇的并发影响（如脏读或更新丢失）的次数。相反，较高的隔离级别会减少用户可能遭遇的并发影响的类型，但是需要更多的系统资源，并且提高了一个事务阻止其他事务的可能性。选择合适的隔离级别取决于对应用程序数据完整性的要求和各隔离级别开销的权衡。在多用户系统中，最高隔离级别（可串行化）保证事务在每次重复执行读取操作时，将检索完全相同的数据，但与此同时，它执行的锁定级别可能会影响多用户系统中的其他用户。最低隔离级别（读取未提交内容）可以检索其他事务已修改但未提交的数据。在读取未提交内容时，所有并发操作的副作用都可以发生，但是由于无需读取锁定或版本控制，因此开销达到最小化。</p>
+<p>下表显示了不同隔离级别所允许的并发副作用。</p>
+    <h2 class="heading"></h2><table cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;"><tr>
+          <th>
+隔离级别
+          </th>
+          <th>
+脏读
+          </th>
+          <th>
+不可重复读
+          </th>
+          <th>
+幻读
+          </th>
+        </tr><tr>
+        <td>
+<p>读取未提交内容</p>
+        </td>
+        <td>
+<p>是</p>
+        </td>
+        <td>
+<p>是</p>
+        </td>
+        <td>
+<p>是</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>读取已提交内容</p>
+        </td>
+        <td>
+<p>否</p>
+        </td>
+        <td>
+<p>是</p>
+        </td>
+        <td>
+<p>是</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>可重复读</p>
+        </td>
+        <td>
+<p>否</p>
+        </td>
+        <td>
+<p>否</p>
+        </td>
+        <td>
+<p>是</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>快照</p>
+        </td>
+        <td>
+<p>否</p>
+        </td>
+        <td>
+<p>否</p>
+        </td>
+        <td>
+<p>否</p>
+        </td>
+      </tr><tr>
+        <td>
+<p>可串行化</p>
+        </td>
+        <td>
+<p>否</p>
+        </td>
+        <td>
+<p>否</p>
+        </td>
+        <td>
+<p>否</p>
+        </td>
+      </tr></table>
+<p>当两个事务中的每个事务都要检索相同的行，然后又根据最初的检索值更新行时，可能发生更新丢失。此时，事务必须至少以可重复读的隔离级别运行，以防止更新丢失。如果两个事务使用单个 UPDATE 语句更新行，并且没有按照以前的检索值进行更新，则在读取已提交内容这一默认隔离级别上不会发生更新丢失。</p>
+<p>要为事务设置隔离级别，可以使用 <a href="937292a6-1525-423e-a2b2-a18fd34c2893.htm">SQLServerConnection</a> 类的 <a href="6a8fa4d3-5237-40f8-8a02-b40a3d7a1131.htm">setTransactionIsolation</a> 方法。该方法接受基于下列连接常量之一的整数值作为参数：</p>
+    <div class="sampleCode"><span codeLanguage="other"><pre>con.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);</pre></span></div>
+<p>要使用 SQL Server 2005 新的快照隔离级别，可以使用下列 <b>SQLServerConnection</b> 常量之一：</p>
+    <div class="sampleCode"><span codeLanguage="other"><pre>con.setTransactionIsolation(SQLServerConnection.TRANSACTION_SNAPSHOT);</pre></span></div>
+<p>也可以使用：</p>
+    <div class="sampleCode"><span codeLanguage="other"><pre>con.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED + 4094);</pre></span></div>
+<p>有关 SQL Server 隔离级别的详细信息，请参阅 SQL Server 联机丛书中的&ldquo;数据库引擎 中的隔离级别&rdquo;。</p>
+  </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="afbb776f-05dc-4e79-bb25-2c340483e401.htm">通过 JDBC 驱动程序执行事务</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

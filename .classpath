@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="lib" path="lib/lucene-core-2.4.1.jar"/>
+	<classpathentry kind="lib" path="lib/Microsoft SQL Server 2005 JDBC Driver/sqljdbc_1.1/chs/sqljdbc.jar"/>
+	<classpathentry kind="lib" path="lib/je-analysis-1.5.1.zip"/>
+	<classpathentry kind="lib" path="lib/IKAnalyzer2012.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

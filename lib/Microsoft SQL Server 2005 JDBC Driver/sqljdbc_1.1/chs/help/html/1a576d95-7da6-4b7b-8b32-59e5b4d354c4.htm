@@ -1,0 +1,121 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>执行批处理操作</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">执行批处理操作</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>为了提高对 SQL Server 数据库进行多项更新时的性能，Microsoft SQL Server 2005 JDBC Driver 提供了将多项更新作为一个工作单元提交的功能，也称作&ldquo;批处理&rdquo;。 </p>
+<p><a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a>、<a href="a8481c06-fbba-432b-8c69-4f4619c20ad4.htm">SQLServerPreparedStatement</a> 和<a href="30710a63-c05d-47d9-9cf9-c087a1c76373.htm">SQLServerCallableStatement</a> 类都可用于提交批处理更新。<a href="134f1455-c98c-4112-ab2d-9205a0db73df.htm">addBatch</a> 方法可用于添加命令。<a href="6e5cda26-e24d-4637-8dfd-8135ba126e3b.htm">clearBatch</a> 方法可用于清除命令列表。<a href="fb034f63-2532-4da8-a1b0-bc125734585a.htm">executeBatch</a> 方法可用于提交要处理的所有命令。只有返回简单更新计数的数据定义语言 (Data Definition Language, DDL) 和数据操作语言 (Data Manipulation Language, DML) 语句可作为批处理的一部分运行。</p>
+<p><b>executeBatch</b> 方法返回一个整数数组，包含每个命令的更新计数所对应的整数值。如果其中一条命令失败，则引发 <b>BatchUpdateException</b>，此时应使用 <b>BatchUpdateException</b> 类的 <b>getUpdateCounts</b> 方法检索更新计数数组。如果一条命令失败，则驱动程序会继续处理剩余的命令。但是，如果一条命令有语法错误，批处理中的语句就会失败。</p>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>注意： </b>
+如果不是必须使用更新计数，则可以先向 SQL Server 发送一条 SET NOCOUNT ON 语句。这将减少网络流量并同时提高应用程序的性能。<p></p>
+    </div>
+<p>作为实例，在 SQL Server 2005 AdventureWorks 示例数据库中创建下表：</p>
+    <div class="sampleCode"><span codeLanguage="other"><pre>CREATE TABLE TestTable 
+   (Col1 int IDENTITY, 
+    Col2 varchar(50), 
+    Col3 int);</pre></span></div>
+<p>在下面的实例中，将向此函数传递 AdventureWorks 示例数据库的打开连接，并使用 <b>addBatch</b> 方法创建要执行的语句，然后调用 <b>executeBatch</b> 方法向数据库提交批处理。</p>
+    <div class="sampleCode"><span codeLanguage="other"><pre>public static void executeBatchUpdate(Connection con) {
+   try {
+      Statement stmt = con.createStatement();
+      stmt.addBatch("INSERT INTO TestTable (Col2, Col3) VALUES ('X', 100)");
+      stmt.addBatch("INSERT INTO TestTable (Col2, Col3) VALUES ('Y', 200)");
+      stmt.addBatch("INSERT INTO TestTable (Col2, Col3) VALUES ('Z', 300)");
+      int[] updateCounts = stmt.executeBatch();
+      stmt.close();
+   }
+   catch (Exception e) {
+      e.printStackTrace();
+   }
+}</pre></span></div>
+  </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="7f8f3e8f-841e-4449-9154-b5366870121f.htm">通过 JDBC 驱动程序使用语句</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

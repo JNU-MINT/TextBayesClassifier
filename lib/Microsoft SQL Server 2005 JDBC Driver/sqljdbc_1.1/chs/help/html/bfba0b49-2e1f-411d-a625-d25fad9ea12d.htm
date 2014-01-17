@@ -1,0 +1,117 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>连接性疑难解答</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">连接性疑难解答</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>Microsoft SQL Server 2005 JDBC Driver 需要安装并运行 TCP/IP 以与 SQL Server 数据库进行通信。可以使用 SQL Server 配置管理器检查已安装了哪些网络库协议。</p>
+<p>数据库连接失败的原因有多种。包括下列原因：</p>
+    <ul><li>
+SQL Server 无法启用 TCP/IP，或者指定的服务器或端口号不正确。验证 SQL Server 是否正通过指定服务器和端口上的 TCP/IP 进行侦听。这可能会引发类似于&ldquo;登录已失败。对主机的 TCP/IP 连接已失败。&rdquo;的异常。这指示下列内容之一：<br></br>
+        <ul><li>
+已安装了 SQL Server，但并没有针对 SQL Server 将 TCP/IP 作为网络协议进行安装（通过使用 SQL Server 2000 的 SQL Server 网络实用工具，或者使用 SQL Server 2005 的 SQL Server 配置管理器）。<br></br>
+          </li><li>
+已作为 SQL Server 协议安装了 TCP/IP，但是它并没有侦听 JDBC 连接 URL 中指定的端口。默认端口为 1433，但可以在安装产品时将 SQL Server 配置为侦听任意端口。请确保 SQL Server 正在侦听端口 1433。或者，如果端口已更改，则应确保 JDBC 连接 URL 中指定的端口与更改的端口相匹配。有关 JDBC 连接 URL 的详细信息，请参阅<a href="44996746-d373-4f59-9863-a8a20bb8024a.htm">创建连接 URL</a>。<br></br>
+          </li><li>
+JDBC 连接 URL 中指定的计算机地址没有引用在其中安装并启动了 SQL Server 的服务器。 <br></br>
+          </li><li>
+无法执行客户端和运行 SQL Server 的服务器之间的 TCP/IP 的网络操作。可以使用 telnet 检查 TCP/IP 与 SQL Server 的连接性。例如，在命令提示符下，键入 <code> telnet 192.168.0.0 1433 </code>，此处 192.168.0.0 是运行 SQL Server 的计算机地址，而 1433 是其侦听的端口。如果收到&ldquo;Telnet 无法连接&rdquo;的消息，则 TCP/IP 没有侦听 SQL Server 连接的端口。对 SQL Server 2000 使用 SQL Server 网络实用工具，或者对 SQL Server 2005 使用 SQL Server 配置管理器，以确保将 SQL Server 配置为在端口 1433 使用 TCP/IP。 <br></br>
+          </li><li>
+未在防火墙中打开服务器使用的端口。这包括服务器使用的端口或与该服务器的命名实例相关联的端口（可选）。<br></br>
+          </li></ul>
+      </li><li>
+指定的数据库名称不正确。确保所登录的 SQL Server 数据库是现有的数据库。<br></br>
+      </li><li>
+用户名或密码不正确。确保提供正确的值。<br></br>
+      </li><li>
+使用 SQL Server 身份验证时，JDBC 驱动程序要求安装带有 SQL Server 身份验证的 SQL Server，但在默认情况下，系统不会安装带有此功能的组件。在安装或配置 SQL Server 实例时，应确保带有此选项。<br></br>
+      </li></ul>
+  </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="723e2680-a0c5-4a7d-a319-1e49e41078cf.htm">诊断 JDBC 驱动程序问题</a> | <a href="94bcfbe3-f00e-4774-bda8-bb7577518fec.htm">通过 JDBC 驱动程序连接到 SQL Server</a></div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

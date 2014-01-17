@@ -1,0 +1,703 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>SQLServerCallableStatement Methods</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">SQLServerCallableStatement Methods</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+    <p>The following tables list the methods that are exposed by the <a href="30710a63-c05d-47d9-9cf9-c087a1c76373.htm">SQLServerCallableStatement</a> class.</p>
+  </div>
+      <h1 class="heading">Methods</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h2 class="heading" xmlns=""></h2><table cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;" xmlns=""><tr>
+            <th>
+              Name
+            </th>
+            <th>
+              Description
+            </th>
+          </tr><tr>
+          <td>
+            <p><a href="134f1455-c98c-4112-ab2d-9205a0db73df.htm">addBatch</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="a8481c06-fbba-432b-8c69-4f4619c20ad4.htm">SQLServerPreparedStatement</a>) Adds a set of parameters to the batch of commands for this <b>CallableStatement</b> object.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="276bd9c1-9329-4fc9-9622-ed673c83a12d.htm">cancel</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a>) Cancels the SQL statement that is currently being run by this <b>CallableStatement</b> object.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="6e5cda26-e24d-4637-8dfd-8135ba126e3b.htm">clearBatch</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="a8481c06-fbba-432b-8c69-4f4619c20ad4.htm">SQLServerPreparedStatement</a>) Empties the current list of SQL commands for this <b>CallableStatement</b> object.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="cb1d0f36-d2de-4685-b97a-626608e50e5c.htm">clearParameters</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="a8481c06-fbba-432b-8c69-4f4619c20ad4.htm">SQLServerPreparedStatement</a>) Clears the current parameter values immediately.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="b1d3a50c-3d05-44b3-b1ba-404a013fd627.htm">clearWarnings</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a>) Clears all the warnings that are reported on this <b>CallableStatement</b> object.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="36db9ff7-5819-4827-9803-4a81c99069b3.htm">close</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="a8481c06-fbba-432b-8c69-4f4619c20ad4.htm">SQLServerPreparedStatement</a>) Releases the database and JDBC resources of this <b>CallableStatement</b> object immediately instead of waiting for them to be automatically released.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="db876c2e-dffe-4ef2-8fea-486cf27b0eb3.htm">execute</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="a8481c06-fbba-432b-8c69-4f4619c20ad4.htm">SQLServerPreparedStatement</a>) Runs the SQL statement in this <b>CallableStatement</b> object, which can be any kind of SQL statement.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="8418167e-cbd2-464d-b118-73cdd76080ed.htm">executeBatch</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="a8481c06-fbba-432b-8c69-4f4619c20ad4.htm">SQLServerPreparedStatement</a>) Submits a batch of commands to the database to be run. If all commands run successfully, returns an array of update counts.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="dfff3358-f391-4af6-84c1-b94c029f506d.htm">executeQuery</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="a8481c06-fbba-432b-8c69-4f4619c20ad4.htm">SQLServerPreparedStatement</a>) Runs the SQL query in this <b>CallableStatement</b> object and returns the <a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a> object that is generated by the query.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="677b0907-316e-40f2-a0d9-d4d0872c7f52.htm">executeUpdate</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="a8481c06-fbba-432b-8c69-4f4619c20ad4.htm">SQLServerPreparedStatement</a>) Runs the SQL statement in this <b>CallableStatement</b> object, which must be an SQL INSERT, UPDATE or DELETE statement; or an SQL statement that returns nothing, such as a DDL statement.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="6f341d0b-265a-415e-abe5-8f408fedbb21.htm">getConnection</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a>) Retrieves the <a href="937292a6-1525-423e-a2b2-a18fd34c2893.htm">SQLServerConnection</a> object that produced this <b>CallableStatement</b> object.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="ceb4ae68-decc-46d3-83f1-0bbd23aaf58c.htm">getFetchDirection</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a>) Retrieves the direction for fetching rows from database tables that is the default for result sets generated from this <b>CallableStatement</b> object.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="8115ca58-8ae9-46ce-8515-7905d7bb25fe.htm">getFetchSize</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a>) Retrieves the number of result set rows that is the default fetch size for result set objects generated from this <b>CallableStatement</b> object.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="a3325950-0e81-4ae8-aa0c-e1f6d371adcd.htm">getGeneratedKeys</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a>) Retrieves any auto-generated keys that are created as a result of running this <b>CallableStatement</b> object.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="ed7bbcb8-660b-4e9b-8241-e216c42826f9.htm">getMaxFieldSize</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a>) Retrieves the maximum number of bytes that can be returned for character and binary column values in a <a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a> object produced by this <b>CallableStatement</b> object.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="6aece4e5-027d-434e-a8cf-a67c0484f189.htm">getMaxRows</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a>) Retrieves the maximum number of rows that a <a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a> object produced by this <b>CallableStatement</b> object can contain.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="5ed49a53-ed61-4e95-ad67-45957aaabb6a.htm">getMetaData</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="a8481c06-fbba-432b-8c69-4f4619c20ad4.htm">SQLServerPreparedStatement</a>) Retrieves a <a href="9a36885f-83f3-44af-85f0-2b849dfd20d4.htm">SQLServerResultSetMetaData Class</a> object that contains information about the columns of the <a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a> object that will be returned when this <b>CallableStatement</b> object is run.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="6b18510a-4d6d-4eeb-a9d0-32e920eb0048.htm">getMoreResults</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a>) Moves to the next result of this <b>CallableStatement</b> object.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="c2876dec-ce29-4b61-9d74-ec3173b8cba5.htm">getParameterMetaData</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="a8481c06-fbba-432b-8c69-4f4619c20ad4.htm">SQLServerPreparedStatement</a>) Retrieves the number, types, and properties of the parameters for this <b>CallableStatement</b> object.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="c21cb48c-a45f-491c-a7cd-4e82d1e178d4.htm">getArray</a></p>
+          </td>
+          <td>
+            <p>Retrieves the value of the designated parameter as an <b>Array</b> object.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="bc81b9a3-96ae-4c9c-b6c4-abd7b83175e9.htm">getBigDecimal</a></p>
+          </td>
+          <td>
+            <p>Retrieves the value of the designated parameter as java.math.BigDecimal.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="e609b336-d40e-4d89-9130-6db7e6853541.htm">getBlob</a></p>
+          </td>
+          <td>
+            <p>Retrieves the value of the designated JDBC BLOB parameter as a <b>Blob</b> object in the Java programming language.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="4ad50e54-8246-4012-bd88-4aaaaf7f0f77.htm">getBoolean</a></p>
+          </td>
+          <td>
+            <p>Retrieves the value of the designated parameter as a Boolean value.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="4454c22a-5e6d-4edb-9ead-d623a174ce59.htm">getByte</a></p>
+          </td>
+          <td>
+            <p>Retrieves the value of the designated parameter as a byte value.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="b6e88cea-54b3-4d18-a9af-db54abf19f45.htm">getBytes</a></p>
+          </td>
+          <td>
+            <p>Retrieves the value of the designated parameter as an array of bytes.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="c1824b89-fc2e-4741-b849-7d06108fda97.htm">getClob</a></p>
+          </td>
+          <td>
+            <p>Retrieves the value of the designated JDBC BLOB parameter as a <b>Clob</b> object in the Java programming language.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="a4a969e7-e72c-4ac8-8b8c-ae2281e4e705.htm">getDate</a></p>
+          </td>
+          <td>
+            <p>Retrieves the value of the designated parameter as a java.sql.Date object in the Java programming language.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="f89ce642-9eac-4d5b-b1ba-45aa3031ab3b.htm">getDouble</a></p>
+          </td>
+          <td>
+            <p>Retrieves the value of the designated parameter as a double in the Java programming language.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="58a60767-655b-4c89-a44a-965b9fb9bcd6.htm">getFloat</a></p>
+          </td>
+          <td>
+            <p>Retrieves the value of the designated parameter as a float in the Java programming language.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="19d60b8b-7e01-4d7b-afa9-f0705d634cf9.htm">getInt</a></p>
+          </td>
+          <td>
+            <p>Retrieves the value of the designated parameter as an integer in the Java programming language.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="d6c1a8a4-5647-439f-87b8-310b6e9b778a.htm">getLong</a></p>
+          </td>
+          <td>
+            <p>Retrieves the value of the designated parameter as a long in the Java programming language.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="c5cc562f-2c5a-4fdb-a552-dfb08c2bf0ad.htm">getObject</a></p>
+          </td>
+          <td>
+            <p>Retrieves the value of the designated parameter as an object in the Java programming language.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="8dff954f-b458-4fa6-abe6-be62ff75e2b9.htm">getQueryTimeout</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a>) Retrieves the number of seconds the Microsoft SQL Server 2005 JDBC Driver will wait for this <b>CallableStatement</b> object to run.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="0c7632a9-1ef6-46f0-8208-06a6cbd202e4.htm">getRef</a></p>
+          </td>
+          <td>
+            <p>Retrieves the value of the designated parameter as a <b>Ref</b> object in the Java programming language.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="929a14e2-8e98-4c32-89aa-86733c717ec1.htm">getResultSet</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a>) Retrieves the current result as a <a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a> object.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="47ef6547-5ec7-4cf5-a4d4-e34cbeec72eb.htm">getResultSetConcurrency</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a>) Retrieves the result set concurrency for <a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a> objects that are generated by this <b>CallableStatement</b> object.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="053549ee-2018-47ab-9538-789dac2b150a.htm">getResultSetHoldability</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a>) Retrieves the result set holdability for <a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a> objects that are generated by this <b>CallableStatement</b> object.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="260da35f-ddf6-4111-8519-69956ea3072e.htm">getResultSetType</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a>) Retrieves the result set type for <a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a> objects that are generated by this <b>CallableStatement</b> object.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="9e3c51bc-7285-4f28-92c8-cfa05e49da9e.htm">getShort</a></p>
+          </td>
+          <td>
+            <p>Retrieves the value of the designated parameter as a short in the Java programming language.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="8e88614b-e1a9-4119-8db0-d1b8de9e7cda.htm">getString</a></p>
+          </td>
+          <td>
+            <p>Retrieves the value of the designated parameter as a string in the Java programming language.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="e5739e05-ffb9-4759-a44c-0601cb04b924.htm">getTime</a></p>
+          </td>
+          <td>
+            <p>Retrieves the value of the designated parameter as a java.sql.Time object in the Java programming language.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="fca2d35f-266b-4dc7-9aa9-30a17ee2ecec.htm">getTimestamp</a></p>
+          </td>
+          <td>
+            <p>Retrieves the value of the designated parameter as a java.sql.Timestamp object in the Java programming language.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="e9570228-4500-44b6-b2f1-84ac050b5112.htm">getUpdateCount</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a>) Retrieves the current result as an update count.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="700f54ab-58c1-4e5f-a188-818366a119c0.htm">getURL</a></p>
+          </td>
+          <td>
+            <p>Retrieves the value of the designated parameter as a <b>URL</b> object in the Java programming language.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="3d6decae-2570-4ca5-8ff6-57a2cc3e921f.htm">getWarnings</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a>) Retrieves the first warning that is reported by calls on this <b>CallableStatement</b> object.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="82f8d608-efc1-4af8-a985-ec25d19420aa.htm">registerOutParameter</a></p>
+          </td>
+          <td>
+            <p>Registers the OUT parameter.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="b7fb66d4-6a42-43d0-ba68-8514816917cb.htm">setArray</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="a8481c06-fbba-432b-8c69-4f4619c20ad4.htm">SQLServerPreparedStatement</a>) Sets the designated parameter number to the given <b>Array</b> object.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="6ea23386-201f-41af-8232-225de3476765.htm">setAsciiStream</a></p>
+          </td>
+          <td>
+            <p>Sets the designated parameter to the given input stream, which will have the specified number of bytes.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="b50a920c-3839-40f0-9411-c60bbc2a9f34.htm">setBigDecimal</a></p>
+          </td>
+          <td>
+            <p>Sets the designated parameter number to the given <b>BigDecimal</b> object.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="567297bf-5bec-46ae-8264-29639b9b4a06.htm">setBinaryStream</a></p>
+          </td>
+          <td>
+            <p>Sets the designated parameter to the given input stream, which will have the specified number of bytes.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="218ff486-3f31-49e4-ad81-a423246a8307.htm">setBlob</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="a8481c06-fbba-432b-8c69-4f4619c20ad4.htm">SQLServerPreparedStatement</a>) Sets the designated parameter to the given <b>Blob</b> object.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="8cd810b1-9858-4e51-9535-239d864cd288.htm">setBoolean</a></p>
+          </td>
+          <td>
+            <p>Sets the designated parameter to the given Boolean value.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="0fbb03a5-61ee-4fb8-9dea-dce5cb1a367e.htm">setByte</a></p>
+          </td>
+          <td>
+            <p>Sets the designated parameter to the given byte value.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="f264f1a6-ee35-4eaf-81d8-ecf99f03b35d.htm">setBytes</a></p>
+          </td>
+          <td>
+            <p>Sets the designated parameter to the given array of byte values.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="88a8e89e-8817-4161-85b1-9a9a2fd01cdb.htm">setCharacterStream</a></p>
+          </td>
+          <td>
+            <p>Sets the designated parameter to the given <b>Reader</b> object, which is the given number of characters long.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="68d49f2c-fd8d-4abb-bfdc-e7b0fbd9a9da.htm">setClob</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="a8481c06-fbba-432b-8c69-4f4619c20ad4.htm">SQLServerPreparedStatement</a>) Sets the designated parameter to the given <b>Clob</b> object.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="3f3ec4f2-103a-4e16-9206-c5bd8639f946.htm">setCursorName</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a>) Sets the SQL cursor name to the given string, which will be used by subsequent execute methods.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="2a134217-276a-4d0e-8a75-4e1bf300c946.htm">setDate</a></p>
+          </td>
+          <td>
+            <p>Sets the designated parameter to the given date value.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="c054bb84-1292-4b70-b574-2ae189cd4e68.htm">setDouble</a></p>
+          </td>
+          <td>
+            <p>Sets the designated parameter to the given double value.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="6ac0682e-e04c-4fdb-893b-92408d42051e.htm">setEscapeProcessing</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a>) Sets the escape processing mode.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="18176517-2fb3-4266-924d-0f01253083d2.htm">setFetchDirection</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a>) Gives the JDBC driver a hint as to the direction in which result set rows should be processed.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="760e555e-9667-4b40-b0ba-778026ff2923.htm">setFetchSize</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a>) Gives the JDBC driver a hint as to the number of rows that should be fetched from the database when more rows are needed.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="26d861da-bb6a-4197-8b32-13dc7781c2bb.htm">setFloat</a></p>
+          </td>
+          <td>
+            <p>Sets the designated parameter to the given float value.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="7de05cf4-3a48-4c60-9a1b-6ad2ae43d258.htm">setInt</a></p>
+          </td>
+          <td>
+            <p>Sets the designated parameter to the given integer value.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="137416fe-a580-424e-be79-fe946eba9e6e.htm">setLong</a></p>
+          </td>
+          <td>
+            <p>Sets the designated parameter to the given long value.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="38f7fc1d-acad-4d10-9fc8-3c0669d93b07.htm">setMaxFieldSize</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a>) Sets the limit for the maximum number of bytes in a <a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a> column storing character or binary values to the given number of bytes.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="cccc0667-589b-4655-8ea8-14ae8b2eb9dc.htm">setMaxRows</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a>) Sets the limit for the maximum number of rows that any <a href="eaffcff1-286c-459f-83da-3150778480c9.htm">SQLServerResultSet</a> object can contain to the given number.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="842dbcfb-7f6a-46d5-b386-c6cbb879a23d.htm">setNull</a></p>
+          </td>
+          <td>
+            <p>Sets the designated parameter to a null value, given the type of parameter to set.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="7110f6c5-4af3-4b50-a4d4-1bae1876c70d.htm">setObject</a></p>
+          </td>
+          <td>
+            <p>Sets the value of the designated parameter using the given object.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="0c513265-cd0c-4b38-9494-94458c17a16d.htm">setQueryTimeout</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="ec24963c-8b51-4838-91e9-1fbfa2347451.htm">SQLServerStatement</a>) Sets the number of seconds the driver will wait for a <b>CallableStatement</b> object to run to the given number of seconds.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="1a09bbf9-6f8f-4a21-85d2-2182111b5ce7.htm">setRef</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="a8481c06-fbba-432b-8c69-4f4619c20ad4.htm">SQLServerPreparedStatement</a>) Sets the designated parameter to the given <b>Ref</b> object.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="d7031a89-e964-4ffd-87b7-63825799435d.htm">setShort</a></p>
+          </td>
+          <td>
+            <p>Sets the designated parameter to the given short value.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="f38b97b5-d4f0-4f74-a33d-740241a85842.htm">setString</a></p>
+          </td>
+          <td>
+            <p>Sets the designated parameter to the given Java string value.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="04ea83b2-db5e-4b46-b016-9e496363827e.htm">setTime</a></p>
+          </td>
+          <td>
+            <p>Sets the designated parameter to the given time value.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="d4f59d5e-af85-491d-abde-eb06684745ce.htm">setTimestamp</a></p>
+          </td>
+          <td>
+            <p>Sets the designated parameter to the given timestamp value.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="0a413e83-e0a4-41f8-9fe0-33ce4d368ee4.htm">setUnicodeStream</a></p>
+          </td>
+          <td>
+            <p>(Inherited from <a href="a8481c06-fbba-432b-8c69-4f4619c20ad4.htm">SQLServerPreparedStatement</a>) Sets the designated parameter number to the given input stream, which will have the specified number of bytes.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="3d83675e-74ca-49d9-8461-6326773c5c8c.htm">setURL</a></p>
+          </td>
+          <td>
+            <p>Sets the designated parameter to the given URL value.</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p><a href="1a27b2fe-ae12-46a9-9bca-2c5ca66b9eb3.htm">wasNull</a></p>
+          </td>
+          <td>
+            <p>Retrieves whether the last OUT parameter read had the value of SQL NULL.</p>
+          </td>
+        </tr></table>
+    </content>
+      </div>
+      <h1 class="heading">Inherited Methods</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h2 class="heading" xmlns=""></h2><table cellspacing="0" cellpadding="0" border="1" style="background-color: #CCCCCC;" xmlns=""><tr>
+            <th>
+              Class inherited from:
+            </th>
+            <th>
+              Methods
+            </th>
+          </tr><tr>
+          <td>
+            <p>com.microsoft.sqlserver.jdbc.SQLServerPreparedStatement</p>
+          </td>
+          <td>
+            <p>addBatch, clearBatch, clearParameters, close, execute, executeBatch, executeQuery, executeUpdate, getMetaData, getParameterMetaData, setArray, setAsciiStream, setBigDecimal, setBinaryStream, setBlob, setBoolean, setByte, setBytes, setCharacterStream, setClob, setDate, setDouble, setFloat, setInt, setLong, setNull, setObject, setRef, setShort, setString, setTime, setTimestamp, setUnicodeStream, setURL</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>com.microsoft.sqlserver.jdbc.SQLServerStatement</p>
+          </td>
+          <td>
+            <p>cancel, clearWarnings, execute, executeUpdate, getConnection, getFetchDirection, getFetchSize, getGeneratedKeys, getMaxFieldSize, getMaxRows, getMoreResults, getQueryTimeout, getResultSet, getResultSetConcurrency, getResultSetHoldability, getResultSetType, getUpdateCount, getWarnings, setCursorName, setEscapeProcessing, setFetchDirection, setFetchSize, setMaxFieldSize, setMaxRows, setQueryTimeout</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>class java.lang.Object</p>
+          </td>
+          <td>
+            <p>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString, wait,</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>java.sql.PreparedStatement</p>
+          </td>
+          <td>
+            <p>addBatch, clearParameters, execute, executeQuery, executeUpdate, getMetaData, getParameterMetaData, setArray, setAsciiStream, setBigDecimal, setBinaryStream, setBlob, setBoolean, setByte, setBytes, setCharacterStream, setClob, setDate, setDate, setDouble, setFloat, setInt, setLong, setNull, setObject, setRef, setShort, setString, setTime, setTimestamp, setUnicodeStream, setURL</p>
+          </td>
+        </tr><tr>
+          <td>
+            <p>java.sql.Statement</p>
+          </td>
+          <td>
+            <p>addBatch, cancel, clearBatch, clearWarnings, close, execute, executeBatch, executeQuery, executeUpdate, getConnection, getFetchDirection, getFetchSize, getGeneratedKeys, getMaxFieldSize, getMaxRows, getMoreResults, getQueryTimeout, getResultSet, getResultSetConcurrency, getResultSetHoldability, getResultSetType, getUpdateCount, getWarnings, setCursorName, setEscapeProcessing, setFetchDirection, setFetchSize, setMaxFieldSize, setMaxRows, setQueryTimeout</p>
+          </td>
+        </tr></table>
+    </content>
+      </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="30710a63-c05d-47d9-9cf9-c087a1c76373.htm">SQLServerCallableStatement Class</a> | <a href="5ebdc186-e50f-4d14-bbf4-95af5051e4a4.htm">SQLServerCallableStatement Members</a></div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>

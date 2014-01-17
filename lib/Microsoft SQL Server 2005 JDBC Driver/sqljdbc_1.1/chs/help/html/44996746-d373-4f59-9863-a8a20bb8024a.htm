@@ -1,0 +1,179 @@
+<html DIR="LTR" xmlns:tool="http://www.microsoft.com/tooltip" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=gb2312" />
+    <META NAME="save" CONTENT="history" />
+    <title>创建连接 URL</title>
+    
+    <link rel="stylesheet" type="text/css" href="../local/Classic.css">
+      
+    </link>
+    
+    <script src="../local/script_loc.js">
+      
+    </script>
+    <script src="../local/script_main.js">
+      
+    </script>
+  </head>
+  <body style="display: none;">
+    <!--Topic built:2006-11-3-->
+<input type="hidden" id="userDataCache" class="userDataStyle">
+    </input>
+    <input type="hidden" id="hiddenScrollOffset">
+    </input>
+    <div id="header">
+        <tr>
+          <td align="left">
+            <span id="headerBold">创建连接 URL</span>
+          </td>
+        </tr>
+      </table>
+      <IMG id="SeeAlso1" style="display:none; height:0; width:0;" src="../local/SeeAlso1a.gif">
+        
+      </IMG>
+      <IMG id="SeeAlso2" style="display:none; height:0; width:0;" src="../local/SeeAlso1c.gif">
+        
+      </IMG>
+      <IMG id="Filter1" style="display:none; height:0; width:0;" src="../local/Filter1a.gif">
+        
+      </IMG>
+      <IMG id="Filter2" style="display:none; height:0; width:0;" src="../local/Filter1c.gif">
+        
+      </IMG>
+      <span style="display:none" id="languageSpan">
+        <h1 class="heading">
+          语言
+        </h1>
+        <div id="selectLanguage" class="section">
+          <div class="languageFilter" id="VisualBasic" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [Visual Basic]
+          </div>
+          <div class="languageFilter" id="CSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C#]
+          </div>
+          <div class="languageFilter" id="ManagedCPlusPlus" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [C++]
+          </div>
+          <div class="languageFilter" id="JSharp" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [J#]
+          </div>
+          <div class="languageFilter" id="JScript" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            [JScript]
+          </div>
+          <div class="languageFilter" id="all" onclick="ChangeLanguage(this.id)" onkeypress="ChangeLanguage_CheckKey(this.id)" tabindex="0">
+            （全部显示）
+          </div>
+        </div>
+      </span>
+    </div>
+    <div id="mainSection">
+      <div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()">
+      </div>
+      <font color="DarkGray"><!-- [This topic is pre-release documentation and is subject to change in future releases. Blank topics are included as placeholders.]<br/>[Documentation built on 2006-11-3]  --></font><p /><p />
+      <div id="introductionSection" class="section">
+<p>连接 URL 的一般形式为：</p>
+    <p><code>jdbc:sqlserver://serverName;instanceName:portNumber;property=value[;property=value]</code></p>
+<p>其中：</p>
+    <ul><li>
+<b>jdbc:sqlserver://</b>（必需）称为子协议，且为常数。 <br></br>
+      </li><li>
+<b>serverName</b>（可选）是要连接到的服务器的地址。它可以是 DNS 或 IP 地址，也可以是本地计算机地址 localhost 或 127.0.0.1。如果未在连接 URL 中指定服务器名称，则必须在属性集中指定。<br></br>
+      </li><li>
+<b>instanceName</b> （可选）是 serverName 上要连接到的实例。如果未指定，则会连接到默认实例。<br></br>
+      </li><li>
+<b>portNumber</b>（可选）是 serverName 上要连接到的端口。默认值为 1433。如果使用默认端口，则无需在 URL 中指定端口及其前面的&ldquo;:&rdquo;。<br></br>
+        <div style="margin: .5em 1.5em .5em 1.5em"><b>注意： </b>
+若要获得最佳连接性能，应在连接到命名实例时设置 portNumber。这将避免为了确定端口号而与服务器进行往返通讯。如果同时使用 portNumber 和 instanceName，则会优先使用 portNumber，而忽略 instanceName。<p></p>
+        </div>
+      </li><li>
+<b>property</b>（可选）是一个或多个选项连接属性。有关详细信息，请参阅<a href="f1b62700-f046-488d-bd6b-a5cd8fc345b7.htm">设置连接属性</a>。可指定该列表中的任何属性。属性只能用分号（&ldquo;;&rdquo;）分隔，且不允许重复。 <br></br>
+      </li></ul>
+    <div style="margin: .5em 1.5em .5em 1.5em"><b>警告： </b>
+出于安全考虑，应避免根据用户输入的内容创建连接 URL。只应在 URL 中指定服务器名称和驱动程序。对于用户名和密码值，请使用连接属性集。有关 JDBC 应用程序中安全性的详细信息，请参阅<a href="90724ec6-a9cb-43ef-903e-793f89410bc0.htm">保护 JDBC 驱动程序应用程序</a>。<p></p>
+    </div>
+  </div>
+      <h1 class="heading">连接实例</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">使用用户名和密码连接到本地计算机上的默认数据库：</p>
+      <p xmlns=""><code>jdbc:sqlserver://localhost;user=MyUserName;password=*****;</code></p>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>注意： </b>
+尽管以上实例在连接字符串中使用了用户名和密码，但如果在 Windows 操作系统中运行应用程序，则应使用集成安全性，因为这样会更加安全。有关详细信息，请参阅本主题后面部分的<b>通过集成身份验证进行连接</b>一节。<p></p>
+      </div>
+<p xmlns="">使用集成身份验证连接到本地计算机上的默认数据库：</p>
+      <p xmlns=""><code>jdbc:sqlserver://localhost;integratedSecurity=true;</code></p>
+<p xmlns="">连接到远程服务器上的指定数据库：</p>
+      <p xmlns=""><code>jdbc:sqlserver://localhost;databaseName=AdventureWorks;integratedSecurity=true;</code></p>
+<p xmlns="">连接到远程服务器上的默认端口：</p>
+      <p xmlns=""><code>jdbc:sqlserver://localhost:1433;databaseName=AdventureWorks;integratedSecurity=true;</code></p>
+<p xmlns="">通过指定自定义应用程序名称进行连接：</p>
+      <p xmlns=""><code>jdbc:sqlserver://localhost;databaseName=AdventureWorks;integratedSecurity=true;applicationName=MyApp;</code></p>
+    </content>
+      </div>
+      <h1 class="heading">指定的多个 SQL Server 实例</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">SQL Server 2000 和 SQL Server 2005 允许在每台服务器上安装多个数据库实例。每个实例都由一个专用名称所标识。若要连接到 SQL Server 的命名实例，可以使用命名实例的端口号（首选），也可将实例名指定为 JDBC URL 属性或 <b>datasource</b> 属性。如果未指定实例名属性或端口号属性，则会创建与默认实例的连接。如以下实例所示：</p>
+<p xmlns="">若要使用端口号，请执行下列操作：</p>
+      <p xmlns=""><code>jdbc:sqlserver://localhost:1433;integratedSecurity=true;&lt;more properties as required&gt;;</code></p>
+<p xmlns="">若要使用 JDBC URL 属性，请执行下列操作：</p>
+      <p xmlns=""><code>jdbc:sqlserver://localhost;instanceName=instance1;integratedSecurity=true;&lt;more properties as required&gt;;</code></p>
+    </content>
+      </div>
+      <h1 class="heading">转义连接 URL 中的值</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">由于包含特殊字符（如空格、分号和引号），所以必须转义连接 URL 值的某些部分。如果这些字符包含在大括号中，则 JDBC 驱动程序将支持对其进行转义。例如，{;} 将转义分号。</p>
+<p xmlns="">转义的值可以包含特殊字符（特别是&ldquo;=&rdquo;、&ldquo;;&rdquo;、&ldquo;[]&rdquo;和空格），但不能包含大括号。应将必须进行转义且包含大括号的值添加到属性集中。</p>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>注意： </b>
+大括号内的空白为常量，不能删除。<p></p>
+      </div>
+    </content>
+      </div>
+      <h1 class="heading">通过集成身份验证进行连接</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">JDBC 驱动程序支持通过 integratedSecurity 连接字符串属性在 Windows 操作系统上使用&ldquo;类型 2&rdquo;集成身份验证。若要使用集成身份验证，请将 sqljdbc_auth.dll 文件复制到计算机中 Windows 系统路径下的 JDBC 驱动程序安装目录中。 </p>
+<p xmlns="">sqljdbc_auth.dll 文件的安装位置如下：</p>
+<p xmlns="">&lt;<i>安装目录</i>&gt;\sqljdbc_&lt;<i>版本</i>&gt;\&lt;<i>语言</i>&gt;\auth\</p>
+      <div style="margin: .5em 1.5em .5em 1.5em" xmlns=""><b>注意： </b>
+如果使用 32 位处理器，请使用 x86 文件夹中的 sqljdbc_auth.dll 文件。如果使用 64 位处理器，请使用 x64 文件夹中的 sqljdbc_auth.dll 文件。<p></p>
+      </div>
+<p xmlns="">也可以通过设置 java.libary.path 系统属性来指定 sqljdbc_auth.dll 的目录，例如，如果 JDBC 驱动程序安装在默认目录中，您可以在 Java 应用程序启动时使用以下虚拟机 (VM) 参数来指定 DLL 的位置： </p>
+      <p xmlns=""><code>-Djava.library.path=C:\Microsoft SQL Server 2005 JDBC Driver\sqljdbc_&lt;version&gt;\enu\auth\x86</code></p>
+    </content>
+      </div>
+      <h1 class="heading">通过 IPv6 地址进行连接</h1>
+      <div id="sectionSection" class="section">
+        <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+<p xmlns="">JDBC 驱动程序支持使用具有连接属性集和 serverName 连接字符串属性的 IPv6 地址。连接字符串不支持在 IPv6 地址中使用初始 serverName 值，如 jdbc:<i>sqlserver</i>://<i>serverName</i>。使用 <i>serverName</i> 的名称而不是原始 IPv6 地址将适用于连接中的所有情况。以下实例提供了详细信息。</p>
+<p xmlns=""><b>使用 serverName 属性</b></p>
+      <p xmlns=""><code>jdbc:sqlserver://;serverName=3ffe:8311:eeee:f70f:0:5eae:10.203.31.9\\instance1;integratedSecurity=true;</code></p>
+<p xmlns=""><b>使用属性集</b></p>
+      <p xmlns=""><code>Properties pro = new Properties();</code></p>
+      <p xmlns=""><code>pro.setProperty("serverName", "serverName=3ffe:8311:eeee:f70f:0:5eae:10.203.31.9\\instance1");</code></p>
+      <p xmlns=""><code>Connection con = DriverManager.getConnection("jdbc:sqlserver://;integratedSecurity=true;", pro);</code></p>
+    </content>
+      </div>
+      <span id="seeAlsoSpan">
+        <h1 class="heading">
+          请参阅
+        </h1>
+        <div id="seeAlsoSection" class="section">
+          <a href="94bcfbe3-f00e-4774-bda8-bb7577518fec.htm">通过 JDBC 驱动程序连接到 SQL Server</a>
+        </div>
+      </span>
+      <!--[if gte IE 5]>
+			<tool:tip element="seeAlsoToolTip" avoidmouse="false"/><tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]-->
+      <div id="footer" class="section">
+        <hr /><A NAME="feedback"></A><span id="fb" class="feedbackcss"></span>
+		<a href="9bad553b-9e70-4696-8499-2e35f772a1e0.htm">
+			
+			&copy; 2006 Microsoft Corporation.保留所有权利。
+		</a>
+ 	
+      </div>
+    </div>
+  </body>
+</html>
