@@ -10,7 +10,6 @@ public class mThread implements Runnable{
 	Training t=new Training();
 	public mThread(String name){
 		this.name=name;
-		
 	}
 	public void run(){
 		try {
